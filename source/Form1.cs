@@ -2,14 +2,18 @@ using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
+using Archipelago.MultiClient.Net.Packets;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.Windows.Forms;
 using static C3AP_Client.CrystalBits;
 using static C3AP_Client.GameConfig;
-using static C3AP_Client.SharedAdresses;
 using static C3AP_Client.SearchReserved;
+using static C3AP_Client.SharedAdresses;
 using static System.Collections.Specialized.BitVector32;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Timer = System.Windows.Forms.Timer;
@@ -63,6 +67,7 @@ namespace C3AP_Client
         private bool isProcess;
         private IntPtr targetProcess;
         private IntPtr ramBase;
+        private long currentGoalSetting;
 
         [StructLayout(LayoutKind.Sequential)]
         struct MEMORY_BASIC_INFORMATION
@@ -110,10 +115,20 @@ namespace C3AP_Client
         public static IntPtr GetProcess()
         {
             Process[] processes = Process.GetProcessesByName("duckstation-qt-x64-ReleaseLTCG");
+
+            if (processes.Length == 0)
+            {
+                return IntPtr.Zero;
+            }
             Process proc = processes[0];
 
-            IntPtr processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION, false, proc.Id);
-            return processHandle;
+            if (proc != null)
+            {
+                IntPtr processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION, false, proc.Id);
+                return processHandle;
+            }
+
+            return IntPtr.Zero;
         }
 
         public static IntPtr FindRamBySignature(IntPtr hProcess)
@@ -320,6 +335,131 @@ namespace C3AP_Client
 
             return false;
         }
+        private bool isCrystalSave(long APItemID)
+        {
+            byte[] savecyrstal = getCrystalReserve((int)CrystalSavedAddress);
+            var match = SharedAdresses.CrystalItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.crystalData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.crystalData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (savecyrstal[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
+
+        private bool isClearGemBoxSave(long APItemID)
+        {
+            byte[] saveclearboxgem = getClearGemReserve((int)GemSavedAddress);
+            var match = SharedAdresses.ClearGemBoxItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.cleargemBoxData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.cleargemBoxData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (saveclearboxgem[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
+
+        private bool isClearGemSave(long APItemID)
+        {
+            byte[] savecleargem = getClearGemReserve((int)GemSavedAddress);
+            var match = SharedAdresses.ClearGemItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.cleargemData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.cleargemData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (savecleargem[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
+
+        private bool isColoredGemSave(long APItemID)
+        {
+            byte[] savecoloredgem = getColoredGemReserve((int)ColoredGemSavedAddress);
+            var match = SharedAdresses.ColoredGemItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.colorgemData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.colorgemData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (savecoloredgem[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
+
+        private bool isRelicSapphireSave(long APItemID)
+        {
+            byte[] saverelicS = getRelicSGeReserve((int)RelicsSapphireSavedAddress);
+            var match = SharedAdresses.RelicSItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.relicSGData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.relicSGData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (saverelicS[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
+
+        private bool isRelicGoldSave(long APItemID)
+        {
+            byte[] saverelicS = getRelicSGeReserve((int)RelicsGoldSavedAddress);
+            var match = SharedAdresses.RelicGItems.FirstOrDefault(item => item.LevelAPItemId == APItemID);
+
+            if (match != null)
+            {
+                string levelName = match.LevelName;
+                if (CrystalBits.relicSGData.ContainsKey(levelName))
+                {
+                    var data = CrystalBits.relicSGData[levelName];
+
+                    int byteIndex = data.Item1;
+                    int bitPosition = data.Item2;
+
+                    return (saverelicS[byteIndex] & (1 << bitPosition)) != 0;
+                }
+            }
+            return false;
+        }
 
         private bool isCrystalReserved(string levelName)
         {
@@ -418,7 +558,7 @@ namespace C3AP_Client
 
         private bool isRelicGoldReserved(string levelName)
         {
-            byte[] reserverelicS = getRelicSGeReserve((int)RelicsGoldReceivedAddress);
+            byte[] reserverelicG = getRelicSGeReserve((int)RelicsGoldReceivedAddress);
             if (levelName != null)
             {
                 if (CrystalBits.relicSGData.ContainsKey(levelName))
@@ -428,7 +568,7 @@ namespace C3AP_Client
                     int byteIndex = data.Item1;
                     int bitPosition = data.Item2;
 
-                    return (reserverelicS[byteIndex] & (1 << bitPosition)) != 0;
+                    return (reserverelicG[byteIndex] & (1 << bitPosition)) != 0;
                 }
             }
 
@@ -564,7 +704,8 @@ namespace C3AP_Client
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int levelNumber = getLevelID((int)LevelIDAddress);
+            if (isProcessRunning().Length != 0) { isProcess = true; } else { isProcess = false; }
+                int levelNumber = getLevelID((int)LevelIDAddress);
             int levelNumberLate = getLevelID((int)LateLevelIDAddress);
             string levelName = LevelIDs.FirstOrDefault(x => x.Value == valueBuffer[0]).Key;
             string levelNameLate = LevelIDs.FirstOrDefault(x => x.Value == valueBuffer[0]).Key;
@@ -603,23 +744,48 @@ namespace C3AP_Client
             }
         }
 
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(commandBox.Text) && APManager.IsConnected)
+            {
+                string message = commandBox.Text;
+
+                APManager.Session.Socket.SendPacket(new SayPacket() { Text = message });
+
+                commandBox.Clear();
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            if (portNumber.Text != "")
+            if (hostName.Text != "")
             {
                 if (slotName.Text != "")
                 {
-                    var session = ArchipelagoSessionFactory.CreateSession("archipelago.gg", Int32.Parse(portNumber.Text)); 
+                    string[] hostAddresse = hostName.Text.Split(':');
+                    var session = ArchipelagoSessionFactory.CreateSession(hostAddresse[0], Int32.Parse(hostAddresse[1])); 
                     LoginResult result = session.TryConnectAndLogin(
                     game: "Crash Bandicoot: Warped",      
                     name: slotName.Text,
-                    itemsHandlingFlags: ItemsHandlingFlags.AllItems
+                    itemsHandlingFlags: ItemsHandlingFlags.AllItems,
+                    tags: new string[] { "AP" }
                     );
 
                     if (result.Successful)
                     {
                         APManager.Session = session;
                     }
+
+                    if (result is LoginSuccessful successful)
+                    {
+                        // Slot-Daten für das Ziel auslesen
+                        if (successful.SlotData.ContainsKey("goal"))
+                        {
+                            currentGoalSetting = Convert.ToInt64(successful.SlotData["goal"]);
+                        }
+                    }
+                    LoadItemsFromJson();
+                    alreadyReceivedItems();
                     timer2.Enabled = true;
 
                     session.Items.ItemReceived += (receivedItemsHelper) =>
@@ -627,26 +793,23 @@ namespace C3AP_Client
                         
                         var nextItem = session.Items.AllItemsReceived.Last();
                         long itemId = nextItem.ItemId;
+                        ItemFlags flags = nextItem.Flags;
 
-                        
                         string itemName = session.Items.GetItemName(itemId);
 
                         int senderPlayerId = nextItem.Player;
                         string locationName = nextItem.LocationName;
 
-                        string senderName = session.Players.GetPlayerAliasAndName(senderPlayerId);
+                        string senderName = session.Players.GetPlayerName(senderPlayerId);
+                        //string senderName1 = session.Players.;
 
                         OnItemReceived(itemId);
 
-                        if (senderName != hostName.Text)
-                        {
-                            //richTextBox1.AppendText($"{senderName} sent {itemName} to {slotName.Text} ({locationName})");
-                        }
-                        else
-                        {
-                            //richTextBox1.AppendText($"{slotName.Text} found their {itemName} ({locationName})");
-                        }
+                        AppendColoredLog(slotName.Text, itemName, flags, senderName, locationName);
 
+                        AppendReceivedItemBox(itemName);
+
+                        SaveItemToJson(itemId,slotName.Text,itemName,senderName,locationName,flags);
 
 
                         //richTextBox1.AppendText($"Item empfangen: {itemName} (ID: {itemId.ToString()})!");
@@ -662,6 +825,66 @@ namespace C3AP_Client
             Console.WriteLine("Erfolgreich mit dem AP-Server verbunden!");
 
         }
+        private void AppendReceivedItemBox(string text)
+        {
+            if (receivedItemBox.InvokeRequired)
+            {
+                receivedItemBox.Invoke(new Action<string>(AppendReceivedItemBox), new object[] { text });
+                return;
+            }
+
+            receivedItemBox.AppendText(text + Environment.NewLine);
+        }
+
+        public class ReceivedItemData
+        {
+            public long ItemId { get; set; }
+            public string PlayerName { get; set; }
+            public string ItemName { get; set; }
+            public string SenderName { get; set; }
+            public string LocationName { get; set; }
+            public ItemFlags ItemFlags { get; set; }
+        }
+
+        private void SaveItemToJson(long itemId,string playerName, string itemName, string senderName, string locationName, ItemFlags flags)
+        {
+            var itemEntry = new ReceivedItemData
+            {
+                ItemId = itemId,
+                ItemName = itemName,
+                ItemFlags = flags,
+                PlayerName = playerName,
+                SenderName = senderName,
+                LocationName = locationName
+            };
+            string jsonString = JsonSerializer.Serialize(itemEntry);
+
+            File.AppendAllLines("apreceiveditems.c3apsave", new[] { jsonString });
+        }
+
+        private void LoadItemsFromJson()
+        {
+            string logFilePath = "apreceiveditems.c3apsave";
+
+            if (!File.Exists(logFilePath)) return;
+
+            foreach (var line in File.ReadLines(logFilePath))
+            {
+                try
+                {
+                    var item = JsonSerializer.Deserialize<ReceivedItemData>(line);
+
+                    if (item != null)
+                    {
+                        receivedItemBox.AppendText(item.ItemName + Environment.NewLine);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Fehler beim Laden eines Log-Eintrags: " + ex.Message);
+                }
+            }
+        }
 
         private void richTextBox1_GotFocus(object sender, EventArgs e)
         {
@@ -671,11 +894,12 @@ namespace C3AP_Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            logBox.AppendText("Hello");
+            //logBox.AppendText("Hello");
 
-            
+            setNonPlayedItems(142023);
+            MessageBox.Show(isCrystalSave(142023).ToString());
 
-            sendToPopup(142067, "Test", "Test");
+            //sendToPopup(142067, "Test", "Test");
             //setNonPlayedItems();
             //setGameItems(142001, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
 
@@ -873,24 +1097,72 @@ namespace C3AP_Client
             sendRelicGoldCheck(levelName);
             sendRelicPlatinumCheck(levelName);
 
-        }
-
-        private void setNonPlayedItems()
-        {
             if (APManager.IsConnected)
             {
-                long[] receivedItemIds = APManager.Session.Items.AllItemsReceived.Select(item => item.ItemId).ToArray();
-                if (receivedItemIds != null)
-                {
-                    for (int i = 0; i < receivedItemIds.Length; i++)
-                    {
-                        bool hasAnyCrystalItem = receivedItemIds.Any(id => CrystalItems.Any(item => item.LevelAPItemId == id));
-                        if (hasAnyCrystalItem)
-                        {
-                            OnItemReceived(receivedItemIds[i]);
-                        }
-                    }
+                CheckGameMemoryForGoal(currentGoalSetting);
+            }
 
+
+        }
+
+        private void setNonPlayedItems(long APItemID)
+        {
+            if (!APManager.IsConnected) return;
+
+            if (SharedAdresses.CrystalItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isCrystalSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
+                }
+            }
+
+            else if (SharedAdresses.ClearGemBoxItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isClearGemBoxSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)GemSavedAddress, (int)GemReceivedAddress);
+                }
+            }
+
+            else if (SharedAdresses.ClearGemItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isClearGemSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)GemSavedAddress, (int)GemReceivedAddress);
+                }
+            }
+            // 4. Colored Gem prüfen
+            else if (SharedAdresses.ColoredGemItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isColoredGemSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)ColoredGemSavedAddress, (int)ColoredGemReceivedAddress);
+                }
+            }
+
+            else if (SharedAdresses.RelicSItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isRelicSapphireSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress);
+                }
+            }
+
+            else if (SharedAdresses.RelicGItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isRelicGoldSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
+                }
+            }
+
+            else if (SharedAdresses.RelicPItems.Any(item => item.LevelAPItemId == APItemID))
+            {
+                if (!isRelicSapphireSave(APItemID) && !isRelicGoldSave(APItemID))
+                {
+                    setGameItems(APItemID, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress);
+                    setGameItems(APItemID, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
                 }
             }
         }
@@ -1180,6 +1452,20 @@ namespace C3AP_Client
                 e.Handled = true;
             }
         }
+        private void alreadyReceivedItems()
+        {
+            if (APManager.IsConnected)
+            {
+                var receivedItems = APManager.Session.Items.AllItemsReceived;
+
+                foreach (var item in receivedItems)
+                {
+                    setNonPlayedItems(item.ItemId);
+                }
+                ClientMessageBox.Show("Alle empfangenen Items wurden abgeglichen!", "Archipelago Status");
+                MessageBox.Show("Alle empfangenen Items wurden mit dem Spielstand abgeglichen!", "Abgleich beendet");
+            }
+        }
 
 
         private void btnMenu(object sender, EventArgs e)
@@ -1274,6 +1560,70 @@ namespace C3AP_Client
         {
             if (btn_selectgame.Visible) { btn_labelgame.ForeColor = System.Drawing.Color.White; }
             else { btn_labelgame.ForeColor = System.Drawing.Color.Gray; }
+        }
+
+        private void AppendColoredLog(string playerName, string itemName, ItemFlags itemFlags, string senderName, string locationName)
+        {
+            // 1. Thread-Sicherheit prüfen (Invoke)
+            if (logBox.InvokeRequired)
+            {
+                logBox.Invoke(new Action<string, string, ItemFlags, string, string>(AppendColoredLog), new object[] { playerName, itemName, itemFlags, senderName, locationName });
+                return;
+            }
+            
+            if (playerName == senderName) 
+            {
+                logBox.SelectionColor = System.Drawing.Color.Beige;
+                logBox.AppendText(playerName);
+
+                logBox.SelectionColor = logBox.ForeColor;
+                logBox.AppendText(" found their ");
+            }
+            else 
+            {
+                logBox.SelectionColor = System.Drawing.Color.Orange;
+                logBox.AppendText(senderName);
+
+                logBox.SelectionColor = logBox.ForeColor;
+                logBox.AppendText(" sent ");
+            }
+
+            if (itemFlags.HasFlag(ItemFlags.Advancement))
+            {
+                logBox.SelectionColor = System.Drawing.Color.FromArgb(175, 153, 239);
+            }
+            else if (itemFlags.HasFlag(ItemFlags.None))
+            {
+                logBox.SelectionColor = System.Drawing.Color.FromArgb(0, 238, 238);
+            }
+            else if (itemFlags.HasFlag(ItemFlags.Trap))
+            {
+                logBox.SelectionColor = System.Drawing.Color.FromArgb(131, 63, 51);
+            }
+            else // Filler / Junk
+            {
+                logBox.SelectionColor = System.Drawing.Color.FromArgb(50, 131, 125);
+            }
+
+            logBox.AppendText(itemName);
+
+            logBox.SelectionColor = logBox.ForeColor;
+            if (playerName != senderName) { logBox.AppendText(" to "); }
+            else { logBox.AppendText(" "); }
+
+            if (playerName != senderName) { logBox.SelectionColor = System.Drawing.Color.Orange; logBox.AppendText(senderName); }
+            else { logBox.SelectionColor = System.Drawing.Color.Beige; logBox.AppendText(playerName); }
+
+            logBox.SelectionColor = logBox.ForeColor;
+            logBox.AppendText(" (");
+
+            logBox.SelectionColor = System.Drawing.Color.FromArgb(0, 255, 127);
+            logBox.AppendText( locationName);
+
+            logBox.SelectionColor = logBox.ForeColor;
+            logBox.AppendText(")" + Environment.NewLine);
+            logBox.SelectionStart = logBox.Text.Length;
+            logBox.ScrollToCaret();
         }
 
         private void switchBTN(int btn)
@@ -1383,6 +1733,170 @@ namespace C3AP_Client
             Properties.Settings.Default.hostPass = password.Text;
 
             Properties.Settings.Default.Save();
+        }
+
+        private bool is100PercentCompleted()
+        {
+            // Beispiel: Du zählst die gesammelten Items aus deinen Speicher-Methoden oder Variablen
+            int totalCrystals = GetCollectedCrystalsCount(); // Sollte 25 sein
+            int totalGems = GetCollectedGemsCount();         // Mindestens 42 für 100%
+            int totalRelics = GetCollectedRelicsCount();     // Mindestens 28 für 100%
+
+            // Die Bedingung für das wahre Ende / 100% laut Text:
+            if (totalCrystals >= 25 && totalGems >= 42 && totalRelics >= 28)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private int GetCollectedCrystalsCount()
+        {
+            int count = 0;
+
+            // Gehe jedes Item in deiner Crystal-Liste durch
+            foreach (var item in SharedAdresses.CrystalItems)
+            {
+                // Prüfe mit deiner bereits existierenden Methode, ob das Crystal da ist
+                if (isCrystalSave(item.LevelAPItemId))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private int GetCollectedGemsCount()
+        {
+            int count = 0;
+
+            foreach (var item in SharedAdresses.ClearGemBoxItems)
+            {
+
+                if (isClearGemBoxSave(item.LevelAPItemId))
+                {
+                    count++;
+                }
+            }
+
+            foreach (var item in SharedAdresses.ClearGemItems)
+            {
+
+                if (isClearGemSave(item.LevelAPItemId))
+                {
+                    count++;
+                }
+            }
+
+            foreach (var item in SharedAdresses.ColoredGemItems)
+            {
+
+                if (isColoredGemSave(item.LevelAPItemId))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private int GetCollectedRelicsCount()
+        {
+            int count = 0;
+
+            // Wir holen uns alle Level-Namen aus der Saphir-Liste (oder einer anderen)
+            for (int i = 0; i < SharedAdresses.RelicSItems.Count; i++)
+            {
+                string levelName = SharedAdresses.RelicSItems[i].LevelName;
+
+                // Die jeweiligen APItemIDs für dieses Level in den 3 Listen holen
+                long sId = SharedAdresses.RelicSItems[i].LevelAPItemId;
+                long gId = SharedAdresses.RelicGItems[i].LevelAPItemId;
+                long pId = SharedAdresses.RelicPItems[i].LevelAPItemId;
+
+                // Prüfen, ob für dieses Level IRGENDEINE Relic-Medaille im Speicher gespeichert/gesichert ist
+                bool hasSapphire = isRelicSapphireSave(sId); // Deine Methode zum Prüfen von Saphir
+                bool hasGold = isRelicGoldSave(gId);       // Deine Methode zum Prüfen von Gold
+                bool hasPlatinum = isRelicGoldSave(gId) && isRelicSapphireSave(sId);   // Deine Methode zum Prüfen von Platin
+
+                // Wenn mindestens eine Medaille da ist, zählt dieses Level als geschafft (1 Relic)
+                if (hasSapphire || hasGold || hasPlatinum)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private bool is105PercentCompleted()
+        {
+            byte[] saveBytes = getColoredGemReserve((int)ColoredGemSavedAddress);
+
+            
+            if (saveBytes != null && saveBytes.Length > 0)
+            {
+                int byteIndex = 0;
+                int bitPosition = 7;
+
+                return (saveBytes[byteIndex] & (1 << bitPosition)) != 0;
+            }
+
+            return false;
+        }
+
+        private bool goalAlreadySent = false;
+
+        private void CheckGameMemoryForGoal(long currentGoalSetting)
+        {
+            if (!APManager.IsConnected || goalAlreadySent) return;
+
+            // Lese deine aktuellen Speicherwerte aus dem Spiel aus
+            int currentLevelID = getLevelID((int)LateLevelIDAddress); // Beispiel-Funktion für deine Level-Adresse
+            int currentGameState = getGameState((int)GameStateAddress);// Beispiel-Funktion für den GameState
+
+            // Optional: Hier kannst du auch deine Prozent-Zahl aus dem Speicher lesen (z.B. für 100% / 105%)
+            // float gamePercentage = GetGamePercentage(); 
+
+            bool reachedGoal = false;
+
+            // 1. Normales Goal: LevelID 7 und GameState 3 (z.B. Cortex besiegt)
+            if (currentGoalSetting == 0)
+            {
+                if (currentLevelID == 7 && currentGameState == 3)
+                {
+                    reachedGoal = true;
+                }
+            }
+
+            else if (currentGoalSetting == 1)
+            {
+                if (is100PercentCompleted() && currentLevelID == 7 && currentGameState == 3)
+                {
+                    reachedGoal = true;
+                }
+            }
+            // 3. 105% Goal: (Beispiel: Alles komplett)
+            else if (currentGoalSetting == 2)
+            {
+                if (is105PercentCompleted())
+                {
+                    reachedGoal = true;
+                }
+            }
+
+            // Wenn das Ziel durch die Speicherwerte erfüllt wurde -> An Archipelago senden!
+            if (reachedGoal)
+            {
+
+                APManager.Session.SetGoalAchieved();
+                //APManager.Session.Socket.Send(Newtonsoft.Json.JsonConvert.SerializeObject(statusPacket));
+                goalAlreadySent = true;
+
+                ClientMessageBox.Show("Glückwunsch! Ziel im Spiel erreicht und an Archipelago gesendet!", "Gewonnen!");
+            }
         }
     }
 }

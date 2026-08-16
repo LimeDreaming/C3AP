@@ -71,7 +71,7 @@ namespace C3AP_Client
 
         public static uint GameStateAddress = 0x68f3d;
         public static uint LevelIDAddress = 0x68ef9;
-        public static uint LateLevelIDAddress = 0x690a9;//
+        public static uint LateLevelIDAddress = 0x68ef9;
     }
     public static class GameConfig
     {

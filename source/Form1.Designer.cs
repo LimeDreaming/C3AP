@@ -55,8 +55,6 @@ namespace C3AP_Client
             panel6 = new Panel();
             password = new TextBox();
             panel5 = new Panel();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
             label3 = new Label();
             button3 = new Button();
             panel2 = new Panel();
@@ -70,17 +68,15 @@ namespace C3AP_Client
             btn_labelgame = new Label();
             btn_selectgame = new Panel();
             sharedPanel = new Panel();
+            panel_ReceivedItems = new Panel();
+            panelReceivedColor = new Panel();
+            receivedItemBox = new RichTextBox();
             panel_gamestats = new Panel();
             panelGame = new Panel();
             latelevelId = new Label();
-            panel_ReceivedItems = new Panel();
-            receivedItemBox = new RichTextBox();
             panel_Hints = new Panel();
+            panelHintsColor = new Panel();
             hintsBox = new RichTextBox();
-            panel_Log = new Panel();
-            panelLogColor = new Panel();
-            btn_sendcommand = new Button();
-            panel4 = new Panel();
             regionFlag = new PictureBox();
             panel10 = new Panel();
             btn_labelreceivedItems = new Label();
@@ -91,6 +87,10 @@ namespace C3AP_Client
             btn_log = new Panel();
             btn_labellog = new Label();
             btn_selectlog = new Panel();
+            panel_Log = new Panel();
+            panelLogColor = new Panel();
+            btn_sendcommand = new Button();
+            panel4 = new Panel();
             panelSettings.SuspendLayout();
             panel8.SuspendLayout();
             panel7.SuspendLayout();
@@ -101,17 +101,19 @@ namespace C3AP_Client
             ((System.ComponentModel.ISupportInitialize)duck_status).BeginInit();
             btn_game.SuspendLayout();
             sharedPanel.SuspendLayout();
+            panel_ReceivedItems.SuspendLayout();
+            panelReceivedColor.SuspendLayout();
             panel_gamestats.SuspendLayout();
             panelGame.SuspendLayout();
-            panel_ReceivedItems.SuspendLayout();
             panel_Hints.SuspendLayout();
-            panel_Log.SuspendLayout();
-            panelLogColor.SuspendLayout();
-            panel4.SuspendLayout();
+            panelHintsColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)regionFlag).BeginInit();
             panel10.SuspendLayout();
             btn_hints.SuspendLayout();
             btn_log.SuspendLayout();
+            panel_Log.SuspendLayout();
+            panelLogColor.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // dsstatus
@@ -168,16 +170,16 @@ namespace C3AP_Client
             // 
             logBox.BackColor = Color.FromArgb(36, 40, 47);
             logBox.BorderStyle = BorderStyle.None;
-            logBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             logBox.ForeColor = SystemColors.ButtonHighlight;
             logBox.HideSelection = false;
             logBox.Location = new Point(10, 10);
             logBox.Name = "logBox";
             logBox.ReadOnly = true;
-            logBox.ScrollBars = RichTextBoxScrollBars.None;
+            logBox.ScrollBars = RichTextBoxScrollBars.Horizontal;
             logBox.Size = new Size(498, 550);
             logBox.TabIndex = 6;
-            logBox.Text = "This Archipelago Client is";
+            logBox.Text = "This Archipelago Client is on pre-Alpha\nYou can play from NSTC [US] or PAL [EU]\n";
             // 
             // button1
             // 
@@ -196,12 +198,14 @@ namespace C3AP_Client
             // 
             // button2
             // 
-            button2.Location = new Point(84, 479);
+            button2.Enabled = false;
+            button2.Location = new Point(125, 236);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 8;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = true;
+            button2.Visible = false;
             button2.Click += button2_Click;
             // 
             // timer2
@@ -211,12 +215,14 @@ namespace C3AP_Client
             // 
             // portNumber
             // 
-            portNumber.Location = new Point(124, 366);
+            portNumber.Enabled = false;
+            portNumber.Location = new Point(18, 236);
             portNumber.MaxLength = 5;
             portNumber.Name = "portNumber";
             portNumber.PlaceholderText = "00000";
             portNumber.Size = new Size(100, 23);
             portNumber.TabIndex = 9;
+            portNumber.Visible = false;
             portNumber.KeyPress += NumbersOnly;
             // 
             // hostName
@@ -263,8 +269,6 @@ namespace C3AP_Client
             panelSettings.Controls.Add(panel6);
             panelSettings.Controls.Add(panel5);
             panelSettings.Controls.Add(button2);
-            panelSettings.Controls.Add(textBox1);
-            panelSettings.Controls.Add(textBox2);
             panelSettings.Controls.Add(label3);
             panelSettings.Controls.Add(label1);
             panelSettings.Controls.Add(button1);
@@ -360,23 +364,6 @@ namespace C3AP_Client
             panel5.Name = "panel5";
             panel5.Size = new Size(180, 25);
             panel5.TabIndex = 17;
-            // 
-            // textBox1
-            // 
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(96, 291);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(152, 18);
-            textBox1.TabIndex = 16;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(84, 335);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(152, 25);
-            textBox2.TabIndex = 15;
             // 
             // label3
             // 
@@ -529,14 +516,46 @@ namespace C3AP_Client
             // 
             // sharedPanel
             // 
-            sharedPanel.Controls.Add(panel_gamestats);
             sharedPanel.Controls.Add(panel_ReceivedItems);
+            sharedPanel.Controls.Add(panel_gamestats);
             sharedPanel.Controls.Add(panel_Hints);
             sharedPanel.Controls.Add(panel_Log);
             sharedPanel.Location = new Point(3, 43);
             sharedPanel.Name = "sharedPanel";
             sharedPanel.Size = new Size(524, 603);
             sharedPanel.TabIndex = 19;
+            // 
+            // panel_ReceivedItems
+            // 
+            panel_ReceivedItems.Controls.Add(panelReceivedColor);
+            panel_ReceivedItems.Location = new Point(50, 203);
+            panel_ReceivedItems.Name = "panel_ReceivedItems";
+            panel_ReceivedItems.Size = new Size(524, 604);
+            panel_ReceivedItems.TabIndex = 20;
+            // 
+            // panelReceivedColor
+            // 
+            panelReceivedColor.BackColor = Color.FromArgb(36, 40, 47);
+            panelReceivedColor.Controls.Add(receivedItemBox);
+            panelReceivedColor.Location = new Point(3, 3);
+            panelReceivedColor.Name = "panelReceivedColor";
+            panelReceivedColor.Size = new Size(518, 597);
+            panelReceivedColor.TabIndex = 7;
+            // 
+            // receivedItemBox
+            // 
+            receivedItemBox.BackColor = Color.FromArgb(36, 40, 47);
+            receivedItemBox.BorderStyle = BorderStyle.None;
+            receivedItemBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            receivedItemBox.ForeColor = SystemColors.ButtonHighlight;
+            receivedItemBox.HideSelection = false;
+            receivedItemBox.Location = new Point(10, 10);
+            receivedItemBox.Name = "receivedItemBox";
+            receivedItemBox.ReadOnly = true;
+            receivedItemBox.ScrollBars = RichTextBoxScrollBars.None;
+            receivedItemBox.Size = new Size(500, 582);
+            receivedItemBox.TabIndex = 6;
+            receivedItemBox.Text = "";
             // 
             // panel_gamestats
             // 
@@ -569,36 +588,22 @@ namespace C3AP_Client
             latelevelId.TabIndex = 5;
             latelevelId.Text = "Level ID:";
             // 
-            // panel_ReceivedItems
-            // 
-            panel_ReceivedItems.Controls.Add(receivedItemBox);
-            panel_ReceivedItems.Location = new Point(320, 36);
-            panel_ReceivedItems.Name = "panel_ReceivedItems";
-            panel_ReceivedItems.Size = new Size(524, 603);
-            panel_ReceivedItems.TabIndex = 20;
-            // 
-            // receivedItemBox
-            // 
-            receivedItemBox.BackColor = Color.FromArgb(36, 40, 47);
-            receivedItemBox.BorderStyle = BorderStyle.None;
-            receivedItemBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            receivedItemBox.ForeColor = SystemColors.ButtonHighlight;
-            receivedItemBox.HideSelection = false;
-            receivedItemBox.Location = new Point(3, 3);
-            receivedItemBox.Name = "receivedItemBox";
-            receivedItemBox.ReadOnly = true;
-            receivedItemBox.ScrollBars = RichTextBoxScrollBars.None;
-            receivedItemBox.Size = new Size(518, 597);
-            receivedItemBox.TabIndex = 6;
-            receivedItemBox.Text = "";
-            // 
             // panel_Hints
             // 
-            panel_Hints.Controls.Add(hintsBox);
-            panel_Hints.Location = new Point(280, 112);
+            panel_Hints.Controls.Add(panelHintsColor);
+            panel_Hints.Location = new Point(239, 25);
             panel_Hints.Name = "panel_Hints";
             panel_Hints.Size = new Size(524, 603);
             panel_Hints.TabIndex = 19;
+            // 
+            // panelHintsColor
+            // 
+            panelHintsColor.BackColor = Color.FromArgb(36, 40, 47);
+            panelHintsColor.Controls.Add(hintsBox);
+            panelHintsColor.Location = new Point(3, 3);
+            panelHintsColor.Name = "panelHintsColor";
+            panelHintsColor.Size = new Size(518, 597);
+            panelHintsColor.TabIndex = 7;
             // 
             // hintsBox
             // 
@@ -607,58 +612,16 @@ namespace C3AP_Client
             hintsBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             hintsBox.ForeColor = SystemColors.ButtonHighlight;
             hintsBox.HideSelection = false;
-            hintsBox.Location = new Point(3, 3);
+            hintsBox.Location = new Point(10, 10);
             hintsBox.Name = "hintsBox";
             hintsBox.ReadOnly = true;
             hintsBox.ScrollBars = RichTextBoxScrollBars.None;
-            hintsBox.Size = new Size(518, 597);
+            hintsBox.Size = new Size(500, 582);
             hintsBox.TabIndex = 6;
             hintsBox.Text = "";
             // 
-            // panel_Log
-            // 
-            panel_Log.Controls.Add(panelLogColor);
-            panel_Log.Controls.Add(btn_sendcommand);
-            panel_Log.Controls.Add(panel4);
-            panel_Log.Location = new Point(3, 3);
-            panel_Log.Name = "panel_Log";
-            panel_Log.Size = new Size(524, 603);
-            panel_Log.TabIndex = 18;
-            // 
-            // panelLogColor
-            // 
-            panelLogColor.BackColor = Color.FromArgb(36, 40, 47);
-            panelLogColor.Controls.Add(logBox);
-            panelLogColor.Location = new Point(3, 3);
-            panelLogColor.Name = "panelLogColor";
-            panelLogColor.Size = new Size(518, 568);
-            panelLogColor.TabIndex = 18;
-            // 
-            // btn_sendcommand
-            // 
-            btn_sendcommand.BackColor = Color.FromArgb(50, 58, 75);
-            btn_sendcommand.FlatAppearance.BorderSize = 0;
-            btn_sendcommand.FlatStyle = FlatStyle.Flat;
-            btn_sendcommand.ForeColor = SystemColors.ButtonHighlight;
-            btn_sendcommand.Location = new Point(446, 577);
-            btn_sendcommand.Name = "btn_sendcommand";
-            btn_sendcommand.Size = new Size(75, 23);
-            btn_sendcommand.TabIndex = 16;
-            btn_sendcommand.Text = "Send";
-            btn_sendcommand.UseVisualStyleBackColor = false;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(50, 58, 75);
-            panel4.Controls.Add(commandBox);
-            panel4.Location = new Point(3, 577);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(437, 23);
-            panel4.TabIndex = 17;
-            // 
             // regionFlag
             // 
-            regionFlag.Image = Properties.Resources.EU;
             regionFlag.Location = new Point(471, 9);
             regionFlag.Name = "regionFlag";
             regionFlag.Size = new Size(56, 31);
@@ -767,6 +730,48 @@ namespace C3AP_Client
             btn_selectlog.TabIndex = 0;
             btn_selectlog.Click += btnLog_Click;
             // 
+            // panel_Log
+            // 
+            panel_Log.Controls.Add(panelLogColor);
+            panel_Log.Controls.Add(btn_sendcommand);
+            panel_Log.Controls.Add(panel4);
+            panel_Log.Location = new Point(97, 84);
+            panel_Log.Name = "panel_Log";
+            panel_Log.Size = new Size(524, 603);
+            panel_Log.TabIndex = 18;
+            // 
+            // panelLogColor
+            // 
+            panelLogColor.BackColor = Color.FromArgb(36, 40, 47);
+            panelLogColor.Controls.Add(logBox);
+            panelLogColor.Location = new Point(3, 3);
+            panelLogColor.Name = "panelLogColor";
+            panelLogColor.Size = new Size(518, 568);
+            panelLogColor.TabIndex = 18;
+            // 
+            // btn_sendcommand
+            // 
+            btn_sendcommand.BackColor = Color.FromArgb(50, 58, 75);
+            btn_sendcommand.FlatAppearance.BorderSize = 0;
+            btn_sendcommand.FlatStyle = FlatStyle.Flat;
+            btn_sendcommand.ForeColor = SystemColors.ButtonHighlight;
+            btn_sendcommand.Location = new Point(446, 577);
+            btn_sendcommand.Name = "btn_sendcommand";
+            btn_sendcommand.Size = new Size(75, 23);
+            btn_sendcommand.TabIndex = 16;
+            btn_sendcommand.Text = "Send";
+            btn_sendcommand.UseVisualStyleBackColor = false;
+            btn_sendcommand.Click += btnSend_Click;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(50, 58, 75);
+            panel4.Controls.Add(commandBox);
+            panel4.Location = new Point(3, 577);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(437, 23);
+            panel4.TabIndex = 17;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -797,15 +802,13 @@ namespace C3AP_Client
             btn_game.ResumeLayout(false);
             btn_game.PerformLayout();
             sharedPanel.ResumeLayout(false);
+            panel_ReceivedItems.ResumeLayout(false);
+            panelReceivedColor.ResumeLayout(false);
             panel_gamestats.ResumeLayout(false);
             panelGame.ResumeLayout(false);
             panelGame.PerformLayout();
-            panel_ReceivedItems.ResumeLayout(false);
             panel_Hints.ResumeLayout(false);
-            panel_Log.ResumeLayout(false);
-            panelLogColor.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
+            panelHintsColor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)regionFlag).EndInit();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
@@ -813,6 +816,10 @@ namespace C3AP_Client
             btn_hints.PerformLayout();
             btn_log.ResumeLayout(false);
             btn_log.PerformLayout();
+            panel_Log.ResumeLayout(false);
+            panelLogColor.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -866,8 +873,6 @@ namespace C3AP_Client
         private Panel btn_selectgame;
         private PictureBox duck_status;
         private Label titleApp;
-        private TextBox textBox1;
-        private TextBox textBox2;
         private Panel panel6;
         private TextBox password;
         private Panel panel5;
@@ -878,5 +883,7 @@ namespace C3AP_Client
         private Panel panelLogColor;
         private Button button6;
         private Label latelevelId;
+        private Panel panelReceivedColor;
+        private Panel panelHintsColor;
     }
 }
