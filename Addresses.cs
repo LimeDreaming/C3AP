@@ -37,6 +37,7 @@ namespace C3AP_Client
 
         public static uint GameStateAddress = 0x690ed;
         public static uint LevelIDAddress = 0x60c1c;
+        public static uint LateLevelIDAddress = 0x690a9;
     }
     public static class USAddresses
     {
@@ -70,6 +71,7 @@ namespace C3AP_Client
 
         public static uint GameStateAddress = 0x68f3d;
         public static uint LevelIDAddress = 0x68ef9;
+        public static uint LateLevelIDAddress = 0x690a9;//
     }
     public static class GameConfig
     {
@@ -93,6 +95,7 @@ namespace C3AP_Client
 
         public static uint GameStateAddress;
         public static uint LevelIDAddress;
+        public static uint LateLevelIDAddress;
 
         public static void LoadUSAddresses()
         {
@@ -116,6 +119,7 @@ namespace C3AP_Client
 
             GameStateAddress = USAddresses.GameStateAddress;
             LevelIDAddress = USAddresses.LevelIDAddress;
+            LateLevelIDAddress = USAddresses.LateLevelIDAddress;
         }
 
         public static void LoadEUAddresses()
@@ -142,6 +146,7 @@ namespace C3AP_Client
 
             GameStateAddress = EUAddresses.GameStateAddress;
             LevelIDAddress = EUAddresses.LevelIDAddress;
+            LateLevelIDAddress = EUAddresses.LateLevelIDAddress;
         }
 
     }

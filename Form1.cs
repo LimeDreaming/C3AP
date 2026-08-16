@@ -260,6 +260,17 @@ namespace C3AP_Client
             return crystalBuffer;
         }
 
+        private int getGameState(IntPtr offsetAddress) 
+        {
+            int state = 0;
+            IntPtr bytesRead;
+            IntPtr targetAddress = IntPtr.Add(ramBase, (int)offsetAddress);
+            bool success = ReadProcessMemory(targetProcess, targetAddress, byte1Buffer, byte1Buffer.Length, out bytesRead);
+            if (success)
+            { state = byte1Buffer[0]; }
+            return state;
+        }
+
         private byte[] getClearGemReserve(IntPtr offsetAddress)
         {
 
@@ -554,8 +565,12 @@ namespace C3AP_Client
         private void timer1_Tick(object sender, EventArgs e)
         {
             int levelNumber = getLevelID((int)LevelIDAddress);
+            int levelNumberLate = getLevelID((int)LateLevelIDAddress);
             string levelName = LevelIDs.FirstOrDefault(x => x.Value == valueBuffer[0]).Key;
-            levelID.Text = "LevelID: " + valueBuffer[0] + " [" + levelName + "]";
+            string levelNameLate = LevelIDs.FirstOrDefault(x => x.Value == valueBuffer[0]).Key;
+            levelID.Text = "LevelID: " + valueBuffer[0] + " [" + levelName + "] is in State: " + getGameState((int)GameStateAddress);
+            latelevelId.Text = "LevelID: " + valueBuffer[0] + " [" + levelNameLate + "] is in State: " + getGameState((int)GameStateAddress);
+
 
             if (isProcess)
             {
@@ -658,6 +673,8 @@ namespace C3AP_Client
         {
             logBox.AppendText("Hello");
 
+            
+
             sendToPopup(142067, "Test", "Test");
             //setNonPlayedItems();
             //setGameItems(142001, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
@@ -683,6 +700,20 @@ namespace C3AP_Client
             }
         }
 
+        private void sendExitCheck(string levelName) 
+        {
+            if(getGameState((int)GameStateAddress) == 3) 
+            {
+                if (APManager.IsConnected)
+                {
+                    
+                    if (SharedAdresses.LevelAPLocationIDs.TryGetValue(levelName, out long locationId))
+                    {
+                        APManager.Session.Locations.CompleteLocationChecks(new[] { locationId });
+                    }
+                }
+            }
+        }
         private void sendCrystalCheck(string levelName)
         {
 
@@ -833,6 +864,7 @@ namespace C3AP_Client
 
             string levelName = levelEntry.Key;
 
+            sendExitCheck(levelName);
             sendCrystalCheck(levelName);
             sendClearGemBoxCheck(levelName);
             sendClearGemCheck(levelName);

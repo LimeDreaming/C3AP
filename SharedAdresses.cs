@@ -83,39 +83,60 @@ namespace C3AP_Client
             {"Rings Of Power", 0x1f},
             {"Hot Coco", 0x27},
             {"Eggipus Rex", 0x26},
+
+            //Bosses
+            {"Tiny Tiger", 0x06},
+            {"Dingodile", 0x03},
+            {"N. Tropy", 0x04},
+            {"N. Gin", 0x05},
+            {"N. Cortex", 0x07},
         };
 
-        public static Dictionary<string, long> LevelAPCrystalIDs = new Dictionary<string, long>
+        public static Dictionary<string, long> LevelAPLocationIDs = new Dictionary<string, long>
         {
-            {"Toad Village", 142100},
-            {"Under Pressure", 142105},
-            {"Orient Express", 142110},
-            {"Bone Yard", 142115},
-            {"Makin' Waves", 142121},
+            //Levels
+            {"Toad Village", 142266},
+            {"Under Pressure", 142267},
+            {"Orient Express", 142268},
+            {"Bone Yard", 142269},
+            {"Makin' Waves", 142270},
 
-            {"Gee Wiz", 142127},
-            {"Hang'em High", 142132},
-            {"Hog Ride", 142138},
-            {"Tomb Time", 142143},
-            {"Midnight Run", 142149},
+            {"Gee Wiz", 142271},
+            {"Hang'em High", 142272},
+            {"Hog Ride", 142273},
+            {"Tomb Time", 142274},
+            {"Midnight Run", 142275},
 
-            {"Dino Might!", 142155},
-            {"Deep Trouble", 142161},
-            {"High Time", 142167},
-            {"Road Crash", 142173},
-            {"Double Header", 142179},
+            {"Dino Might!", 142276},
+            {"Deep Trouble", 142277},
+            {"High Time", 142278},
+            {"Road Crash", 142279},
+            {"Double Header", 142280},
 
-            {"Sphynxinator", 142185},
-            {"Bye Bye Blimps", 142191},
-            {"Tell No Tales", 142196},
-            {"Future Frenzy", 142202},
-            {"Tomb Wader", 142208},
+            {"Sphynxinator", 142281},
+            {"Bye Bye Blimps", 142282},
+            {"Tell No Tales", 142283},
+            {"Future Frenzy", 142284},
+            {"Tomb Wader", 142285},
 
-            {"Gone Tomorrow", 142215},
-            {"Orange Asphalt", 142221},
-            {"Flaming Passion", 142226},
-            {"Mad Bombers", 142232},
-            {"Bug Lite", 142237}
+            {"Gone Tomorrow", 142286},
+            {"Orange Asphalt", 142287},
+            {"Flaming Passion", 142288},
+            {"Mad Bombers", 142289},
+            {"Bug Lite", 142290},
+
+            {"Ski Crazed", 142291},
+            {"Area 51?", 142292},
+            {"Rings of Power", 142293},
+            {"Hot Coco", 142294},
+            {"Eggipus Rex", 142295},
+
+            //Bosses
+            {"Tiny Tiger",142126 },
+            {"Dingodile",142154 },
+            {"N. Tropy",142184 },
+            {"N. Gin",142214 },
+            //{"N. Cortex",1420 },
         };
 
         public record APItemData(string LevelName, long LevelAPCheckId, long LevelAPItemId);
