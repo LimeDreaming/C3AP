@@ -32,7 +32,7 @@ are particularly important.
 
 #### Where do I get a config file?
 
-Run `ArchipelagoLauncher.exe` and generate template files.  Copy `Crash 2.yaml`, fill it out, and place
+Run `ArchipelagoLauncher.exe` and generate template files.  Copy `Crash 3.yaml`, fill it out, and place
 it in the `players` folder.
 
 ### Generate and host your world
