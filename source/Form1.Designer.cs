@@ -31,6 +31,7 @@ namespace C3AP_Client
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             dsstatus = new Label();
             levelID = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
@@ -77,6 +78,10 @@ namespace C3AP_Client
             panel_Hints = new Panel();
             panelHintsColor = new Panel();
             hintsBox = new RichTextBox();
+            panel_Log = new Panel();
+            panelLogColor = new Panel();
+            btn_sendcommand = new Button();
+            panel4 = new Panel();
             regionFlag = new PictureBox();
             panel10 = new Panel();
             btn_labelreceivedItems = new Label();
@@ -87,10 +92,6 @@ namespace C3AP_Client
             btn_log = new Panel();
             btn_labellog = new Label();
             btn_selectlog = new Panel();
-            panel_Log = new Panel();
-            panelLogColor = new Panel();
-            btn_sendcommand = new Button();
-            panel4 = new Panel();
             panelSettings.SuspendLayout();
             panel8.SuspendLayout();
             panel7.SuspendLayout();
@@ -107,13 +108,13 @@ namespace C3AP_Client
             panelGame.SuspendLayout();
             panel_Hints.SuspendLayout();
             panelHintsColor.SuspendLayout();
+            panel_Log.SuspendLayout();
+            panelLogColor.SuspendLayout();
+            panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)regionFlag).BeginInit();
             panel10.SuspendLayout();
             btn_hints.SuspendLayout();
             btn_log.SuspendLayout();
-            panel_Log.SuspendLayout();
-            panelLogColor.SuspendLayout();
-            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // dsstatus
@@ -620,6 +621,48 @@ namespace C3AP_Client
             hintsBox.TabIndex = 6;
             hintsBox.Text = "";
             // 
+            // panel_Log
+            // 
+            panel_Log.Controls.Add(panelLogColor);
+            panel_Log.Controls.Add(btn_sendcommand);
+            panel_Log.Controls.Add(panel4);
+            panel_Log.Location = new Point(97, 84);
+            panel_Log.Name = "panel_Log";
+            panel_Log.Size = new Size(524, 603);
+            panel_Log.TabIndex = 18;
+            // 
+            // panelLogColor
+            // 
+            panelLogColor.BackColor = Color.FromArgb(36, 40, 47);
+            panelLogColor.Controls.Add(logBox);
+            panelLogColor.Location = new Point(3, 3);
+            panelLogColor.Name = "panelLogColor";
+            panelLogColor.Size = new Size(518, 568);
+            panelLogColor.TabIndex = 18;
+            // 
+            // btn_sendcommand
+            // 
+            btn_sendcommand.BackColor = Color.FromArgb(50, 58, 75);
+            btn_sendcommand.FlatAppearance.BorderSize = 0;
+            btn_sendcommand.FlatStyle = FlatStyle.Flat;
+            btn_sendcommand.ForeColor = SystemColors.ButtonHighlight;
+            btn_sendcommand.Location = new Point(446, 577);
+            btn_sendcommand.Name = "btn_sendcommand";
+            btn_sendcommand.Size = new Size(75, 23);
+            btn_sendcommand.TabIndex = 16;
+            btn_sendcommand.Text = "Send";
+            btn_sendcommand.UseVisualStyleBackColor = false;
+            btn_sendcommand.Click += btnSend_Click;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(50, 58, 75);
+            panel4.Controls.Add(commandBox);
+            panel4.Location = new Point(3, 577);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(437, 23);
+            panel4.TabIndex = 17;
+            // 
             // regionFlag
             // 
             regionFlag.Location = new Point(471, 9);
@@ -730,48 +773,6 @@ namespace C3AP_Client
             btn_selectlog.TabIndex = 0;
             btn_selectlog.Click += btnLog_Click;
             // 
-            // panel_Log
-            // 
-            panel_Log.Controls.Add(panelLogColor);
-            panel_Log.Controls.Add(btn_sendcommand);
-            panel_Log.Controls.Add(panel4);
-            panel_Log.Location = new Point(97, 84);
-            panel_Log.Name = "panel_Log";
-            panel_Log.Size = new Size(524, 603);
-            panel_Log.TabIndex = 18;
-            // 
-            // panelLogColor
-            // 
-            panelLogColor.BackColor = Color.FromArgb(36, 40, 47);
-            panelLogColor.Controls.Add(logBox);
-            panelLogColor.Location = new Point(3, 3);
-            panelLogColor.Name = "panelLogColor";
-            panelLogColor.Size = new Size(518, 568);
-            panelLogColor.TabIndex = 18;
-            // 
-            // btn_sendcommand
-            // 
-            btn_sendcommand.BackColor = Color.FromArgb(50, 58, 75);
-            btn_sendcommand.FlatAppearance.BorderSize = 0;
-            btn_sendcommand.FlatStyle = FlatStyle.Flat;
-            btn_sendcommand.ForeColor = SystemColors.ButtonHighlight;
-            btn_sendcommand.Location = new Point(446, 577);
-            btn_sendcommand.Name = "btn_sendcommand";
-            btn_sendcommand.Size = new Size(75, 23);
-            btn_sendcommand.TabIndex = 16;
-            btn_sendcommand.Text = "Send";
-            btn_sendcommand.UseVisualStyleBackColor = false;
-            btn_sendcommand.Click += btnSend_Click;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.FromArgb(50, 58, 75);
-            panel4.Controls.Add(commandBox);
-            panel4.Location = new Point(3, 577);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(437, 23);
-            panel4.TabIndex = 17;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -782,6 +783,7 @@ namespace C3AP_Client
             Controls.Add(panel3);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -809,6 +811,10 @@ namespace C3AP_Client
             panelGame.PerformLayout();
             panel_Hints.ResumeLayout(false);
             panelHintsColor.ResumeLayout(false);
+            panel_Log.ResumeLayout(false);
+            panelLogColor.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)regionFlag).EndInit();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
@@ -816,10 +822,6 @@ namespace C3AP_Client
             btn_hints.PerformLayout();
             btn_log.ResumeLayout(false);
             btn_log.PerformLayout();
-            panel_Log.ResumeLayout(false);
-            panelLogColor.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             ResumeLayout(false);
         }
 

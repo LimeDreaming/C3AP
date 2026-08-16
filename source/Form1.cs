@@ -820,8 +820,8 @@ namespace C3AP_Client
 
             }
 
-
-            MessageBox.Show("Erfolgreich mit dem AP-Server verbunden!");
+            ClientMessageBox.Show("Connected to the AP-Server!","Connected");
+            //MessageBox.Show("Erfolgreich mit dem AP-Server verbunden!");
             Console.WriteLine("Erfolgreich mit dem AP-Server verbunden!");
 
         }
@@ -1462,8 +1462,8 @@ namespace C3AP_Client
                 {
                     setNonPlayedItems(item.ItemId);
                 }
-                ClientMessageBox.Show("Alle empfangenen Items wurden abgeglichen!", "Archipelago Status");
-                MessageBox.Show("Alle empfangenen Items wurden mit dem Spielstand abgeglichen!", "Abgleich beendet");
+                ClientMessageBox.Show("All Items transferd!", "Archipelago Status");
+                //MessageBox.Show("Alle empfangenen Items wurden mit dem Spielstand abgeglichen!", "Abgleich beendet");
             }
         }
 
@@ -1895,7 +1895,7 @@ namespace C3AP_Client
                 //APManager.Session.Socket.Send(Newtonsoft.Json.JsonConvert.SerializeObject(statusPacket));
                 goalAlreadySent = true;
 
-                ClientMessageBox.Show("Glückwunsch! Ziel im Spiel erreicht und an Archipelago gesendet!", "Gewonnen!");
+                ClientMessageBox.Show("Congraulation for finishing the Game!", "Win!");
             }
         }
     }

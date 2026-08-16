@@ -21,7 +21,7 @@ namespace C3AP_Client
 
             label1.Text = message;
 
-            this.Text = title;
+            titleMessage.Text = title;
 
             this.StartPosition = FormStartPosition.CenterParent;
 
