@@ -303,66 +303,66 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Sapphire Relic: Rings of Power" : ItemClassification.progression,
     "Sapphire Relic: Hot Coco" : ItemClassification.progression,
     "Sapphire Relic: Eggipus Rex" : ItemClassification.progression,
-    "Gold Relic: Toad Village" : ItemClassification.progression,
-    "Gold Relic: Under Pressure" : ItemClassification.progression,
-    "Gold Relic: Orient Express" : ItemClassification.progression,
-    "Gold Relic: Bone Yard" : ItemClassification.progression,
-    "Gold Relic: Makin' Waves" : ItemClassification.progression,
-    "Gold Relic: Gee Wiz" : ItemClassification.progression,
-    "Gold Relic: Hang'em High" : ItemClassification.progression,
-    "Gold Relic: Hog Ride" : ItemClassification.progression,
-    "Gold Relic: Tomb Time" : ItemClassification.progression,
-    "Gold Relic: Midnight Run" : ItemClassification.progression,
-    "Gold Relic: Dino Might!" : ItemClassification.progression,
-    "Gold Relic: Deep Trouble" : ItemClassification.progression,
-    "Gold Relic: High Time" : ItemClassification.progression,
-    "Gold Relic: Road Crash" : ItemClassification.progression,
-    "Gold Relic: Double Header" : ItemClassification.progression,
-    "Gold Relic: Sphynxinator" : ItemClassification.progression,
-    "Gold Relic: Bye Bye Blimps" : ItemClassification.progression,
-    "Gold Relic: Tell No Tales" : ItemClassification.progression,
-    "Gold Relic: Future Frenzy" : ItemClassification.progression,
-    "Gold Relic: Tomb Wader" : ItemClassification.progression,
-    "Gold Relic: Gone Tomorrow" : ItemClassification.progression,
-    "Gold Relic: Orange Asphalt" : ItemClassification.progression,
-    "Gold Relic: Flaming Passion" : ItemClassification.progression,
-    "Gold Relic: Mad Bombers" : ItemClassification.progression,
-    "Gold Relic: Bug Lite" : ItemClassification.progression,
-    "Gold Relic: Ski Crazed" : ItemClassification.progression,
-    "Gold Relic: Area 51?" : ItemClassification.progression,
-    "Gold Relic: Rings of Power" : ItemClassification.progression,
-    "Gold Relic: Hot Coco" : ItemClassification.progression,
-    "Gold Relic: Eggipus Rex" : ItemClassification.progression,
-    "Platinum Relic: Toad Village" : ItemClassification.progression,
-    "Platinum Relic: Under Pressure" : ItemClassification.progression,
-    "Platinum Relic: Orient Express" : ItemClassification.progression,
-    "Platinum Relic: Bone Yard" : ItemClassification.progression,
-    "Platinum Relic: Makin' Waves" : ItemClassification.progression,
-    "Platinum Relic: Gee Wiz" : ItemClassification.progression,
-    "Platinum Relic: Hang'em High" : ItemClassification.progression,
-    "Platinum Relic: Hog Ride" : ItemClassification.progression,
-    "Platinum Relic: Tomb Time" : ItemClassification.progression,
-    "Platinum Relic: Midnight Run" : ItemClassification.progression,
-    "Platinum Relic: Dino Might!" : ItemClassification.progression,
-    "Platinum Relic: Deep Trouble" : ItemClassification.progression,
-    "Platinum Relic: High Time" : ItemClassification.progression,
-    "Platinum Relic: Road Crash" : ItemClassification.progression,
-    "Platinum Relic: Double Header" : ItemClassification.progression,
-    "Platinum Relic: Sphynxinator" : ItemClassification.progression,
-    "Platinum Relic: Bye Bye Blimps" : ItemClassification.progression,
-    "Platinum Relic: Tell No Tales" : ItemClassification.progression,
-    "Platinum Relic: Future Frenzy" : ItemClassification.progression,
-    "Platinum Relic: Tomb Wader" : ItemClassification.progression,
-    "Platinum Relic: Gone Tomorrow" : ItemClassification.progression,
-    "Platinum Relic: Orange Asphalt" : ItemClassification.progression,
-    "Platinum Relic: Flaming Passion" : ItemClassification.progression,
-    "Platinum Relic: Mad Bombers" : ItemClassification.progression,
-    "Platinum Relic: Bug Lite" : ItemClassification.progression,
-    "Platinum Relic: Ski Crazed" : ItemClassification.progression,
-    "Platinum Relic: Area 51?" : ItemClassification.progression,
-    "Platinum Relic: Rings of Power" : ItemClassification.progression,
-    "Platinum Relic: Hot Coco" : ItemClassification.progression,
-    "Platinum Relic: Eggipus Rex" : ItemClassification.progression,
+    "Gold Relic: Toad Village" : ItemClassification.useful,
+    "Gold Relic: Under Pressure" : ItemClassification.useful,
+    "Gold Relic: Orient Express" : ItemClassification.useful,
+    "Gold Relic: Bone Yard" : ItemClassification.useful,
+    "Gold Relic: Makin' Waves" : ItemClassification.useful,
+    "Gold Relic: Gee Wiz" : ItemClassification.useful,
+    "Gold Relic: Hang'em High" : ItemClassification.useful,
+    "Gold Relic: Hog Ride" : ItemClassification.useful,
+    "Gold Relic: Tomb Time" : ItemClassification.useful,
+    "Gold Relic: Midnight Run" : ItemClassification.useful,
+    "Gold Relic: Dino Might!" : ItemClassification.useful,
+    "Gold Relic: Deep Trouble" : ItemClassification.useful,
+    "Gold Relic: High Time" : ItemClassification.useful,
+    "Gold Relic: Road Crash" : ItemClassification.useful,
+    "Gold Relic: Double Header" : ItemClassification.useful,
+    "Gold Relic: Sphynxinator" : ItemClassification.useful,
+    "Gold Relic: Bye Bye Blimps" : ItemClassification.useful,
+    "Gold Relic: Tell No Tales" : ItemClassification.useful,
+    "Gold Relic: Future Frenzy" : ItemClassification.useful,
+    "Gold Relic: Tomb Wader" : ItemClassification.useful,
+    "Gold Relic: Gone Tomorrow" : ItemClassification.useful,
+    "Gold Relic: Orange Asphalt" : ItemClassification.useful,
+    "Gold Relic: Flaming Passion" : ItemClassification.useful,
+    "Gold Relic: Mad Bombers" : ItemClassification.useful,
+    "Gold Relic: Bug Lite" : ItemClassification.useful,
+    "Gold Relic: Ski Crazed" : ItemClassification.useful,
+    "Gold Relic: Area 51?" : ItemClassification.useful,
+    "Gold Relic: Rings of Power" : ItemClassification.useful,
+    "Gold Relic: Hot Coco" : ItemClassification.useful,
+    "Gold Relic: Eggipus Rex" : ItemClassification.useful,
+    "Platinum Relic: Toad Village" : ItemClassification.useful,
+    "Platinum Relic: Under Pressure" : ItemClassification.useful,
+    "Platinum Relic: Orient Express" : ItemClassification.useful,
+    "Platinum Relic: Bone Yard" : ItemClassification.useful,
+    "Platinum Relic: Makin' Waves" : ItemClassification.useful,
+    "Platinum Relic: Gee Wiz" : ItemClassification.useful,
+    "Platinum Relic: Hang'em High" : ItemClassification.useful,
+    "Platinum Relic: Hog Ride" : ItemClassification.useful,
+    "Platinum Relic: Tomb Time" : ItemClassification.useful,
+    "Platinum Relic: Midnight Run" : ItemClassification.useful,
+    "Platinum Relic: Dino Might!" : ItemClassification.useful,
+    "Platinum Relic: Deep Trouble" : ItemClassification.useful,
+    "Platinum Relic: High Time" : ItemClassification.useful,
+    "Platinum Relic: Road Crash" : ItemClassification.useful,
+    "Platinum Relic: Double Header" : ItemClassification.useful,
+    "Platinum Relic: Sphynxinator" : ItemClassification.useful,
+    "Platinum Relic: Bye Bye Blimps" : ItemClassification.useful,
+    "Platinum Relic: Tell No Tales" : ItemClassification.useful,
+    "Platinum Relic: Future Frenzy" : ItemClassification.useful,
+    "Platinum Relic: Tomb Wader" : ItemClassification.useful,
+    "Platinum Relic: Gone Tomorrow" : ItemClassification.useful,
+    "Platinum Relic: Orange Asphalt" : ItemClassification.useful,
+    "Platinum Relic: Flaming Passion" : ItemClassification.useful,
+    "Platinum Relic: Mad Bombers" : ItemClassification.useful,
+    "Platinum Relic: Bug Lite" : ItemClassification.useful,
+    "Platinum Relic: Ski Crazed" : ItemClassification.useful,
+    "Platinum Relic: Area 51?" : ItemClassification.useful,
+    "Platinum Relic: Rings of Power" : ItemClassification.useful,
+    "Platinum Relic: Hot Coco" : ItemClassification.useful,
+    "Platinum Relic: Eggipus Rex" : ItemClassification.useful,
     #"Aku Aku" : ItemClassification.filler,
     "Life Bundle" : ItemClassification.filler,
     "Wumpa Fruit Bundle" : ItemClassification.filler,
@@ -373,7 +373,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "No Lives Trap" : ItemClassification.trap,
     #"Jetpack Controls Trap" : ItemClassification.trap,
     "Body Slam" : ItemClassification.useful,
-    "Double Jump" : ItemClassification.useful,
+    "Double Jump" : ItemClassification.progression,
     "Tornado Spin" : ItemClassification.useful,
     "Bazooka" : ItemClassification.useful,
     "Crash Dash" : ItemClassification.useful,
@@ -392,24 +392,24 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
 # Each Item instance must correctly report the "game" it belongs to.
 # To make this simple, it is common practice to subclass the basic Item class and override the "game" field.
 class Crash3Item(Item):
-    game = "Crash Bandicoot: Warped"
+    game = "Crash Bandicoot 3: Warped"
 
 def receive_wumpa_bundle(state, player):
     # Generiere eine zufällige Anzahl an Wumpas zwischen 5 und 10
     wumpa_amount = random.randint(5, 10)
-    
+
     # Hier übergibst du den Wert an das Spiel/den Speicher
     # Z. B. spieler_wumpas[player] += wumpa_amount
-    
+
     #print(f"Player got {wumpa_amount} Wumpa-Fruits!")
 
 def receive_live_bundle(state, player):
     # Generiere eine zufällige Anzahl an Wumpas zwischen 5 und 10
     live_amount = random.randint(1, 5)
-    
+
     # Hier übergibst du den Wert an das Spiel/den Speicher
     # Z. B. spieler_wumpas[player] += wumpa_amount
-    
+
     #print(f"Player got {live_amount} Lives!")
 
 # Ontop of our regular itempool, our world must be able to create arbitrary amounts of filler as requested by core.
@@ -680,3 +680,123 @@ def create_all_items(world: Crash3World) -> None:
     #     # We're adding a filler item, but you can also add progression items to the player's precollected inventory.
     #     starting_confetti_cannon = world.create_item("Confetti Cannon")
     #     world.push_precollected(starting_confetti_cannon)
+
+    warp1_locations = [
+    "Toad Village: Crystal",
+    "Under Pressure: Crystal",
+    "Orient Express: Crystal",
+    "Bone Yard: Crystal",
+    "Makin' Waves: Crystal"
+    ]
+
+    warp1_items = [
+        "Crystal: Toad Village",
+        "Crystal: Under Pressure",
+        "Crystal: Orient Express",
+        "Crystal: Bone Yard",
+        "Crystal: Makin' Waves"
+    ]
+
+    shuffled_items = warp1_items.copy()
+    world.random.shuffle(shuffled_items)
+
+    for loc_name, item_name in zip(warp1_locations, shuffled_items):
+        item_to_lock = world.create_item(item_name)
+
+        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
+
+    warp2_locations = [
+        "Gee Wiz: Crystal",
+        "Hang'em High: Crystal",
+        "Hog Ride: Crystal",
+        "Tomb Time: Crystal",
+        "Midnight Run: Crystal"
+    ]
+
+    warp2_items = [
+        "Crystal: Gee Wiz",
+        "Crystal: Hang'em High",
+        "Crystal: Hog Ride",
+        "Crystal: Tomb Time",
+        "Crystal: Midnight Run"
+    ]
+
+    shuffled_items = warp2_items.copy()
+    world.random.shuffle(shuffled_items)
+
+    for loc_name, item_name in zip(warp2_locations, shuffled_items):
+        item_to_lock = world.create_item(item_name)
+
+        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
+
+    warp3_locations = [
+        "Dino Might!: Crystal",
+        "Deep Trouble: Crystal",
+        "High Time: Crystal",
+        "Road Crash: Crystal",
+        "Double Header: Crystal"
+    ]
+
+    warp3_items = [
+        "Crystal: Dino Might!",
+        "Crystal: Deep Trouble",
+        "Crystal: High Time",
+        "Crystal: Road Crash",
+        "Crystal: Double Header"
+    ]
+
+    shuffled_items = warp3_items.copy()
+    world.random.shuffle(shuffled_items)
+
+    for loc_name, item_name in zip(warp3_locations, shuffled_items):
+        item_to_lock = world.create_item(item_name)
+
+        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
+
+    warp4_locations = [
+        "Sphynxinator: Crystal",
+        "Bye Bye Blimps: Crystal",
+        "Tell No Tales: Crystal",
+        "Future Frenzy: Crystal",
+        "Tomb Wader: Crystal"
+    ]
+
+    warp4_items = [
+        "Crystal: Sphynxinator",
+        "Crystal: Bye Bye Blimps",
+        "Crystal: Tell No Tales",
+        "Crystal: Future Frenzy",
+        "Crystal: Tomb Wader"
+    ]
+
+    shuffled_items = warp4_items.copy()
+    world.random.shuffle(shuffled_items)
+
+    for loc_name, item_name in zip(warp4_locations, shuffled_items):
+        item_to_lock = world.create_item(item_name)
+
+        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
+
+    warp5_locations = [
+        "Gone Tomorrow: Crystal",
+        "Orange Asphalt: Crystal",
+        "Flaming Passion: Crystal",
+        "Mad Bombers: Crystal",
+        "Bug Lite: Crystal"
+    ]
+
+    warp5_items = [
+        "Crystal: Gone Tomorrow",
+        "Crystal: Orange Asphalt",
+        "Crystal: Flaming Passion",
+        "Crystal: Mad Bombers",
+        "Crystal: Bug Lite"
+    ]
+
+    shuffled_items = warp5_items.copy()
+    world.random.shuffle(shuffled_items)
+
+    for loc_name, item_name in zip(warp5_locations, shuffled_items):
+        item_to_lock = world.create_item(item_name)
+
+        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)

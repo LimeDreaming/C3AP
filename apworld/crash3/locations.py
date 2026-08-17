@@ -326,7 +326,7 @@ level_lookup = {**warp_1, **warp_2, **warp_3, **warp_4, **warp_5, **warp_6, **wa
 
 
 class Crash3Location(Location):
-    game = "Crash Bandicoot: Warped"
+    game = "Crash Bandicoot 3: Warped"
 
 
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:

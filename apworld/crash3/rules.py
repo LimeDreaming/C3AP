@@ -72,55 +72,55 @@ def set_all_rules(world: Crash3World) -> None:
 
 def set_all_entrance_rules(world: Crash3World) -> None:
 
-    set_rule(world.get_entrance("Tiny Tiger"), lambda state: state.has("Crystal", world.player, 5))
-    set_rule(world.get_entrance("Tiny Tiger to Warp Room 2"), lambda state: state.has("Crystal", world.player, 5) and state.has("Tiny Tiger Defeated", world.player))
+    all_crystals = [
+        "Crystal: Toad Village", "Crystal: Under Pressure", "Crystal: Orient Express", "Crystal: Bone Yard",
+        "Crystal: Makin' Waves",
+        "Crystal: Gee Wiz", "Crystal: Hang'em High", "Crystal: Hog Ride", "Crystal: Tomb Time", "Crystal: Midnight Run",
+        "Crystal: Dino Might!", "Crystal: Deep Trouble", "Crystal: High Time", "Crystal: Road Crash",
+        "Crystal: Double Header",
+        "Crystal: Sphynxinator", "Crystal: Bye Bye Blimps", "Crystal: Tell No Tales", "Crystal: Future Frenzy",
+        "Crystal: Tomb Wader",
+        "Crystal: Gone Tomorrow", "Crystal: Orange Asphalt", "Crystal: Flaming Passion", "Crystal: Mad Bombers",
+        "Crystal: Bug Lite"
+    ]
 
-    set_rule(world.get_entrance("Dingodile"), lambda state: state.has("Crystal", world.player, 10))
-    set_rule(world.get_entrance("Dingodile to Warp Room 3"), lambda state: state.has("Crystal", world.player, 10) and state.has("Dingodile Defeated", world.player))
+    # Hilfsfunktion, die zählt, wie viele dieser Kristalle der Spieler im state hat
+    def has_crystals(state, count: int) -> bool:
+        return sum(1 for crystal in all_crystals if state.has(crystal, world.player)) >= count
 
-    set_rule(world.get_entrance("N. Tropy"), lambda state: state.has("Crystal", world.player, 15))
-    set_rule(world.get_entrance("N. Tropy to Warp Room 4"), lambda state: state.has("Crystal", world.player, 15) and state.has("N. Tropy Defeated", world.player))
+    # Boss-Tore / Warp-Room-Übergänge
+    set_rule(world.get_entrance("Tiny Tiger"), lambda state: has_crystals(state, 5))
+    set_rule(world.get_entrance("Tiny Tiger to Warp Room 2"),
+             lambda state: has_crystals(state, 5) and state.has("Tiny Tiger Defeated", world.player))
 
-    set_rule(world.get_entrance("N. Gin"), lambda state: state.has("Crystal", world.player, 20))
-    set_rule(world.get_entrance("N. Gin to Warp Room 5"), lambda state: state.has("Crystal", world.player, 20) and state.has("N. Gin Defeated", world.player))
+    set_rule(world.get_entrance("Dingodile"), lambda state: has_crystals(state, 10))
+    set_rule(world.get_entrance("Dingodile to Warp Room 3"),
+             lambda state: has_crystals(state, 10) and state.has("Dingodile Defeated", world.player))
 
-    set_rule(world.get_entrance("Dr. Neo Cortex"), lambda state: state.has("Crystal", world.player, 25))
+    set_rule(world.get_entrance("N. Tropy"), lambda state: has_crystals(state, 15))
+    set_rule(world.get_entrance("N. Tropy to Warp Room 4"),
+             lambda state: has_crystals(state, 15) and state.has("N. Tropy Defeated", world.player))
+
+    set_rule(world.get_entrance("N. Gin"), lambda state: has_crystals(state, 20))
+    set_rule(world.get_entrance("N. Gin to Warp Room 5"),
+             lambda state: has_crystals(state, 20) and state.has("N. Gin Defeated", world.player))
+
+    set_rule(world.get_entrance("Dr. Neo Cortex"), lambda state: has_crystals(state, 25))
 
     # Einheitlich auf "Warp Room 6" geändert (da das Geheimlevel in Warp Room 6 liegt)
-    set_rule(world.get_entrance("Warp Room to Ski Crazed"),
-             lambda state: sum(
-                 1 for group in world.location_name_groups
-                 if state.count_group(group, world.player) >= 1
-             ) >= 5
-             )
+    def has_relics(state, count: int) -> bool:
+        all_relic_names = [
+            # Hier alle deine Saphir-, Gold- und Platin-Relikte einfügen oder dynamisch filtern
+            item for item in world.item_name_to_id.keys() if "Relic" in item
+        ]
+        return sum(1 for relic in all_relic_names if state.has(relic, world.player)) >= count
 
-    set_rule(world.get_entrance("Warp Room to Hang'em High"),
-    lambda state: sum(
-        1 for group in world.location_name_groups
-        if state.count_group(group, world.player) >= 1
-    ) >= 10
-    )
-
-    set_rule(world.get_entrance("Warp Room to Area 51?"),
-    lambda state: sum(
-        1 for group in world.location_name_groups
-        if state.count_group(group, world.player) >= 1
-    ) >= 15
-    )
-
-    set_rule(world.get_entrance("Warp Room to Future Frenzy"),
-    lambda state: sum(
-        1 for group in world.location_name_groups
-        if state.count_group(group, world.player) >= 1
-    ) >= 20
-    )
-
-    set_rule(world.get_entrance("Warp Room to Rings of Power"),
-    lambda state: sum(
-        1 for group in world.location_name_groups
-        if state.count_group(group, world.player) >= 1
-    ) >= 25
-    )
+    # Korrigierte Regeln für die Relic-Tore:
+    set_rule(world.get_entrance("Warp Room to Ski Crazed"), lambda state: has_relics(state, 5))
+    set_rule(world.get_entrance("Warp Room to Hang'em High"), lambda state: has_relics(state, 10))
+    set_rule(world.get_entrance("Warp Room to Area 51?"), lambda state: has_relics(state, 15))
+    set_rule(world.get_entrance("Warp Room to Future Frenzy"), lambda state: has_relics(state, 20))
+    set_rule(world.get_entrance("Warp Room to Rings of Power"), lambda state: has_relics(state, 25))
 
     # Conditions can depend on event items.
     # set_rule(right_room_to_final_boss_room, lambda state: state.has("Top Left Room Button Pressed", world.player))

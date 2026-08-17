@@ -20,7 +20,7 @@ warpRoomLevelIds = [
 ]
 
 class Crash3WebWorld(WebWorld):
-    game = "Crash Bandicoot: Warped"
+    game = "Crash Bandicoot 3: Warped"
     theme = "grass"
     option_groups = crash3_options.option_groups
 
@@ -93,7 +93,7 @@ class Crash3World(World):
     Crash Bandicoot 3: Warped
     """
 
-    game = "Crash Bandicoot: Warped"
+    game = "Crash Bandicoot 3: Warped"
     web = Crash3WebWorld()
 
     options_dataclass = crash3_options.Crash3Options
