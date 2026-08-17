@@ -765,7 +765,7 @@ namespace C3AP_Client
                     string[] hostAddresse = hostName.Text.Split(':');
                     var session = ArchipelagoSessionFactory.CreateSession(hostAddresse[0], Int32.Parse(hostAddresse[1])); 
                     LoginResult result = session.TryConnectAndLogin(
-                    game: "Crash Bandicoot: Warped",      
+                    game: "Crash Bandicoot 3: Warped",      
                     name: slotName.Text,
                     itemsHandlingFlags: ItemsHandlingFlags.AllItems,
                     tags: new string[] { "AP" }
@@ -896,7 +896,6 @@ namespace C3AP_Client
         {
             //logBox.AppendText("Hello");
 
-            setNonPlayedItems(142023);
             MessageBox.Show(isCrystalSave(142023).ToString());
 
             //sendToPopup(142067, "Test", "Test");
@@ -951,7 +950,10 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteCrystalReserved(levelName, (int)CyrstalReceivedAddress);
+                            if(levelName != foundCrystal.LevelName) 
+                            {
+                                deleteCrystalReserved(levelName, (int)CyrstalReceivedAddress);
+                            }
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -1105,6 +1107,7 @@ namespace C3AP_Client
 
         }
 
+        /*
         private void setNonPlayedItems(long APItemID)
         {
             if (!APManager.IsConnected) return;
@@ -1165,7 +1168,7 @@ namespace C3AP_Client
                     setGameItems(APItemID, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
                 }
             }
-        }
+        }*/
 
         private byte[] get4ByteBuffer(IntPtr offsetAddress)
         {
@@ -1176,8 +1179,9 @@ namespace C3AP_Client
             return byte4Buffer;
         }
 
+        //Only Commented may for later use
 
-        private bool setPlatinumRelic(long itemID, IntPtr offsetSSavedAddress, IntPtr offsetSReserveAddress, IntPtr offsetGSavedAddress, IntPtr offsetGReserveAddress)
+        /*private bool setPlatinumRelic(long itemID, IntPtr offsetSSavedAddress, IntPtr offsetSReserveAddress, IntPtr offsetGSavedAddress, IntPtr offsetGReserveAddress)
         {
             IntPtr bytesWritten;
             IntPtr savetargetSAddress = IntPtr.Add(ramBase, (int)offsetSSavedAddress);
@@ -1220,9 +1224,9 @@ namespace C3AP_Client
                 }
             }
             return false;
-        }
+        }*/
 
-        private bool setGameItems(long itemID, IntPtr offsetSavedAddress, IntPtr offsetReserveAddress)
+        /*private bool setGameItems(long itemID, IntPtr offsetSavedAddress, IntPtr offsetReserveAddress)
         {
             IntPtr bytesWritten;
             IntPtr savetargetAddress = IntPtr.Add(ramBase, (int)offsetSavedAddress);
@@ -1392,7 +1396,7 @@ namespace C3AP_Client
             }
 
             return false;
-        }
+        }*/
 
         private void OnItemReceived(long receivedItemId)
         {
@@ -1410,27 +1414,57 @@ namespace C3AP_Client
 
             if (isCrystalItem)
             {
-                setGameItems(receivedItemId, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
+                var match = SharedAdresses.CrystalItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Crystal", match.LevelName);
+                }
+                //setGameItems(receivedItemId, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
             }
             else if (isClearGemItem)
             {
-                setGameItems(receivedItemId, (int)GemSavedAddress, (int)GemReceivedAddress);
+                var match = SharedAdresses.ClearGemBoxItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Clear Gem", match.LevelName);
+                }
+                //setGameItems(receivedItemId, (int)GemSavedAddress, (int)GemReceivedAddress);
             }
             else if (isColoredGemItem)
             {
-                setGameItems(receivedItemId, (int)ColoredGemSavedAddress, (int)ColoredGemReceivedAddress);
+                var match = SharedAdresses.ColoredGemItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Colored Gem", match.LevelName);
+                }
+                //setGameItems(receivedItemId, (int)ColoredGemSavedAddress, (int)ColoredGemReceivedAddress);
             }
             else if (isRelicSapphireItem)
             {
-                setGameItems(receivedItemId, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress);
+                var match = SharedAdresses.RelicSItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Sapphire Relic", match.LevelName);
+                }
+                //setGameItems(receivedItemId, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress);
             }
             else if (isRelicGoldItem)
             {
-                setGameItems(receivedItemId, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
+                var match = SharedAdresses.RelicGItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Gold Relic", match.LevelName);
+                }
+                //setGameItems(receivedItemId, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
             }
             else if (isRelicPlatinumItem)
             {
-                setPlatinumRelic(receivedItemId, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
+                var match = SharedAdresses.RelicPItems.FirstOrDefault(item => item.LevelAPItemId == receivedItemId);
+                if (match != null)
+                {
+                    sendToPopup(receivedItemId, "Platinium Relic", match.LevelName);
+                }
+                //setPlatinumRelic(receivedItemId, (int)RelicsSapphireSavedAddress, (int)RelicsSapphireReceivedAddress, (int)RelicsGoldSavedAddress, (int)RelicsGoldReceivedAddress);
             }
         }
 
@@ -1460,7 +1494,7 @@ namespace C3AP_Client
 
                 foreach (var item in receivedItems)
                 {
-                    setNonPlayedItems(item.ItemId);
+                    //setNonPlayedItems(item.ItemId);
                 }
                 ClientMessageBox.Show("All Items transferd!", "Archipelago Status");
                 //MessageBox.Show("Alle empfangenen Items wurden mit dem Spielstand abgeglichen!", "Abgleich beendet");
