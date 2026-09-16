@@ -1,4 +1,4 @@
-# Crash Banddicoot: Warped for Archipelago
+# Crash Banddicoot 3: Warped for Archipelago
 
 Welcome to the first pre-alpha test of the Crash Bandicoot Archipelago client!
 
