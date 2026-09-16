@@ -48,6 +48,11 @@ namespace C3AP_Client
             label1 = new Label();
             label2 = new Label();
             panelSettings = new Panel();
+            panel9 = new Panel();
+            gameFilePath = new TextBox();
+            panel1 = new Panel();
+            duckFilePath = new TextBox();
+            duckAutoStart = new CheckBox();
             button6 = new Button();
             panel8 = new Panel();
             label4 = new Label();
@@ -74,6 +79,10 @@ namespace C3AP_Client
             receivedItemBox = new RichTextBox();
             panel_gamestats = new Panel();
             panelGame = new Panel();
+            label6 = new Label();
+            label5 = new Label();
+            gamePath = new Label();
+            duckPath = new Label();
             latelevelId = new Label();
             panel_Hints = new Panel();
             panelHintsColor = new Panel();
@@ -92,7 +101,11 @@ namespace C3AP_Client
             btn_log = new Panel();
             btn_labellog = new Label();
             btn_selectlog = new Panel();
+            timer4 = new System.Windows.Forms.Timer(components);
+            waitTimer = new System.Windows.Forms.Timer(components);
             panelSettings.SuspendLayout();
+            panel9.SuspendLayout();
+            panel1.SuspendLayout();
             panel8.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
@@ -120,7 +133,7 @@ namespace C3AP_Client
             // dsstatus
             // 
             dsstatus.AutoSize = true;
-            dsstatus.Location = new Point(51, 37);
+            dsstatus.Location = new Point(51, 11);
             dsstatus.Name = "dsstatus";
             dsstatus.Size = new Size(188, 15);
             dsstatus.TabIndex = 0;
@@ -200,7 +213,7 @@ namespace C3AP_Client
             // button2
             // 
             button2.Enabled = false;
-            button2.Location = new Point(125, 236);
+            button2.Location = new Point(125, 339);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 8;
@@ -217,14 +230,13 @@ namespace C3AP_Client
             // portNumber
             // 
             portNumber.Enabled = false;
-            portNumber.Location = new Point(18, 236);
+            portNumber.Location = new Point(18, 339);
             portNumber.MaxLength = 5;
             portNumber.Name = "portNumber";
             portNumber.PlaceholderText = "00000";
             portNumber.Size = new Size(100, 23);
             portNumber.TabIndex = 9;
             portNumber.Visible = false;
-            portNumber.KeyPress += NumbersOnly;
             // 
             // hostName
             // 
@@ -264,6 +276,9 @@ namespace C3AP_Client
             // panelSettings
             // 
             panelSettings.BackColor = Color.FromArgb(23, 32, 46);
+            panelSettings.Controls.Add(panel9);
+            panelSettings.Controls.Add(panel1);
+            panelSettings.Controls.Add(duckAutoStart);
             panelSettings.Controls.Add(button6);
             panelSettings.Controls.Add(panel8);
             panelSettings.Controls.Add(panel7);
@@ -281,6 +296,66 @@ namespace C3AP_Client
             panelSettings.TabIndex = 16;
             panelSettings.Paint += panel1_Paint;
             // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(50, 58, 75);
+            panel9.Controls.Add(gameFilePath);
+            panel9.Location = new Point(15, 225);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(262, 25);
+            panel9.TabIndex = 24;
+            panel9.Click += openGameFileDialog;
+            // 
+            // gameFilePath
+            // 
+            gameFilePath.BackColor = Color.FromArgb(50, 58, 75);
+            gameFilePath.BorderStyle = BorderStyle.None;
+            gameFilePath.Font = new Font("Segoe UI", 10F);
+            gameFilePath.ForeColor = SystemColors.ButtonHighlight;
+            gameFilePath.Location = new Point(3, 3);
+            gameFilePath.Name = "gameFilePath";
+            gameFilePath.ReadOnly = true;
+            gameFilePath.Size = new Size(256, 18);
+            gameFilePath.TabIndex = 10;
+            gameFilePath.Text = "Game File Path";
+            gameFilePath.Click += openGameFileDialog;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(50, 58, 75);
+            panel1.Controls.Add(duckFilePath);
+            panel1.Location = new Point(15, 194);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(262, 25);
+            panel1.TabIndex = 23;
+            panel1.Click += openDuckFileDialog;
+            // 
+            // duckFilePath
+            // 
+            duckFilePath.BackColor = Color.FromArgb(50, 58, 75);
+            duckFilePath.BorderStyle = BorderStyle.None;
+            duckFilePath.Font = new Font("Segoe UI", 10F);
+            duckFilePath.ForeColor = SystemColors.ButtonHighlight;
+            duckFilePath.Location = new Point(3, 3);
+            duckFilePath.Name = "duckFilePath";
+            duckFilePath.ReadOnly = true;
+            duckFilePath.Size = new Size(256, 18);
+            duckFilePath.TabIndex = 10;
+            duckFilePath.Text = "Duckstation Install Path";
+            duckFilePath.Click += openDuckFileDialog;
+            // 
+            // duckAutoStart
+            // 
+            duckAutoStart.AutoSize = true;
+            duckAutoStart.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            duckAutoStart.ForeColor = SystemColors.ButtonHighlight;
+            duckAutoStart.Location = new Point(15, 256);
+            duckAutoStart.Name = "duckAutoStart";
+            duckAutoStart.Size = new Size(138, 25);
+            duckAutoStart.TabIndex = 22;
+            duckAutoStart.Text = "Autostart Game";
+            duckAutoStart.UseVisualStyleBackColor = true;
+            // 
             // button6
             // 
             button6.BackColor = Color.FromArgb(50, 58, 75);
@@ -288,7 +363,7 @@ namespace C3AP_Client
             button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button6.ForeColor = SystemColors.ButtonHighlight;
-            button6.Location = new Point(15, 184);
+            button6.Location = new Point(15, 287);
             button6.Name = "button6";
             button6.Size = new Size(261, 39);
             button6.TabIndex = 21;
@@ -569,6 +644,10 @@ namespace C3AP_Client
             // panelGame
             // 
             panelGame.BackColor = Color.FromArgb(36, 40, 47);
+            panelGame.Controls.Add(label6);
+            panelGame.Controls.Add(label5);
+            panelGame.Controls.Add(gamePath);
+            panelGame.Controls.Add(duckPath);
             panelGame.Controls.Add(latelevelId);
             panelGame.Controls.Add(levelID);
             panelGame.Controls.Add(regionLabel);
@@ -580,10 +659,46 @@ namespace C3AP_Client
             panelGame.Size = new Size(518, 597);
             panelGame.TabIndex = 0;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(48, 196);
+            label6.Name = "label6";
+            label6.Size = new Size(188, 15);
+            label6.TabIndex = 9;
+            label6.Text = "Duckstation Status: Is not Running";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(48, 211);
+            label5.Name = "label5";
+            label5.Size = new Size(188, 15);
+            label5.TabIndex = 8;
+            label5.Text = "Duckstation Status: Is not Running";
+            // 
+            // gamePath
+            // 
+            gamePath.AutoSize = true;
+            gamePath.Location = new Point(51, 154);
+            gamePath.Name = "gamePath";
+            gamePath.Size = new Size(100, 15);
+            gamePath.TabIndex = 7;
+            gamePath.Text = "Duckstation Path:";
+            // 
+            // duckPath
+            // 
+            duckPath.AutoSize = true;
+            duckPath.Location = new Point(51, 139);
+            duckPath.Name = "duckPath";
+            duckPath.Size = new Size(100, 15);
+            duckPath.TabIndex = 6;
+            duckPath.Text = "Duckstation Path:";
+            // 
             // latelevelId
             // 
             latelevelId.AutoSize = true;
-            latelevelId.Location = new Point(54, 128);
+            latelevelId.Location = new Point(51, 124);
             latelevelId.Name = "latelevelId";
             latelevelId.Size = new Size(51, 15);
             latelevelId.TabIndex = 5;
@@ -773,6 +888,17 @@ namespace C3AP_Client
             btn_selectlog.TabIndex = 0;
             btn_selectlog.Click += btnLog_Click;
             // 
+            // timer4
+            // 
+            timer4.Enabled = true;
+            timer4.Interval = 1000;
+            timer4.Tick += timer4_Tick;
+            // 
+            // waitTimer
+            // 
+            waitTimer.Interval = 30000;
+            waitTimer.Tick += waitTimer_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -789,6 +915,10 @@ namespace C3AP_Client
             Load += Form1_Load;
             panelSettings.ResumeLayout(false);
             panelSettings.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel7.ResumeLayout(false);
@@ -887,5 +1017,16 @@ namespace C3AP_Client
         private Label latelevelId;
         private Panel panelReceivedColor;
         private Panel panelHintsColor;
+        private System.Windows.Forms.Timer timer4;
+        private CheckBox duckAutoStart;
+        private Label duckPath;
+        private Label gamePath;
+        private System.Windows.Forms.Timer waitTimer;
+        private Label label6;
+        private Label label5;
+        private Panel panel1;
+        private TextBox duckFilePath;
+        private Panel panel9;
+        private TextBox gameFilePath;
     }
 }

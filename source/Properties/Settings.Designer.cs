@@ -58,5 +58,53 @@ namespace C3AP_Client.Properties {
                 this["hostPass"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string duckPath {
+            get {
+                return ((string)(this["duckPath"]));
+            }
+            set {
+                this["duckPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gamePath {
+            get {
+                return ((string)(this["gamePath"]));
+            }
+            set {
+                this["gamePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autoStart {
+            get {
+                return ((bool)(this["autoStart"]));
+            }
+            set {
+                this["autoStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string fileRegion {
+            get {
+                return ((string)(this["fileRegion"]));
+            }
+            set {
+                this["fileRegion"] = value;
+            }
+        }
     }
 }
