@@ -23,6 +23,7 @@ using static C3AP_Client.LevelData;
 using static C3AP_Client.GameData;
 using static C3AP_Client.Checks;
 using static C3AP_Client.DuckstationHook;
+using static C3AP_Client.Powerups;
 
 namespace C3AP_Client
 {
@@ -30,6 +31,9 @@ namespace C3AP_Client
     {
         private bool _dragging = false;
         private Point _start_point = new Point(0, 0);
+        Form tracker = new Tracker();
+        private bool isTracker = false;
+        public static string RoomSeed;
 
         // Entspricht exakt der m_end_address = 0x200000 (2 MB PS1-RAM) aus der DuckStation-Header-Datei
         const long PS1_RAM_SIZE = 0x200000;
@@ -94,6 +98,8 @@ namespace C3AP_Client
             panel_ReceivedItems.Visible = false;
             panel_gamestats.Visible = false;
 
+            if (isProcessRunning().Length != 0) { isProcess = true; } else { isProcess = false; }
+
             if (isProcess == false)
             {
                 if (Properties.Settings.Default.autoStart == true)
@@ -101,15 +107,20 @@ namespace C3AP_Client
                     if (Properties.Settings.Default.duckPath != "" && Properties.Settings.Default.gamePath != "")
                     {
                         startDucktation(Properties.Settings.Default.duckPath, Properties.Settings.Default.gamePath);
+                        timer1.Enabled = true;
+                        waitTimer.Start();
                     }
                 }
+            }
+            else
+            {
+                timer1.Enabled = true;
+                waitTimer2.Start();
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (isProcessRunning().Length != 0) { isProcess = true; } else { isProcess = false; }
-
             int levelNumber = getLevelID((int)LevelIDAddress);
             int levelNumberLate = getLevelID((int)LateLevelIDAddress);
 
@@ -188,6 +199,7 @@ namespace C3AP_Client
                     if (result.Successful)
                     {
                         APManager.Session = session;
+                        RoomSeed = session.RoomState.Seed.ToString();
                         ClientMessageBox.Show("Connected to the AP-Server!", "Connected");
                     }
                     else
@@ -276,6 +288,17 @@ namespace C3AP_Client
             public ItemFlags ItemFlags { get; set; }
         }
 
+        private void SaveCheckToJson(long itemId)
+        {
+            var itemEntry = new ReceivedItemData
+            {
+                ItemId = itemId,
+            };
+            string jsonString = JsonSerializer.Serialize(itemEntry);
+
+            File.AppendAllLines(RoomSeed + "_items.c3apsave", new[] { jsonString });
+        }
+
         private void SaveItemToJson(long itemId, string playerName, string itemName, string senderName, string locationName, ItemFlags flags)
         {
             var itemEntry = new ReceivedItemData
@@ -289,12 +312,12 @@ namespace C3AP_Client
             };
             string jsonString = JsonSerializer.Serialize(itemEntry);
 
-            File.AppendAllLines("apreceiveditems.c3apsave", new[] { jsonString });
+            File.AppendAllLines("apworlds/" + RoomSeed + "_apreceiveditems.c3apsave", new[] { jsonString });
         }
 
         private void LoadItemsFromJson()
         {
-            string logFilePath = "apreceiveditems.c3apsave";
+            string logFilePath = "apworlds/" + RoomSeed + "_apreceiveditems.c3apsave";
 
             if (!File.Exists(logFilePath)) return;
 
@@ -311,6 +334,7 @@ namespace C3AP_Client
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show("Fehler beim Laden eines Log-Eintrags: " + ex.Message);
                     Console.WriteLine("Fehler beim Laden eines Log-Eintrags: " + ex.Message);
                 }
             }
@@ -369,6 +393,11 @@ namespace C3AP_Client
             sendRelicSapphireCheck(levelName);
             sendRelicGoldCheck(levelName);
             sendRelicPlatinumCheck(levelName);
+            checkBodySlam();
+            checkDoubleJump();
+            checkTornadoSpin();
+            checkFruitBazooka();
+            checkSpeedShoes();
 
             if (APManager.IsConnected)
             {
@@ -935,15 +964,15 @@ namespace C3AP_Client
                     {
                         GameConfig.LoadUSAddresses();
                         regionFlag.Image = C3AP_Client.Properties.Resources.USCA;
-                        timer1.Enabled = true;
-                        waitTimer.Start();
+                        //timer1.Enabled = true;
+                        //waitTimer.Start();
                     }
                     else
                     {
                         GameConfig.LoadEUAddresses();
                         regionFlag.Image = C3AP_Client.Properties.Resources.EU;
-                        timer1.Enabled = true;
-                        waitTimer.Start();
+                        //timer1.Enabled = true;
+                        //waitTimer.Start();
                     }
                 }
 
@@ -970,6 +999,28 @@ namespace C3AP_Client
         private void openGameFileDialog(object sender, EventArgs e)
         {
             searchGameFile();
+        }
+
+        private void openTracker(object sender, EventArgs e)
+        {
+
+            if (isTracker == false)
+            {
+                tracker.Show();
+                isTracker = true;
+            }
+            else
+            {
+                tracker.Hide();
+                isTracker = false;
+            }
+
+        }
+
+        private void waitTimer2_Tick(object sender, EventArgs e)
+        {
+            ramBase = FindRamBySignature(targetProcess);
+            waitTimer2.Stop();
         }
     }
 }

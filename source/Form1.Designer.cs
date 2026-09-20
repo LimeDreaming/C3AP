@@ -48,6 +48,7 @@ namespace C3AP_Client
             label1 = new Label();
             label2 = new Label();
             panelSettings = new Panel();
+            tracker_btn = new Button();
             panel9 = new Panel();
             gameFilePath = new TextBox();
             panel1 = new Panel();
@@ -74,9 +75,6 @@ namespace C3AP_Client
             btn_labelgame = new Label();
             btn_selectgame = new Panel();
             sharedPanel = new Panel();
-            panel_ReceivedItems = new Panel();
-            panelReceivedColor = new Panel();
-            receivedItemBox = new RichTextBox();
             panel_gamestats = new Panel();
             panelGame = new Panel();
             label6 = new Label();
@@ -84,6 +82,9 @@ namespace C3AP_Client
             gamePath = new Label();
             duckPath = new Label();
             latelevelId = new Label();
+            panel_ReceivedItems = new Panel();
+            panelReceivedColor = new Panel();
+            receivedItemBox = new RichTextBox();
             panel_Hints = new Panel();
             panelHintsColor = new Panel();
             hintsBox = new RichTextBox();
@@ -103,6 +104,7 @@ namespace C3AP_Client
             btn_selectlog = new Panel();
             timer4 = new System.Windows.Forms.Timer(components);
             waitTimer = new System.Windows.Forms.Timer(components);
+            waitTimer2 = new System.Windows.Forms.Timer(components);
             panelSettings.SuspendLayout();
             panel9.SuspendLayout();
             panel1.SuspendLayout();
@@ -115,10 +117,10 @@ namespace C3AP_Client
             ((System.ComponentModel.ISupportInitialize)duck_status).BeginInit();
             btn_game.SuspendLayout();
             sharedPanel.SuspendLayout();
-            panel_ReceivedItems.SuspendLayout();
-            panelReceivedColor.SuspendLayout();
             panel_gamestats.SuspendLayout();
             panelGame.SuspendLayout();
+            panel_ReceivedItems.SuspendLayout();
+            panelReceivedColor.SuspendLayout();
             panel_Hints.SuspendLayout();
             panelHintsColor.SuspendLayout();
             panel_Log.SuspendLayout();
@@ -133,7 +135,7 @@ namespace C3AP_Client
             // dsstatus
             // 
             dsstatus.AutoSize = true;
-            dsstatus.Location = new Point(51, 11);
+            dsstatus.Location = new Point(27, 28);
             dsstatus.Name = "dsstatus";
             dsstatus.Size = new Size(188, 15);
             dsstatus.TabIndex = 0;
@@ -142,7 +144,7 @@ namespace C3AP_Client
             // levelID
             // 
             levelID.AutoSize = true;
-            levelID.Location = new Point(51, 63);
+            levelID.Location = new Point(27, 80);
             levelID.Name = "levelID";
             levelID.Size = new Size(51, 15);
             levelID.TabIndex = 1;
@@ -156,7 +158,7 @@ namespace C3AP_Client
             // regionLabel
             // 
             regionLabel.AutoSize = true;
-            regionLabel.Location = new Point(51, 78);
+            regionLabel.Location = new Point(27, 95);
             regionLabel.Name = "regionLabel";
             regionLabel.Size = new Size(81, 15);
             regionLabel.TabIndex = 2;
@@ -165,7 +167,7 @@ namespace C3AP_Client
             // crystal
             // 
             crystal.AutoSize = true;
-            crystal.Location = new Point(51, 93);
+            crystal.Location = new Point(27, 110);
             crystal.Name = "crystal";
             crystal.Size = new Size(46, 15);
             crystal.TabIndex = 3;
@@ -174,7 +176,7 @@ namespace C3AP_Client
             // crystalReserve
             // 
             crystalReserve.AutoSize = true;
-            crystalReserve.Location = new Point(51, 108);
+            crystalReserve.Location = new Point(27, 125);
             crystalReserve.Name = "crystalReserve";
             crystalReserve.Size = new Size(46, 15);
             crystalReserve.TabIndex = 4;
@@ -213,7 +215,7 @@ namespace C3AP_Client
             // button2
             // 
             button2.Enabled = false;
-            button2.Location = new Point(125, 339);
+            button2.Location = new Point(122, 423);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 8;
@@ -230,7 +232,7 @@ namespace C3AP_Client
             // portNumber
             // 
             portNumber.Enabled = false;
-            portNumber.Location = new Point(18, 339);
+            portNumber.Location = new Point(15, 423);
             portNumber.MaxLength = 5;
             portNumber.Name = "portNumber";
             portNumber.PlaceholderText = "00000";
@@ -276,6 +278,7 @@ namespace C3AP_Client
             // panelSettings
             // 
             panelSettings.BackColor = Color.FromArgb(23, 32, 46);
+            panelSettings.Controls.Add(tracker_btn);
             panelSettings.Controls.Add(panel9);
             panelSettings.Controls.Add(panel1);
             panelSettings.Controls.Add(duckAutoStart);
@@ -295,6 +298,22 @@ namespace C3AP_Client
             panelSettings.Size = new Size(0, 667);
             panelSettings.TabIndex = 16;
             panelSettings.Paint += panel1_Paint;
+            // 
+            // tracker_btn
+            // 
+            tracker_btn.BackColor = Color.FromArgb(50, 58, 75);
+            tracker_btn.FlatAppearance.BorderSize = 0;
+            tracker_btn.FlatStyle = FlatStyle.Flat;
+            tracker_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tracker_btn.ForeColor = SystemColors.ButtonHighlight;
+            tracker_btn.Location = new Point(15, 332);
+            tracker_btn.Name = "tracker_btn";
+            tracker_btn.Size = new Size(261, 39);
+            tracker_btn.TabIndex = 25;
+            tracker_btn.Text = "Open Tracker";
+            tracker_btn.UseVisualStyleBackColor = false;
+            tracker_btn.Visible = false;
+            tracker_btn.Click += openTracker;
             // 
             // panel9
             // 
@@ -562,7 +581,7 @@ namespace C3AP_Client
             btn_game.Controls.Add(btn_selectgame);
             btn_game.Location = new Point(314, 3);
             btn_game.Name = "btn_game";
-            btn_game.Size = new Size(71, 37);
+            btn_game.Size = new Size(69, 37);
             btn_game.TabIndex = 25;
             btn_game.Click += btnGame_Click;
             // 
@@ -592,14 +611,85 @@ namespace C3AP_Client
             // 
             // sharedPanel
             // 
-            sharedPanel.Controls.Add(panel_ReceivedItems);
             sharedPanel.Controls.Add(panel_gamestats);
+            sharedPanel.Controls.Add(panel_ReceivedItems);
             sharedPanel.Controls.Add(panel_Hints);
             sharedPanel.Controls.Add(panel_Log);
             sharedPanel.Location = new Point(3, 43);
             sharedPanel.Name = "sharedPanel";
             sharedPanel.Size = new Size(524, 603);
             sharedPanel.TabIndex = 19;
+            // 
+            // panel_gamestats
+            // 
+            panel_gamestats.Controls.Add(panelGame);
+            panel_gamestats.Location = new Point(39, 15);
+            panel_gamestats.Name = "panel_gamestats";
+            panel_gamestats.Size = new Size(524, 603);
+            panel_gamestats.TabIndex = 21;
+            // 
+            // panelGame
+            // 
+            panelGame.BackColor = Color.FromArgb(36, 40, 47);
+            panelGame.Controls.Add(label6);
+            panelGame.Controls.Add(label5);
+            panelGame.Controls.Add(gamePath);
+            panelGame.Controls.Add(duckPath);
+            panelGame.Controls.Add(latelevelId);
+            panelGame.Controls.Add(levelID);
+            panelGame.Controls.Add(regionLabel);
+            panelGame.Controls.Add(crystal);
+            panelGame.Controls.Add(crystalReserve);
+            panelGame.Controls.Add(dsstatus);
+            panelGame.Location = new Point(3, 3);
+            panelGame.Name = "panelGame";
+            panelGame.Size = new Size(518, 597);
+            panelGame.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(24, 213);
+            label6.Name = "label6";
+            label6.Size = new Size(188, 15);
+            label6.TabIndex = 9;
+            label6.Text = "Duckstation Status: Is not Running";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(24, 228);
+            label5.Name = "label5";
+            label5.Size = new Size(188, 15);
+            label5.TabIndex = 8;
+            label5.Text = "Duckstation Status: Is not Running";
+            // 
+            // gamePath
+            // 
+            gamePath.AutoSize = true;
+            gamePath.Location = new Point(27, 171);
+            gamePath.Name = "gamePath";
+            gamePath.Size = new Size(100, 15);
+            gamePath.TabIndex = 7;
+            gamePath.Text = "Duckstation Path:";
+            // 
+            // duckPath
+            // 
+            duckPath.AutoSize = true;
+            duckPath.Location = new Point(27, 156);
+            duckPath.Name = "duckPath";
+            duckPath.Size = new Size(100, 15);
+            duckPath.TabIndex = 6;
+            duckPath.Text = "Duckstation Path:";
+            // 
+            // latelevelId
+            // 
+            latelevelId.AutoSize = true;
+            latelevelId.Location = new Point(27, 141);
+            latelevelId.Name = "latelevelId";
+            latelevelId.Size = new Size(51, 15);
+            latelevelId.TabIndex = 5;
+            latelevelId.Text = "Level ID:";
             // 
             // panel_ReceivedItems
             // 
@@ -632,77 +722,6 @@ namespace C3AP_Client
             receivedItemBox.Size = new Size(500, 582);
             receivedItemBox.TabIndex = 6;
             receivedItemBox.Text = "";
-            // 
-            // panel_gamestats
-            // 
-            panel_gamestats.Controls.Add(panelGame);
-            panel_gamestats.Location = new Point(332, 18);
-            panel_gamestats.Name = "panel_gamestats";
-            panel_gamestats.Size = new Size(524, 603);
-            panel_gamestats.TabIndex = 21;
-            // 
-            // panelGame
-            // 
-            panelGame.BackColor = Color.FromArgb(36, 40, 47);
-            panelGame.Controls.Add(label6);
-            panelGame.Controls.Add(label5);
-            panelGame.Controls.Add(gamePath);
-            panelGame.Controls.Add(duckPath);
-            panelGame.Controls.Add(latelevelId);
-            panelGame.Controls.Add(levelID);
-            panelGame.Controls.Add(regionLabel);
-            panelGame.Controls.Add(crystal);
-            panelGame.Controls.Add(crystalReserve);
-            panelGame.Controls.Add(dsstatus);
-            panelGame.Location = new Point(3, 3);
-            panelGame.Name = "panelGame";
-            panelGame.Size = new Size(518, 597);
-            panelGame.TabIndex = 0;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(48, 196);
-            label6.Name = "label6";
-            label6.Size = new Size(188, 15);
-            label6.TabIndex = 9;
-            label6.Text = "Duckstation Status: Is not Running";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(48, 211);
-            label5.Name = "label5";
-            label5.Size = new Size(188, 15);
-            label5.TabIndex = 8;
-            label5.Text = "Duckstation Status: Is not Running";
-            // 
-            // gamePath
-            // 
-            gamePath.AutoSize = true;
-            gamePath.Location = new Point(51, 154);
-            gamePath.Name = "gamePath";
-            gamePath.Size = new Size(100, 15);
-            gamePath.TabIndex = 7;
-            gamePath.Text = "Duckstation Path:";
-            // 
-            // duckPath
-            // 
-            duckPath.AutoSize = true;
-            duckPath.Location = new Point(51, 139);
-            duckPath.Name = "duckPath";
-            duckPath.Size = new Size(100, 15);
-            duckPath.TabIndex = 6;
-            duckPath.Text = "Duckstation Path:";
-            // 
-            // latelevelId
-            // 
-            latelevelId.AutoSize = true;
-            latelevelId.Location = new Point(51, 124);
-            latelevelId.Name = "latelevelId";
-            latelevelId.Size = new Size(51, 15);
-            latelevelId.TabIndex = 5;
-            latelevelId.Text = "Level ID:";
             // 
             // panel_Hints
             // 
@@ -899,6 +918,11 @@ namespace C3AP_Client
             waitTimer.Interval = 30000;
             waitTimer.Tick += waitTimer_Tick;
             // 
+            // waitTimer2
+            // 
+            waitTimer2.Interval = 1000;
+            waitTimer2.Tick += waitTimer2_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -934,11 +958,11 @@ namespace C3AP_Client
             btn_game.ResumeLayout(false);
             btn_game.PerformLayout();
             sharedPanel.ResumeLayout(false);
-            panel_ReceivedItems.ResumeLayout(false);
-            panelReceivedColor.ResumeLayout(false);
             panel_gamestats.ResumeLayout(false);
             panelGame.ResumeLayout(false);
             panelGame.PerformLayout();
+            panel_ReceivedItems.ResumeLayout(false);
+            panelReceivedColor.ResumeLayout(false);
             panel_Hints.ResumeLayout(false);
             panelHintsColor.ResumeLayout(false);
             panel_Log.ResumeLayout(false);
@@ -1028,5 +1052,7 @@ namespace C3AP_Client
         private TextBox duckFilePath;
         private Panel panel9;
         private TextBox gameFilePath;
+        private Button tracker_btn;
+        private System.Windows.Forms.Timer waitTimer2;
     }
 }
