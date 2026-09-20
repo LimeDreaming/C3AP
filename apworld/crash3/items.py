@@ -558,9 +558,16 @@ def create_all_items(world: Crash3World) -> None:
         if level_name in boss_levels:
             continue
 
-        itempool += [world.create_item("Sapphire Relic: " + level_name)]
-        itempool += [world.create_item("Gold Relic: " + level_name)]
-        itempool += [world.create_item("Platinum Relic: " + level_name)]
+        if world.options.relicaschecks != 0:
+            if world.options.relictype == 0:
+                itempool += [world.create_item("Sapphire Relic: " + level_name)]
+                itempool += [world.create_item("Gold Relic: " + level_name)]
+                itempool += [world.create_item("Platinum Relic: " + level_name)]
+            if world.options.relictype == 1:
+                itempool += [world.create_item("Sapphire Relic: " + level_name)]
+            if world.options.relictype == 2:
+                itempool += [world.create_item("Gold Relic: " + level_name)]
+
 
     #itempool += [world.create_item("Aku Aku")]
 
