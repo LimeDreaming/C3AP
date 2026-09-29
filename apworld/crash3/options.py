@@ -127,6 +127,44 @@ class NoLivesTrapWeight(Range):
     range_end = 100
     default = 10
 
+class CollectByCheck(Toggle):
+    """
+    When enabled you will not need to rejoin the Level again to collect Crystals,Gems and Relics
+    Attention Checks mid be spammed
+    """
+    display_name = "Collect By Check"
+
+    option_disabled = 0
+    option_enabled = 1
+
+    default = option_disabled
+
+class RelicAsCheck(Toggle):
+    """
+        This enables the Relics as Items and Checks.
+    """
+    display_name = "Relic As Checks"
+
+    option_disabled = 0
+    option_enabled = 1
+
+    default = option_enabled
+
+class RelicType(Choice):
+    """
+    Choose what type of Relic Items you want!
+    Normal: All Relics types are on Sapphire, Gold and Platinum
+    Sapphire: Only Sapphire Relics are Items and Checks.
+    Gold: Only Gold Relics are Items and Checks.
+    """
+    display_name = "Relic Type"
+
+    option_normal = 0
+    option_sapphire = 1
+    option_gold = 2
+
+    default = option_normal
+
 class PowerupLock(Toggle):
     """
     This locks the powerups Body Slam, Double Jump, Tornado Spin, Bazooka and Crash Dash behind an item.
@@ -289,6 +327,8 @@ class Crash3Options(PerGameCommonOptions):
     # big_crash_size: BigCrashSize
     no_lives_weight: NoLivesTrapWeight
 
+    relicaschecks: RelicAsCheck
+    relictype: RelicType
     powerup_lock: PowerupLock
     gimmick_lock: GimmickLock
     tiger_lock_logic: TigerLockLogic

@@ -64,7 +64,6 @@ levelIdToName = [None] * 64
 for name in levelNameToId:
     levelIdToName[levelNameToId[name]] = name
 
-
 LOCATION_NAME_TO_ID = {
     "Toad Village: Crystal": 142100,
     "Toad Village: Clear Gem (Box Gem)": 142101,
@@ -309,9 +308,9 @@ LOCATION_NAME_TO_ID = {
     # Secret Levels
     "Hot Coco: Secret Exit": 142296,
     "Eggipus Rex: Secret Exit": 142297,
-    "Test1": 142298,
-    "Test2": 142299,
-    "Test3": 142300,
+    #"Test1": 142298,
+    #"Test2": 142299,
+    #"Test3": 142300,
 }
 
 # for easier lookup during location group setup

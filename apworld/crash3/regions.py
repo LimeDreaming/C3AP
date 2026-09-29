@@ -31,9 +31,9 @@ def create_all_regions(world: Crash3World) -> None:
     # 1. Start-Region (Menu) mit deinen Test-Checks erstellen
     menu_region = Region("Menu", world.player, world.multiworld)
     menu_region.add_locations({
-        "Test1": 142298,
-        "Test2": 142299,
-        "Test3": 142300,
+        #"Test1": 142298,
+        #"Test2": 142299,
+        #"Test3": 142300,
     }, location_type=Crash3Location)
     regions.append(menu_region)
 
