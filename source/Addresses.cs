@@ -35,9 +35,60 @@ namespace C3AP_Client
 
         public static uint PowerUpAddress = 0x69328;
 
+        public static uint PauseStateAddress = 0x609e0;
+        public static uint BonusStateAddress = 0x60c5c; // Still need to be proofed that is the Bonus Level State
+
         public static uint GameStateAddress = 0x690ed;
         public static uint LevelIDAddress = 0x60c1c;
         public static uint LateLevelIDAddress = 0x690a9;
+
+        public static Dictionary<int, uint> LevelDataAddress = new Dictionary<int, uint>
+        {
+            {0x02, 0xb5dd0},
+            {0x0b, 0xad298},
+            {0x0e, 0xad08c},
+            {0x0a, 0xad2e8},
+            {0x0c, 0xad514},
+            {0x19, 0xacf60},
+
+            {0x0f, 0xad488},
+            {0x16, 0xad36c},
+            {0x15, 0xad5e0},
+            {0x12, 0xad494},
+            {0x11, 0xad318},
+
+            {0x10, 0xad654},
+            {0x1c, 0xad22c},
+            {0x1a, 0xad310},
+            {0x14, 0xad7bc},
+            {0x1d, 0xad32c},
+
+            {0x1e, 0xad7bc},
+            {0x13, 0xbcbe0},
+            {0x0d, 0xacfac},
+            {0x1b, 0xad4a0},
+            {0x18, 0xad66c},
+
+            {0x23, 0xad410},
+            {0x20, 0xadaf4},
+            {0x22, 0xad3d8},
+            {0x17, 0xbcc68},
+            {0x24, 0xad600},
+
+            {0x21, 0xace78},
+            {0x25, 0xad980},
+            {0x1f, 0xbccb4},
+            {0x27, 0xace90},
+            {0x26, 0xacee0},
+
+            //Bosses
+            {0x06, 0xbcc04},
+            {0x03, 0xbcf60},
+            {0x04, 0xacee0},
+            {0x05, 0xbce90},
+            {0x07, 0xacef0},
+        };
+
     }
     public static class USAddresses
     {
@@ -69,9 +120,59 @@ namespace C3AP_Client
 
         public static uint PowerUpAddress = 0x69178;
 
+        public static uint PauseStateAddress = 0x609e0; //
+        public static uint BonusStateAddress = 0x60c5c; // Still need to be proofed that is the Bonus Level State  //
+
         public static uint GameStateAddress = 0x68f3d;
         public static uint LevelIDAddress = 0x68ef9;
         public static uint LateLevelIDAddress = 0x68ef9;
+
+        public static Dictionary<int, uint> LevelDataAddress = new Dictionary<int, uint>
+        {
+            {0x02, 0xb5dd0},
+            {0x0b, 0xad0ec},
+            {0x0e, 0xacee4},
+            {0x0a, 0xad13c},
+            {0x0c, 0xad368},
+            {0x19, 0xacdb8},
+
+            {0x0f, 0xad2dc},
+            {0x16, 0xad1c4},
+            {0x15, 0xad418},
+            {0x12, 0xad2e0},
+            {0x11, 0xad170},
+
+            {0x10, 0xad4a8},
+            {0x1c, 0xad07c},
+            {0x1a, 0xad168},
+            {0x14, 0xad610},
+            {0x1d, 0xad180},
+
+            {0x1e, 0xad5e8},
+            {0x13, 0xbca24},
+            {0x0d, 0xace00},
+            {0x1b, 0xad2f4},
+            {0x18, 0xad4c4},
+
+            {0x23, 0xad264},
+            {0x20, 0xad948},
+            {0x22, 0xad238},
+            {0x17, 0xbcaac},
+            {0x24, 0xad454},
+
+            {0x21, 0xace0d},
+            {0x25, 0xad919},
+            {0x1f, 0xbcc39},
+            {0x27, 0xace25},
+            {0x26, 0xace75},
+
+            //Bosses
+            {0x06, 0xbca5c},
+            {0x03, 0xbccc8},
+            {0x04, 0xacc7c},
+            {0x05, 0xbcc44},
+            {0x07, 0xacc0c},
+        };
     }
     public static class GameConfig
     {
@@ -93,9 +194,14 @@ namespace C3AP_Client
 
         public static uint PowerUpAddress;
 
+        public static uint PauseStateAddress;
+        public static uint BonusStateAddress;
+
         public static uint GameStateAddress;
         public static uint LevelIDAddress;
         public static uint LateLevelIDAddress;
+
+        public static Dictionary<int, uint> LevelDataAddress;
 
         public static void LoadUSAddresses()
         {
@@ -117,9 +223,14 @@ namespace C3AP_Client
 
             PowerUpAddress = USAddresses.PowerUpAddress;
 
+            PauseStateAddress = USAddresses.PauseStateAddress;
+            BonusStateAddress = USAddresses.BonusStateAddress;
+
             GameStateAddress = USAddresses.GameStateAddress;
             LevelIDAddress = USAddresses.LevelIDAddress;
             LateLevelIDAddress = USAddresses.LateLevelIDAddress;
+
+            LevelDataAddress = USAddresses.LevelDataAddress;
         }
 
         public static void LoadEUAddresses()
@@ -144,9 +255,14 @@ namespace C3AP_Client
 
             PowerUpAddress = EUAddresses.PowerUpAddress;
 
+            PauseStateAddress = EUAddresses.PauseStateAddress;
+            BonusStateAddress = EUAddresses.BonusStateAddress; 
+
             GameStateAddress = EUAddresses.GameStateAddress;
             LevelIDAddress = EUAddresses.LevelIDAddress;
             LateLevelIDAddress = EUAddresses.LateLevelIDAddress;
+
+            LevelDataAddress = EUAddresses.LevelDataAddress;
         }
 
     }

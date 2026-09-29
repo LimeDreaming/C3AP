@@ -82,8 +82,8 @@ namespace C3AP_Client
             duckPath.Text = "Duckstation Path: " + Properties.Settings.Default.duckPath;
             gamePath.Text = "Game Path: " + Properties.Settings.Default.gamePath;
 
-            duckFilePath.Text = Properties.Settings.Default.duckPath;
-            gameFilePath.Text = Properties.Settings.Default.gamePath;
+            if (Properties.Settings.Default.duckPath != "") { duckFilePath.Text = Properties.Settings.Default.duckPath; }
+            if (Properties.Settings.Default.gamePath != "") { gameFilePath.Text = Properties.Settings.Default.gamePath; }
             duckAutoStart.Checked = Properties.Settings.Default.autoStart;
 
             hostName.Text = Properties.Settings.Default.hostName;
@@ -299,6 +299,25 @@ namespace C3AP_Client
             File.AppendAllLines(RoomSeed + "_items.c3apsave", new[] { jsonString });
         }
 
+        public static int getAnimationID()
+        {
+            int currentLevelID = getLevelID((int)LevelIDAddress);
+            IntPtr bytesRead;
+            if (LevelDataAddress.ContainsKey(currentLevelID)) 
+            {
+                if (LevelDataAddress.TryGetValue(currentLevelID, out uint address))
+                {
+                    uint aniAddress = address + AnimationIDOffset;
+                    IntPtr targetAddress = IntPtr.Add(ramBase, (int)aniAddress);
+                    
+                    bool success = ReadProcessMemory(targetProcess, targetAddress, byte1Buffer, byte1Buffer.Length, out bytesRead);
+                    if (success) { return byte1Buffer[0]; }
+                    return currentLevelID;
+                }
+            }
+            return currentLevelID;
+        }
+
         private void SaveItemToJson(long itemId, string playerName, string itemName, string senderName, string locationName, ItemFlags flags)
         {
             var itemEntry = new ReceivedItemData
@@ -312,12 +331,12 @@ namespace C3AP_Client
             };
             string jsonString = JsonSerializer.Serialize(itemEntry);
 
-            File.AppendAllLines("apworlds/" + RoomSeed + "_apreceiveditems.c3apsave", new[] { jsonString });
+            File.AppendAllLines(RoomSeed + "_apreceiveditems.c3apsave", new[] { jsonString });
         }
 
         private void LoadItemsFromJson()
         {
-            string logFilePath = "apworlds/" + RoomSeed + "_apreceiveditems.c3apsave";
+            string logFilePath = RoomSeed + "_apreceiveditems.c3apsave";
 
             if (!File.Exists(logFilePath)) return;
 
@@ -555,6 +574,7 @@ namespace C3AP_Client
         private void btnHints_Click(object sender, EventArgs e)
         {
             switchBTN(1);
+            MessageBox.Show(getAnimationID().ToString());
         }
         private void btnHintsHover_Click(object sender, EventArgs e)
         {
@@ -958,26 +978,32 @@ namespace C3AP_Client
                 isProcess = true;
                 targetProcess = GetProcess();
 
-                if (checkGameFileRegion(Properties.Settings.Default.gamePath, out string game))
+                if (File.Exists(Properties.Settings.Default.gamePath))
                 {
-                    if (game.Contains("US"))
+                    if (checkGameFileRegion(Properties.Settings.Default.gamePath, out string game))
                     {
-                        GameConfig.LoadUSAddresses();
-                        regionFlag.Image = C3AP_Client.Properties.Resources.USCA;
-                        //timer1.Enabled = true;
-                        //waitTimer.Start();
-                    }
-                    else
-                    {
-                        GameConfig.LoadEUAddresses();
-                        regionFlag.Image = C3AP_Client.Properties.Resources.EU;
-                        //timer1.Enabled = true;
-                        //waitTimer.Start();
+                        if (game.Contains("US"))
+                        {
+                            GameConfig.LoadUSAddresses();
+                            regionFlag.Image = C3AP_Client.Properties.Resources.USCA;
+                            //timer1.Enabled = true;
+                            //waitTimer.Start();
+                        }
+                        else
+                        {
+                            GameConfig.LoadEUAddresses();
+                            regionFlag.Image = C3AP_Client.Properties.Resources.EU;
+                            //timer1.Enabled = true;
+                            //waitTimer.Start();
+                        }
                     }
                 }
+                else
+                {
+                    if (GetRegion(ramBase, targetProcess) == "US") { regionFlag.Image = C3AP_Client.Properties.Resources.USCA; }
+                    else { regionFlag.Image = C3AP_Client.Properties.Resources.EU; }
+                }
 
-                //if (GetRegion(ramBase, targetProcess) == "US") { regionFlag.Image = C3AP_Client.Properties.Resources.USCA; }
-                //else { regionFlag.Image = C3AP_Client.Properties.Resources.EU; }
                 timer4.Stop();
             }
 
@@ -993,12 +1019,12 @@ namespace C3AP_Client
 
         private void openDuckFileDialog(object sender, EventArgs e)
         {
-            searchDucktationFile();
+            if(searchDucktationFile() == true) { duckFilePath.Text = Properties.Settings.Default.duckPath; }
         }
 
         private void openGameFileDialog(object sender, EventArgs e)
         {
-            searchGameFile();
+            if (searchGameFile() == true) { gameFilePath.Text = Properties.Settings.Default.gamePath; }
         }
 
         private void openTracker(object sender, EventArgs e)

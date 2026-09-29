@@ -20,7 +20,7 @@ namespace C3AP_Client.Hook
                 return IntPtr.Zero;
             }
             Process proc = processes[0];
-
+            //MessageBox.Show(proc.Id.ToString());
             if (proc != null)
             {
                 IntPtr processHandle = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION, false, proc.Id);

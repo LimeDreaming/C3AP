@@ -52,7 +52,7 @@ namespace C3AP_Client
 
             return false;
         }
-        public static void searchDucktationFile()
+        public static bool searchDucktationFile()
         {
             using (OpenFileDialog duckFileDialog = new OpenFileDialog())
             {
@@ -67,12 +67,14 @@ namespace C3AP_Client
                     Properties.Settings.Default.duckPath = duckFilePath;
                     Properties.Settings.Default.Save();
                     //searchGameFile();
+                    return true;
 
                 }
             }
+            return false;
         }
 
-        public static void searchGameFile() 
+        public static bool searchGameFile() 
         {
             using (OpenFileDialog gameFileDialog = new OpenFileDialog())
             {
@@ -89,8 +91,10 @@ namespace C3AP_Client
                     string gameFilePath = gameFileDialog.FileName;
                     Properties.Settings.Default.gamePath = gameFilePath;
                     Properties.Settings.Default.Save();
+                    return true;
                 }
             }
+            return false;
         }
 
         public static void startDucktation(string duckExe, string romFile) 

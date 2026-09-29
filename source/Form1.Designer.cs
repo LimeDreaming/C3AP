@@ -336,7 +336,7 @@ namespace C3AP_Client
             gameFilePath.ReadOnly = true;
             gameFilePath.Size = new Size(256, 18);
             gameFilePath.TabIndex = 10;
-            gameFilePath.Text = "Game File Path";
+            gameFilePath.Text = "Game File Path [Click on me!]";
             gameFilePath.Click += openGameFileDialog;
             // 
             // panel1
@@ -360,7 +360,7 @@ namespace C3AP_Client
             duckFilePath.ReadOnly = true;
             duckFilePath.Size = new Size(256, 18);
             duckFilePath.TabIndex = 10;
-            duckFilePath.Text = "Duckstation Install Path";
+            duckFilePath.Text = "Duckstation Install Path [Click on me!]";
             duckFilePath.Click += openDuckFileDialog;
             // 
             // duckAutoStart
