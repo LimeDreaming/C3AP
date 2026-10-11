@@ -77,6 +77,28 @@ namespace C3AP_Client
             sharedPanel = new Panel();
             panel_gamestats = new Panel();
             panelGame = new Panel();
+            panel13 = new Panel();
+            maxboxCount = new Panel();
+            pictureBox4 = new PictureBox();
+            sboxp3 = new PictureBox();
+            sboxp1 = new PictureBox();
+            sboxp2 = new PictureBox();
+            boxCountp3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            boxCountp1 = new PictureBox();
+            boxCountp2 = new PictureBox();
+            panel12 = new Panel();
+            pictureBox1 = new PictureBox();
+            wumpaCountp1 = new PictureBox();
+            wumpaCountp2 = new PictureBox();
+            panel11 = new Panel();
+            pictureBox3 = new PictureBox();
+            liveCountp1 = new PictureBox();
+            liveCountp2 = new PictureBox();
+            crates = new Label();
+            wumpa = new Label();
+            lives = new Label();
+            aniID = new Label();
             label6 = new Label();
             label5 = new Label();
             gamePath = new Label();
@@ -119,6 +141,24 @@ namespace C3AP_Client
             sharedPanel.SuspendLayout();
             panel_gamestats.SuspendLayout();
             panelGame.SuspendLayout();
+            panel13.SuspendLayout();
+            maxboxCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp2).BeginInit();
+            panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)wumpaCountp1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)wumpaCountp2).BeginInit();
+            panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)liveCountp1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)liveCountp2).BeginInit();
             panel_ReceivedItems.SuspendLayout();
             panelReceivedColor.SuspendLayout();
             panel_Hints.SuspendLayout();
@@ -158,7 +198,7 @@ namespace C3AP_Client
             // regionLabel
             // 
             regionLabel.AutoSize = true;
-            regionLabel.Location = new Point(27, 95);
+            regionLabel.Location = new Point(27, 159);
             regionLabel.Name = "regionLabel";
             regionLabel.Size = new Size(81, 15);
             regionLabel.TabIndex = 2;
@@ -167,7 +207,7 @@ namespace C3AP_Client
             // crystal
             // 
             crystal.AutoSize = true;
-            crystal.Location = new Point(27, 110);
+            crystal.Location = new Point(27, 174);
             crystal.Name = "crystal";
             crystal.Size = new Size(46, 15);
             crystal.TabIndex = 3;
@@ -176,7 +216,7 @@ namespace C3AP_Client
             // crystalReserve
             // 
             crystalReserve.AutoSize = true;
-            crystalReserve.Location = new Point(27, 125);
+            crystalReserve.Location = new Point(27, 189);
             crystalReserve.Name = "crystalReserve";
             crystalReserve.Size = new Size(46, 15);
             crystalReserve.TabIndex = 4;
@@ -631,6 +671,13 @@ namespace C3AP_Client
             // panelGame
             // 
             panelGame.BackColor = Color.FromArgb(36, 40, 47);
+            panelGame.Controls.Add(panel13);
+            panelGame.Controls.Add(panel12);
+            panelGame.Controls.Add(panel11);
+            panelGame.Controls.Add(crates);
+            panelGame.Controls.Add(wumpa);
+            panelGame.Controls.Add(lives);
+            panelGame.Controls.Add(aniID);
             panelGame.Controls.Add(label6);
             panelGame.Controls.Add(label5);
             panelGame.Controls.Add(gamePath);
@@ -646,10 +693,234 @@ namespace C3AP_Client
             panelGame.Size = new Size(518, 597);
             panelGame.TabIndex = 0;
             // 
+            // panel13
+            // 
+            panel13.Controls.Add(maxboxCount);
+            panel13.Controls.Add(boxCountp3);
+            panel13.Controls.Add(pictureBox2);
+            panel13.Controls.Add(boxCountp1);
+            panel13.Controls.Add(boxCountp2);
+            panel13.Location = new Point(134, 392);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(249, 47);
+            panel13.TabIndex = 19;
+            // 
+            // maxboxCount
+            // 
+            maxboxCount.Controls.Add(pictureBox4);
+            maxboxCount.Controls.Add(sboxp3);
+            maxboxCount.Controls.Add(sboxp1);
+            maxboxCount.Controls.Add(sboxp2);
+            maxboxCount.Location = new Point(151, 19);
+            maxboxCount.Name = "maxboxCount";
+            maxboxCount.Size = new Size(90, 25);
+            maxboxCount.TabIndex = 21;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.boxslash;
+            pictureBox4.Location = new Point(0, 0);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(25, 25);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 17;
+            pictureBox4.TabStop = false;
+            // 
+            // sboxp3
+            // 
+            sboxp3.Image = Properties.Resources.sbox0;
+            sboxp3.Location = new Point(64, 0);
+            sboxp3.Name = "sboxp3";
+            sboxp3.Size = new Size(21, 25);
+            sboxp3.SizeMode = PictureBoxSizeMode.AutoSize;
+            sboxp3.TabIndex = 20;
+            sboxp3.TabStop = false;
+            // 
+            // sboxp1
+            // 
+            sboxp1.Image = Properties.Resources.sbox1;
+            sboxp1.Location = new Point(26, 0);
+            sboxp1.Name = "sboxp1";
+            sboxp1.Size = new Size(15, 25);
+            sboxp1.SizeMode = PictureBoxSizeMode.AutoSize;
+            sboxp1.TabIndex = 19;
+            sboxp1.TabStop = false;
+            // 
+            // sboxp2
+            // 
+            sboxp2.Image = Properties.Resources.sbox0;
+            sboxp2.Location = new Point(42, 0);
+            sboxp2.Name = "sboxp2";
+            sboxp2.Size = new Size(21, 25);
+            sboxp2.SizeMode = PictureBoxSizeMode.AutoSize;
+            sboxp2.TabIndex = 18;
+            sboxp2.TabStop = false;
+            // 
+            // boxCountp3
+            // 
+            boxCountp3.Image = Properties.Resources.box0;
+            boxCountp3.Location = new Point(111, 3);
+            boxCountp3.Name = "boxCountp3";
+            boxCountp3.Size = new Size(34, 41);
+            boxCountp3.SizeMode = PictureBoxSizeMode.AutoSize;
+            boxCountp3.TabIndex = 17;
+            boxCountp3.TabStop = false;
+            boxCountp3.SizeChanged += updateMaxbox;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.box;
+            pictureBox2.Location = new Point(3, 3);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(41, 41);
+            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox2.TabIndex = 16;
+            pictureBox2.TabStop = false;
+            // 
+            // boxCountp1
+            // 
+            boxCountp1.Image = Properties.Resources.box1;
+            boxCountp1.Location = new Point(50, 3);
+            boxCountp1.Name = "boxCountp1";
+            boxCountp1.Size = new Size(25, 41);
+            boxCountp1.SizeMode = PictureBoxSizeMode.AutoSize;
+            boxCountp1.TabIndex = 14;
+            boxCountp1.TabStop = false;
+            boxCountp1.SizeChanged += updateBoxCountp2;
+            // 
+            // boxCountp2
+            // 
+            boxCountp2.Image = Properties.Resources.box0;
+            boxCountp2.Location = new Point(76, 3);
+            boxCountp2.Name = "boxCountp2";
+            boxCountp2.Size = new Size(34, 41);
+            boxCountp2.SizeMode = PictureBoxSizeMode.AutoSize;
+            boxCountp2.TabIndex = 15;
+            boxCountp2.TabStop = false;
+            boxCountp2.SizeChanged += updateBoxCountp3;
+            // 
+            // panel12
+            // 
+            panel12.Controls.Add(pictureBox1);
+            panel12.Controls.Add(wumpaCountp1);
+            panel12.Controls.Add(wumpaCountp2);
+            panel12.Location = new Point(8, 392);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(120, 47);
+            panel12.TabIndex = 18;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.wumpa;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(41, 41);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            // 
+            // wumpaCountp1
+            // 
+            wumpaCountp1.Image = Properties.Resources.wumpanone;
+            wumpaCountp1.Location = new Point(50, 3);
+            wumpaCountp1.Name = "wumpaCountp1";
+            wumpaCountp1.Size = new Size(34, 41);
+            wumpaCountp1.SizeMode = PictureBoxSizeMode.AutoSize;
+            wumpaCountp1.TabIndex = 14;
+            wumpaCountp1.TabStop = false;
+            wumpaCountp1.SizeChanged += updateWumpaCountp2;
+            // 
+            // wumpaCountp2
+            // 
+            wumpaCountp2.Image = Properties.Resources.wumpa9;
+            wumpaCountp2.Location = new Point(84, 3);
+            wumpaCountp2.Name = "wumpaCountp2";
+            wumpaCountp2.Size = new Size(33, 41);
+            wumpaCountp2.SizeMode = PictureBoxSizeMode.AutoSize;
+            wumpaCountp2.TabIndex = 15;
+            wumpaCountp2.TabStop = false;
+            // 
+            // panel11
+            // 
+            panel11.Controls.Add(pictureBox3);
+            panel11.Controls.Add(liveCountp1);
+            panel11.Controls.Add(liveCountp2);
+            panel11.Location = new Point(263, 339);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(120, 47);
+            panel11.TabIndex = 17;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.crashlive;
+            pictureBox3.Location = new Point(3, 3);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(41, 41);
+            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.TabIndex = 16;
+            pictureBox3.TabStop = false;
+            // 
+            // liveCountp1
+            // 
+            liveCountp1.Image = Properties.Resources.livenone;
+            liveCountp1.Location = new Point(50, 3);
+            liveCountp1.Name = "liveCountp1";
+            liveCountp1.Size = new Size(34, 41);
+            liveCountp1.SizeMode = PictureBoxSizeMode.AutoSize;
+            liveCountp1.TabIndex = 14;
+            liveCountp1.TabStop = false;
+            liveCountp1.SizeChanged += updateCountp2;
+            // 
+            // liveCountp2
+            // 
+            liveCountp2.Image = Properties.Resources.live0;
+            liveCountp2.Location = new Point(76, 3);
+            liveCountp2.Name = "liveCountp2";
+            liveCountp2.Size = new Size(34, 41);
+            liveCountp2.SizeMode = PictureBoxSizeMode.AutoSize;
+            liveCountp2.TabIndex = 15;
+            liveCountp2.TabStop = false;
+            // 
+            // crates
+            // 
+            crates.AutoSize = true;
+            crates.Location = new Point(27, 144);
+            crates.Name = "crates";
+            crates.Size = new Size(43, 15);
+            crates.TabIndex = 13;
+            crates.Text = "Crates:";
+            // 
+            // wumpa
+            // 
+            wumpa.AutoSize = true;
+            wumpa.Location = new Point(27, 129);
+            wumpa.Name = "wumpa";
+            wumpa.Size = new Size(84, 15);
+            wumpa.TabIndex = 12;
+            wumpa.Text = "Wumpa Fruits:";
+            // 
+            // lives
+            // 
+            lives.AutoSize = true;
+            lives.Location = new Point(27, 114);
+            lives.Name = "lives";
+            lives.Size = new Size(36, 15);
+            lives.TabIndex = 11;
+            lives.Text = "Lives:";
+            // 
+            // aniID
+            // 
+            aniID.AutoSize = true;
+            aniID.Location = new Point(27, 96);
+            aniID.Name = "aniID";
+            aniID.Size = new Size(51, 15);
+            aniID.TabIndex = 10;
+            aniID.Text = "Level ID:";
+            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(24, 213);
+            label6.Location = new Point(27, 279);
             label6.Name = "label6";
             label6.Size = new Size(188, 15);
             label6.TabIndex = 9;
@@ -658,7 +929,7 @@ namespace C3AP_Client
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(24, 228);
+            label5.Location = new Point(27, 294);
             label5.Name = "label5";
             label5.Size = new Size(188, 15);
             label5.TabIndex = 8;
@@ -667,7 +938,7 @@ namespace C3AP_Client
             // gamePath
             // 
             gamePath.AutoSize = true;
-            gamePath.Location = new Point(27, 171);
+            gamePath.Location = new Point(27, 235);
             gamePath.Name = "gamePath";
             gamePath.Size = new Size(100, 15);
             gamePath.TabIndex = 7;
@@ -676,7 +947,7 @@ namespace C3AP_Client
             // duckPath
             // 
             duckPath.AutoSize = true;
-            duckPath.Location = new Point(27, 156);
+            duckPath.Location = new Point(27, 220);
             duckPath.Name = "duckPath";
             duckPath.Size = new Size(100, 15);
             duckPath.TabIndex = 6;
@@ -685,7 +956,7 @@ namespace C3AP_Client
             // latelevelId
             // 
             latelevelId.AutoSize = true;
-            latelevelId.Location = new Point(27, 141);
+            latelevelId.Location = new Point(27, 205);
             latelevelId.Name = "latelevelId";
             latelevelId.Size = new Size(51, 15);
             latelevelId.TabIndex = 5;
@@ -961,6 +1232,28 @@ namespace C3AP_Client
             panel_gamestats.ResumeLayout(false);
             panelGame.ResumeLayout(false);
             panelGame.PerformLayout();
+            panel13.ResumeLayout(false);
+            panel13.PerformLayout();
+            maxboxCount.ResumeLayout(false);
+            maxboxCount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sboxp2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)boxCountp2).EndInit();
+            panel12.ResumeLayout(false);
+            panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)wumpaCountp1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)wumpaCountp2).EndInit();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)liveCountp1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)liveCountp2).EndInit();
             panel_ReceivedItems.ResumeLayout(false);
             panelReceivedColor.ResumeLayout(false);
             panel_Hints.ResumeLayout(false);
@@ -1054,5 +1347,27 @@ namespace C3AP_Client
         private TextBox gameFilePath;
         private Button tracker_btn;
         private System.Windows.Forms.Timer waitTimer2;
+        private Label aniID;
+        private Label crates;
+        private Label wumpa;
+        private Label lives;
+        private PictureBox liveCountp2;
+        private PictureBox liveCountp1;
+        private PictureBox pictureBox3;
+        private Panel panel11;
+        private Panel panel12;
+        private PictureBox pictureBox1;
+        private PictureBox wumpaCountp1;
+        private PictureBox wumpaCountp2;
+        private Panel panel13;
+        private PictureBox sboxp2;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox2;
+        private PictureBox boxCountp1;
+        private PictureBox boxCountp2;
+        private PictureBox sboxp3;
+        private PictureBox sboxp1;
+        private Panel maxboxCount;
+        private PictureBox boxCountp3;
     }
 }

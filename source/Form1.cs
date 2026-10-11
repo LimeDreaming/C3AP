@@ -1,4 +1,5 @@
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Models;
@@ -6,29 +7,46 @@ using Archipelago.MultiClient.Net.Packets;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Windows.Forms;
+using static C3AP_Client.Checks;
+using static C3AP_Client.CrashData;
 using static C3AP_Client.CrystalBits;
+using static C3AP_Client.CrashDeathLink;
+using static C3AP_Client.DuckstationHook;
 using static C3AP_Client.GameConfig;
-using static C3AP_Client.SearchReserved;
-using static C3AP_Client.SharedAdresses;
-using Timer = System.Windows.Forms.Timer;
+using static C3AP_Client.GameData;
 using static C3AP_Client.Helpers.NativeMethods;
 using static C3AP_Client.Hook.Hook;
 using static C3AP_Client.Items;
 using static C3AP_Client.LevelData;
-using static C3AP_Client.GameData;
-using static C3AP_Client.Checks;
-using static C3AP_Client.DuckstationHook;
 using static C3AP_Client.Powerups;
+using static C3AP_Client.SearchReserved;
+using static C3AP_Client.SharedAdresses;
+using Timer = System.Windows.Forms.Timer;
 
 namespace C3AP_Client
 {
     public partial class Form1 : Form
     {
+        public static int Goal;
+        public static bool isAllUnlocked;
+        public static bool isPowerUp;
+        public static bool isDeathLink;
+        public static DeathLinkService deathLinkService;
+
+        //Game Watch
+        public int gameLevelID;
+        public int gameLateLevelID;
+        public int crashAniID;
+        public int crashLives;
+        public int crashWumpas;
+        public int crashBoxes;
+
         private bool _dragging = false;
         private Point _start_point = new Point(0, 0);
         Form tracker = new Tracker();
@@ -37,9 +55,8 @@ namespace C3AP_Client
 
         // Entspricht exakt der m_end_address = 0x200000 (2 MB PS1-RAM) aus der DuckStation-Header-Datei
         const long PS1_RAM_SIZE = 0x200000;
-
+        
         private int selectedBTN = 0;
-
         private bool isCollapsed = true;
         private Timer menuAni = new Timer();
         private ItemPopup itemPopup = new ItemPopup();
@@ -123,12 +140,22 @@ namespace C3AP_Client
         {
             int levelNumber = getLevelID((int)LevelIDAddress);
             int levelNumberLate = getLevelID((int)LateLevelIDAddress);
+            gameLevelID = getLevelID((int)LevelIDAddress);
+            gameLateLevelID = getLevelID((int)LateLevelIDAddress);
+            crashAniID = getAnimationID();
 
             string levelName = LevelIDs.FirstOrDefault(x => x.Value == levelNumber).Key;
             string levelNameLate = LevelIDs.FirstOrDefault(x => x.Value == levelNumberLate).Key;
 
             levelID.Text = "LevelID: " + levelNumber + " [" + levelName + "] is in State: " + getGameState((int)GameStateAddress);
             latelevelId.Text = "LevelID: " + levelNumberLate + " [" + levelNameLate + "] is in State: " + getGameState((int)GameStateAddress);
+            aniID.Text = "AnimationsID: " + getAnimationID();
+            lives.Text = "Lives: " + getLives();
+            updateLiveCounter(getLives(), levelNumber);
+            wumpa.Text = "Wumpa Fruits: " + getWumpa();
+            updateWumpaCounter(getWumpa(), levelNumber);
+            crates.Text = "Crates: " + getCrates();
+            updateBoxCounter(getCrates());
 
             if (isProcess)
             {
@@ -165,7 +192,7 @@ namespace C3AP_Client
             }
             label6.Text = "" + targetProcess;
             label5.Text = "" + ramBase;
-
+            timer1.Interval = 100;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -216,6 +243,12 @@ namespace C3AP_Client
                                 if (optionsObj is Newtonsoft.Json.Linq.JObject jObject)
                                 {
                                     long goalValue = jObject["goal_option"]?.Value<long>() ?? 0;
+                                    int powerUp = jObject["powerup_lock"]?.Value<int>() ?? 0;
+                                    int deathLink = jObject["death_link"]?.Value<int>() ?? 0;
+
+                                    isPowerUp = Convert.ToBoolean(powerUp);
+                                    isDeathLink = Convert.ToBoolean(deathLink);
+
                                     currentGoalSetting = goalValue;
 
                                 }
@@ -226,9 +259,18 @@ namespace C3AP_Client
                         }
                     }
 
+                    MessageBox.Show(isPowerUp.ToString());
+                    MessageBox.Show(isDeathLink.ToString());
                     LoadItemsFromJson();
                     alreadyReceivedItems();
                     timer2.Enabled = true;
+
+                    if(isDeathLink)
+                    {
+                        deathLinkService = session.CreateDeathLinkService();
+                        deathLinkService.EnableDeathLink();
+                        deathLinkService.OnDeathLinkReceived += HandleDeathLink;
+                    }
 
                     session.Items.ItemReceived += (receivedItemsHelper) =>
                     {
@@ -288,6 +330,15 @@ namespace C3AP_Client
             public ItemFlags ItemFlags { get; set; }
         }
 
+        public class CrashData
+        {
+            public long levelID { get; set; }
+            public int crashAniID { get; set; }
+            public int crashLives { get; set; }
+            public int crashWumpas { get; set; }
+            public int crashBoxes { get; set; }
+        }
+
         private void SaveCheckToJson(long itemId)
         {
             var itemEntry = new ReceivedItemData
@@ -303,13 +354,13 @@ namespace C3AP_Client
         {
             int currentLevelID = getLevelID((int)LevelIDAddress);
             IntPtr bytesRead;
-            if (LevelDataAddress.ContainsKey(currentLevelID)) 
+            if (LevelDataAddress.ContainsKey(currentLevelID))
             {
                 if (LevelDataAddress.TryGetValue(currentLevelID, out uint address))
                 {
                     uint aniAddress = address + AnimationIDOffset;
                     IntPtr targetAddress = IntPtr.Add(ramBase, (int)aniAddress);
-                    
+
                     bool success = ReadProcessMemory(targetProcess, targetAddress, byte1Buffer, byte1Buffer.Length, out bytesRead);
                     if (success) { return byte1Buffer[0]; }
                     return currentLevelID;
@@ -412,6 +463,7 @@ namespace C3AP_Client
             sendRelicSapphireCheck(levelName);
             sendRelicGoldCheck(levelName);
             sendRelicPlatinumCheck(levelName);
+            checkDeath(isInLevel(), isInBonus(), crashAniID, slotName.Text);
             checkBodySlam();
             checkDoubleJump();
             checkTornadoSpin();
@@ -422,7 +474,6 @@ namespace C3AP_Client
             {
                 CheckGameMemoryForGoal(currentGoalSetting);
             }
-
 
         }
 
@@ -1019,7 +1070,7 @@ namespace C3AP_Client
 
         private void openDuckFileDialog(object sender, EventArgs e)
         {
-            if(searchDucktationFile() == true) { duckFilePath.Text = Properties.Settings.Default.duckPath; }
+            if (searchDucktationFile() == true) { duckFilePath.Text = Properties.Settings.Default.duckPath; }
         }
 
         private void openGameFileDialog(object sender, EventArgs e)
@@ -1047,6 +1098,132 @@ namespace C3AP_Client
         {
             ramBase = FindRamBySignature(targetProcess);
             waitTimer2.Stop();
+        }
+
+        private void updateCountp2(object sender, EventArgs e)
+        {
+            int liveP1 = liveCountp1.Width;
+            int liveP1Pos = liveCountp1.Location.X;
+            liveCountp2.Location = new Point(liveP1Pos + liveP1, liveCountp2.Location.Y);
+        }
+        private void updateWumpaCountp2(object sender, EventArgs e)
+        {
+            int wumpaP1 = wumpaCountp1.Width;
+            int wumpaP1Pos = wumpaCountp1.Location.X;
+            wumpaCountp2.Location = new Point(wumpaP1Pos + wumpaP1, wumpaCountp2.Location.Y);
+        }
+
+        private void updateBoxCountp2(object sender, EventArgs e)
+        {
+            int boxP1 = boxCountp1.Width;
+            int boxP1Pos = boxCountp1.Location.X;
+            boxCountp2.Location = new Point(boxP1Pos + boxP1, boxCountp2.Location.Y);
+
+            if(boxCountp2.Image == null) 
+            {
+                maxboxCount.Location = new Point(boxP1Pos + boxP1, maxboxCount.Location.Y);
+            }
+        }
+        private void updateBoxCountp3(object sender, EventArgs e)
+        {
+            int boxP2 = boxCountp2.Width;
+            int boxP2Pos = boxCountp2.Location.X;
+            boxCountp3.Location = new Point(boxP2Pos + boxP2, boxCountp3.Location.Y);
+
+            if (boxCountp3.Image == null)
+            {
+                maxboxCount.Location = new Point(boxP2Pos + boxP2, maxboxCount.Location.Y);
+            }
+        }
+
+        private void updateMaxbox(object sender, EventArgs e) 
+        {
+            int boxP3 = boxCountp3.Width;
+            int boxP3Pos = boxCountp3.Location.X;
+
+            maxboxCount.Location = new Point(boxP3Pos + boxP3, maxboxCount.Location.Y);
+        }
+
+        private void updateLiveCounter(int lives, int levelId)
+        {
+            if (LevelIDs.ContainsValue(levelId) || BossLevelIDs.ContainsValue(levelId))
+            { 
+                if (lives < 10)
+                {
+                    liveCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("live" + lives);
+                    liveCountp2.Image = null;
+                }
+                else
+                {
+                    int CountP1 = lives / 10;
+                    int CountP2 = lives % 10;
+
+                    liveCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("live" + CountP1);
+                    liveCountp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("live" + CountP2);
+                }
+            }
+            else { liveCountp1.Image = Properties.Resources.livenone; liveCountp2.Image = Properties.Resources.livenone; }
+        }
+
+        private void updateWumpaCounter(int wumpa, int levelId)
+        {
+            if (LevelIDs.ContainsValue(levelId) || BossLevelIDs.ContainsValue(levelId))
+            {
+                if (wumpa < 10)
+                {
+                    wumpaCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("wumpa" + wumpa);
+                    wumpaCountp2.Image = null;
+                }
+                else
+                {
+                    int CountP1 = wumpa / 10;
+                    int CountP2 = wumpa % 10;
+
+                    wumpaCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("wumpa" + CountP1);
+                    wumpaCountp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("wumpa" + CountP2);
+                }
+            }
+            else { wumpaCountp1.Image = Properties.Resources.wumpanone; wumpaCountp2.Image = Properties.Resources.wumpanone; }
+        }
+
+        private void updateBoxCounter(int box)
+        {
+            
+
+            if (box < 10)
+            {
+                boxCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + box);
+                boxCountp2.Image = null;
+                boxCountp3.Image = null;
+            }
+            else if (box >= 10 && box < 100)
+            {
+                int CountP1 = box / 10;
+                int CountP2 = box % 10;
+                boxCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + CountP1);
+                boxCountp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + CountP2);
+                boxCountp3.Image = null;
+            }
+            else
+            {
+                int CountP1 = box / 100;
+                int CountP2 = (box / 10) % 10;
+                int CountP3 = box % 10;
+
+                boxCountp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + CountP1);
+                boxCountp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + CountP2);
+                boxCountp3.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("box" + CountP3);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            liveCountp1.Image = Properties.Resources.live2;
+        }
+
+        private void HandleDeathLink(DeathLink deathLink)
+        {
+            CrashDeathLink.onKillCrash(gameLateLevelID);
         }
     }
 }

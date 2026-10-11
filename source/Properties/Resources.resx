@@ -121,17 +121,44 @@
   <data name="level7" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="redgem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redgem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tinytiger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tinytiger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="box5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level23" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="greengem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\greengem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,11 +169,17 @@
   <data name="level13" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="wumpa5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="fruitbazooka_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fruitbazooka_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relicplatinum" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relicplatinum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tinytiger_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tinytiger_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,14 +199,23 @@
   <data name="duckstation_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\duckstation_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sbox3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="powerbossborder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\powerbossborder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="level6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\level6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="box0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dingodile_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dingodile_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,29 +223,59 @@
   <data name="level22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="box7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cleargem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cleargem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fruitbazooka" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fruitbazooka.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="min_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\min_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sbox6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bodyslam" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bodyslam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="level6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\level6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tornadospin_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tornadospin_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sbox1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="livenone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\livenone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bodyslam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bodyslam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hammenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hammenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="crashlive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crashlive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redgem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redgem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,38 +286,68 @@
   <data name="bodyslam_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bodyslam_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="box2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crystal_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crystal_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cleargem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cleargem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="level5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\level5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="live1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="duckstation_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\duckstation_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="level11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\level11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="yelllowgem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yelllowgem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="speedshoes_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\speedshoes_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EU" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="live7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ntropy_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ntropy_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="live8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ncortex_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ncortex_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="wumpa3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ngin_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ngin_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="USCA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\USCA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level26" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level26.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -256,11 +358,20 @@
   <data name="level25" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="level19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\level19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bluegem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluegem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bluegem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bluegem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="crystal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\crystal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,8 +379,14 @@
   <data name="testimg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\testimg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ngin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ngin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bluegem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluegem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yelllowgem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yelllowgem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="doublejump_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\doublejump_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,14 +394,56 @@
   <data name="level14" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level14.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="purplegem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\purplegem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tornadospin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tornadospin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="level19" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\level19.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="min_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\min_btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tornadospin_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tornadospin_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boxslash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boxslash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="speedshoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\speedshoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wumpa0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sbox5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sbox5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="live9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\live9.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ngin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ngin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="purplegem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\purplegem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cleargem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cleargem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relicsapphire" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relicsapphire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,8 +451,8 @@
   <data name="level1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="level11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\level11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yelllowgem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yelllowgem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level12.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -304,14 +463,29 @@
   <data name="dingodile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dingodile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="USCA" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\USCA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="crystal_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crystal_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ntropy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ntropy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="redgem" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redgem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greengem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greengem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="level5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\level5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greengem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greengem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bluegem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluegem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="box1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\box1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hammenu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hammenu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -322,52 +496,16 @@
   <data name="level15" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level15.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="wumpa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpa.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="level4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="level16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\level16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bluegem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bluegem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bluegem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bluegem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cleargem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cleargem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cleargem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cleargem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="crystal_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\crystal_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="crystal_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\crystal_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="greengem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greengem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="greengem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\greengem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="purplegem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\purplegem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="purplegem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\purplegem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="redgem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redgem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="redgem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redgem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yelllowgem_checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yelllowgem_checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yelllowgem_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yelllowgem_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="wumpanone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wumpanone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

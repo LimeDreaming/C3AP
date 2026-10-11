@@ -10,6 +10,7 @@ namespace C3AP_Client
     {
         public const uint CyrstalReceivedAddress = 0x69189;
         public const uint CrystalSavedAddress = 0x692dd;
+        public const uint CrystalMirrorAddress = 0x692e1;
 
         public const uint GemReceivedAddress = 0x69168;
         public const uint GemSavedAddress = 0x69160;
@@ -44,7 +45,7 @@ namespace C3AP_Client
 
         public static Dictionary<int, uint> LevelDataAddress = new Dictionary<int, uint>
         {
-            {0x02, 0xb5dd0},
+            {0x02, 0xb5db4},
             {0x0b, 0xad298},
             {0x0e, 0xad08c},
             {0x0a, 0xad2e8},
@@ -89,11 +90,55 @@ namespace C3AP_Client
             {0x07, 0xacef0},
         };
 
+        public static Dictionary<int, string> DeathAnimationIDs = new Dictionary<int, string>
+        {
+            {0x12 ,"Eingesaugt"},
+            {0x13 ,"death by fugu"},
+            {0x14 ,"exploded"},
+            {0x27 ,""},
+            {0x2c ,"crashed the plane"},
+            {0x42 ,"fall from the jetski"},
+            {0x44 ,""},
+            {0x47 ,"has drown"},
+            {0x4e ,"got hit by a scorpion"},
+            {0x4f ,"got a nice cut!"},
+            {0x50 ,"sees only dark!"},
+            {0x51 ,"would be put into a bottle!"},
+            {0x75 ,"fall deep into a hole"},
+            {0x76 ,"got scared to death"},
+            {0x77 ,"nitro crates aren't toys!"},
+            {0x79 ,"got electrified"},
+            {0x7a ,"that was hot!"},
+            {0x7b ,"exploded by TNT/Nitro crate"},
+            {0x7c ,"catched by enemy"},
+            {0x7d ,"cuted in half!"},
+            {0x7e ,"goats are not your friends?"},
+            {0x7f ,"got date!?"},
+            {0x80 ,"tried to break the 4th wall"},
+            {0x81 ,"is searching for a princess!"},
+            {0x82 ,"is part of the eco system!"},
+            {0x83 ,"got smashed by a big dino!"},
+            {0x84 ,"pancaked themself!"},
+            {0x85 ,"pancaked themself!"},
+            {0x86 ,"noticed that spikes are scarp!"},
+            {0x87 ,"got hit by a monkey"},
+            {0x88 ,"yes coffins are heavy!"},
+            {0x89 ,"got hugged by a mumie"},
+            {0x8a ,"was paralyzed by arrows!"},
+            {0x8b ,"got pulverized by time!"},
+            {0x8c ,"got pulverized!"},
+            {0x8d ,"thought beam me up!"},
+            {0x8e ,"lost air like a ballon!"},
+            {0x90 ,"got smashed by Tiny Tiger"},
+            {0x9f ,"got stoped by enemy"},
+            {0x0a ,"hit the wall with their tiger!"}
+        };
     }
     public static class USAddresses
     {
         public const uint CyrstalReceivedAddress = 0x68fd9;
         public const uint CrystalSavedAddress = 0x6912d;
+        public const uint CrystalMirrorAddress = 0x69231;
 
         public const uint GemReceivedAddress = 0x68fb8;
         public const uint GemSavedAddress = 0x68fb0;
@@ -120,8 +165,8 @@ namespace C3AP_Client
 
         public static uint PowerUpAddress = 0x69178;
 
-        public static uint PauseStateAddress = 0x609e0; //
-        public static uint BonusStateAddress = 0x60c5c; // Still need to be proofed that is the Bonus Level State  //
+        public static uint PauseStateAddress = 0x6087c;
+        public static uint BonusStateAddress = 0x60afc; // Still need to be proofed that is the Bonus Level State
 
         public static uint GameStateAddress = 0x68f3d;
         public static uint LevelIDAddress = 0x68ef9;
@@ -173,6 +218,50 @@ namespace C3AP_Client
             {0x05, 0xbcc44},
             {0x07, 0xacc0c},
         };
+
+        public static Dictionary<int, string> DeathAnimationIDs = new Dictionary<int, string>
+        {
+            {0x11 ,"Eingesaugt"},
+            {0x12 ,"death by fugu"},
+            {0x13 ,"exploded"},
+            {0x25 ,""},
+            {0x2a ,"crashed the plane"},
+            {0x40 ,"fall from the jetski"},
+            {0x42 ,""},
+            {0x45 ,"has drown"},
+            {0x4b ,"got hit by a scorpion"},
+            {0x4c ,"got a nice cut!"},
+            {0x4d ,"sees only dark!"},
+            {0x4e ,"would be put into a bottle!"},
+            {0x72 ,"fall deep into a hole"},
+            {0x73 ,"got scared to death"},
+            {0x74 ,"nitro crates aren't toys!"},
+            {0x76 ,"got electrified"},
+            {0x77 ,"that was hot!"},
+            {0x78 ,"exploded by TNT/Nitro crate"},
+            {0x79 ,"catched by enemy"},
+            {0x7a ,"cuted in half!"},
+            {0x7b ,"goats are not your friends?"},
+            {0x7c ,"got date!?"},
+            {0x7d ,"tried to break the 4th wall"},
+            {0x7e ,"is searching for a princess!"},
+            {0x7f ,"is part of the eco system!"},
+            {0x80 ,"got smashed by a big dino!"},
+            {0x81 ,"pancaked themself!"},
+            {0x82 ,"pancaked themself!"},
+            {0x83 ,"noticed that spikes are scarp!"},
+            {0x84 ,"got hit by a monkey"},
+            {0x85 ,"yes coffins are heavy!"},
+            {0x86 ,"got hugged by a mumie"},
+            {0x87 ,"was paralyzed by arrows!"},
+            {0x88 ,"got pulverized by time!"},
+            {0x89 ,"got pulverized!"},
+            {0x8a ,"thought beam me up!"},
+            {0x8b ,"lost air like a ballon!"},
+            {0x8d ,"got smashed by Tiny Tiger"},
+            {0x9c ,"got stoped by enemy"},
+            {0x9d ,"hit the wall with their tiger!"}
+        };
     }
     public static class GameConfig
     {
@@ -203,6 +292,8 @@ namespace C3AP_Client
 
         public static Dictionary<int, uint> LevelDataAddress;
 
+        public static Dictionary<int, string> DeathAnimationIDs;
+
         public static void LoadUSAddresses()
         {
             CyrstalReceivedAddress = USAddresses.CyrstalReceivedAddress;
@@ -231,6 +322,7 @@ namespace C3AP_Client
             LateLevelIDAddress = USAddresses.LateLevelIDAddress;
 
             LevelDataAddress = USAddresses.LevelDataAddress;
+            DeathAnimationIDs = USAddresses.DeathAnimationIDs;
         }
 
         public static void LoadEUAddresses()
@@ -263,6 +355,7 @@ namespace C3AP_Client
             LateLevelIDAddress = EUAddresses.LateLevelIDAddress;
 
             LevelDataAddress = EUAddresses.LevelDataAddress;
+            DeathAnimationIDs = EUAddresses.DeathAnimationIDs;
         }
 
     }
