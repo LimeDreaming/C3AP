@@ -144,8 +144,8 @@ def connect_regions(world: Crash3World) -> None:
 
     # 4. Endbedingungen mit Dr. Neo Cortex verbinden
     cortex = world.get_region("Dr. Neo Cortex")
-    cortex.connect(world.get_region("100% Complete"), "Beat Cortex 100%")
-    cortex.connect(world.get_region("105% Complete"), "Beat Cortex 105%")
+    #cortex.connect(world.get_region("100% Complete"), "Beat Cortex 100%")
+    #cortex.connect(world.get_region("105% Complete"), "Beat Cortex 105%")
     # Connect crystal count regions in a chain
 
     # You can then connect the Entrance to the target region.

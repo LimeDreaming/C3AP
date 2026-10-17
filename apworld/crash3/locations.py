@@ -308,9 +308,6 @@ LOCATION_NAME_TO_ID = {
     # Secret Levels
     "Hot Coco: Secret Exit": 142296,
     "Eggipus Rex: Secret Exit": 142297,
-    "Test1": 142298,
-    #"Test2": 142299,
-    #"Test3": 142300,
 }
 
 # for easier lookup during location group setup
@@ -356,6 +353,22 @@ def create_regular_locations(world: Crash3World) -> None:
 
 
 def create_events(world: Crash3World) -> None:
+    world.get_region("Tiny Tiger").add_event(
+        "Tiny Tiger Defeated", "Tiny Tiger Defeated", location_type=Crash3Location, item_type=items.Crash3Item
+    )
+
+    world.get_region("Dingodile").add_event(
+        "Dingodile Defeated", "Dingodile Defeated", location_type=Crash3Location, item_type=items.Crash3Item
+    )
+
+    world.get_region("N. Tropy").add_event(
+        "N. Tropy Defeated", "N. Tropy Defeated", location_type=Crash3Location, item_type=items.Crash3Item
+    )
+
+    world.get_region("N. Gin").add_event(
+        "N. Gin Defeated", "N. Gin Defeated", location_type=Crash3Location, item_type=items.Crash3Item
+    )
+
     world.get_region("Dr. Neo Cortex").add_event(
         "Dr. Neo Cortex Defeated", "Victory", location_type=Crash3Location, item_type=items.Crash3Item
     )
