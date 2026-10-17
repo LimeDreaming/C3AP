@@ -36,12 +36,42 @@ class Goal(Choice):
 
     default = option_normal
 
+class InfiniteLives(Toggle):
+    """
+    You can die but your live counter is frozen
+    """
+    display_name = "Infinite Lives"
+
 class LevelExitLocations(Toggle):
     """
-    Add all 27 level exits as checks into the pool
+    Add all 27-30 level exits as checks into the pool
     These are distinct from the secret exit checks
     """
     display_name = "Level Exit Locations"
+
+class LevelItemsAsItems(Toggle):
+    """
+    Crystal and Gem will be seprated to their levels
+    Example [Toad Village: Crystal] and not just Crystal
+    """
+    display_name = "Level Item as Items"
+
+class AllOpen(Toggle):
+    """
+        All Electricfences are open?!
+        Recommend for Singleplay!
+        """
+    display_name = "Gates open"
+
+class DeathLinkRange(Range):
+    """
+    How many times you need to die to send DeathLink
+    """
+    display_name = "DeathLink Range"
+
+    range_start = 1
+    range_end = 30
+    default = 10
 
 class TrapChance(Range):
 
@@ -175,6 +205,19 @@ class PowerupLock(Toggle):
     option_enabled = 1
 
     default = option_enabled
+
+class PowerupType(Choice):
+    """
+    Choose what type of Powerups you want!
+    Normal: Getting your Powerups in the normal game way
+    Check: Getting Powerup by checks, you can get them earlier.
+    """
+    display_name = "Relic Type"
+
+    option_normal = 0
+    option_check = 1
+
+    default = option_normal
 
 class GimmickLock(Toggle):
     """
@@ -315,7 +358,11 @@ class FireflyLockLogic(Choice):
 class Crash3Options(PerGameCommonOptions):
 
     level_exit_locations: LevelExitLocations
+    level_items_as_items: LevelItemsAsItems
+    infinite_lives : InfiniteLives
+    open_gates: AllOpen
     death_link: DeathLink
+    death_range : DeathLinkRange
     goal_option: Goal
     trap_chance: TrapChance
     trap_duration: TrapDuration
@@ -343,6 +390,14 @@ class Crash3Options(PerGameCommonOptions):
 #
 # # If we want to group our options by similar type, we can do so as well. This looks nice on the website.
 option_groups = [
+    OptionGroup(
+        "InGame Settings",
+        [InfiniteLives, LevelExitLocations]
+    ),
+    OptionGroup(
+      "DeathLink",
+        [DeathLink, DeathLinkRange],
+    ),
     OptionGroup(
         "Trap Options",
         [TrapChance, TrapDuration, LooseLiveTrapWeight, LooseWumpaTrapWeight, SmallCrashTrapWeight, BigCrashTrapWeight, NoLivesTrapWeight],

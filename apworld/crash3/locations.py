@@ -308,7 +308,7 @@ LOCATION_NAME_TO_ID = {
     # Secret Levels
     "Hot Coco: Secret Exit": 142296,
     "Eggipus Rex: Secret Exit": 142297,
-    #"Test1": 142298,
+    "Test1": 142298,
     #"Test2": 142299,
     #"Test3": 142300,
 }

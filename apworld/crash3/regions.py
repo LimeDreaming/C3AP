@@ -64,25 +64,61 @@ def connect_regions(world: Crash3World) -> None:
     warp_1 = world.get_region("Warp Room 1")
     menu.connect(warp_1, "Menu to Warp Room 1")
 
-    # 2. Warp-Räume nacheinander verbinden (Warp Room 1 bis 5)
-    for i in range(1, 5):
-        world.get_region("Warp Room " + str(i)).connect(
-            world.get_region("Warp Room " + str(i + 1)),
-            "Warp Room " + str(i) + " to Warp Room " + str(i + 1)
-        )
+    warp1_level = ["Toad Village","Under Pressure","Orient Express","Bone Yard","Makin' Waves"]
+    warp2_level = ["Gee Wiz","Hang'em High","Hog Ride","Tomb Time","Midnight Run"]
+    warp3_level = ["Dino Might!","Deep Trouble","High Time","Road Crash","Double Header"]
+    warp4_level = ["Sphynxinator","Bye Bye Blimps","Tell No Tales","Future Frenzy","Tomb Wader"]
+    warp5_level = ["Gone Tomorrow","Orange Asphalt","Flaming Passion","Mad Bombers","Bug Lite"]
+    warp6_level = ["Ski Crazed","Area 51?","Rings of Power"]
+
+    for levelname in warp1_level:
+        warp_room = world.get_region("Warp Room 1")
+        warp_room.connect(world.get_region(levelname), "Warp Room 1 to " + levelname)
+
+    for levelname in warp2_level:
+        warp_room = world.get_region("Warp Room 2")
+        warp_room.connect(world.get_region(levelname), "Warp Room 2 to " + levelname)
+
+    for levelname in warp3_level:
+        warp_room = world.get_region("Warp Room 3")
+        warp_room.connect(world.get_region(levelname), "Warp Room 3 to " + levelname)
+
+    for levelname in warp4_level:
+        warp_room = world.get_region("Warp Room 4")
+        warp_room.connect(world.get_region(levelname), "Warp Room 4 to " + levelname)
+
+    for levelname in warp5_level:
+        warp_room = world.get_region("Warp Room 5")
+        warp_room.connect(world.get_region(levelname), "Warp Room 5 to " + levelname)
+
+    for levelname in warp6_level:
+        warp_room = world.get_region("Warp Room 6")
+        warp_room.connect(world.get_region(levelname), "Warp Room 6 to " + levelname)
+
+    warp_room1 = world.get_region("Warp Room 1")
+    warp_room2 = world.get_region("Warp Room 2")
+    warp_room3 = world.get_region("Warp Room 3")
+    warp_room4 = world.get_region("Warp Room 4")
+    warp_room5 = world.get_region("Warp Room 5")
+
+    warp_room1.connect(warp_room2, "Warp Room 1 to Warp Room 2")
+    warp_room2.connect(warp_room3, "Warp Room 2 to Warp Room 3")
+    warp_room3.connect(warp_room4, "Warp Room 3 to Warp Room 4")
+    warp_room4.connect(warp_room5, "Warp Room 4 to Warp Room 5")
+
+    level14 = world.get_region("Road Crash")
+    secret_level1 = world.get_region("Hot Coco")
+    level14.connect(secret_level1, "Road Crash to Hot Coco")
+
+    level11 = world.get_region("Dino Might!")
+    secret_level2 = world.get_region("Eggipus Rex")
+    level11.connect(secret_level2, "Dino Might! to Eggipus Rex")
 
     # 3. Jeden Warp-Raum mit seinen 5 Leveln und seinem Boss verbinden
     boss_names = ["Tiny Tiger", "Dingodile", "N. Tropy", "N. Gin", "Dr. Neo Cortex"]
 
     for i in range(6):
         warp_room = world.get_region("Warp Room " + str(i + 1))
-
-        # Die 5 regulären Level des Warp-Raums
-        for j in range(5):
-            level_id = world.warp_room[i * 5 + j]
-            level_name = levelIdToName[level_id]
-            level = world.get_region(level_name)
-            warp_room.connect(level, "Warp Room " + str(i + 1) + " to " + level_name)
 
         # Den Boss hinzufügen (Warp Room 6 hat keinen Boss)
         if i < 5:
@@ -91,8 +127,8 @@ def connect_regions(world: Crash3World) -> None:
 
             # WICHTIG: Hier vergeben wir den exakten Namen "Tiny Tiger", "Dingodile" etc.
             # damit world.get_entrance("Tiny Tiger") in rules.py es findet!
-            warp_room.connect(boss_region, boss_name)
-            warp_room.connect(boss_region, boss_name + " to Warp Room " + str(i + 2))
+            #warp_room.connect(boss_region, boss_name)
+            warp_room.connect(boss_region, "Unlock " + boss_name)
 
         ski_crazed = world.get_region("Ski Crazed Hidden")
         warp_room.connect(ski_crazed, "Warp Room to Ski Crazed")

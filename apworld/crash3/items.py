@@ -16,8 +16,13 @@ if TYPE_CHECKING:
 # Every item must have a unique integer ID associated with it.
 # We will have a lookup from item name to ID here that, in world.py, we will import and bind to the world class.
 # Even if an item doesn't exist on specific options, it must be present in this lookup.
+
+LEVEL_ITEM_ID ={
+
+    }
+
 ITEM_NAME_TO_ID = {
-    "Crystal: Toad Village": 142000,
+"Crystal: Toad Village": 142000,
     "Crystal: Under Pressure": 142001,
     "Crystal: Orient Express": 142002,
     "Crystal: Bone Yard": 142003,
@@ -81,11 +86,6 @@ ITEM_NAME_TO_ID = {
     "Clear Gem: Rings of Power": 142061,
     "Clear Gem (Box): Hot Coco": 142062,
     "Clear Gem (Box): Eggipus Rex": 142063,
-    "Blue Gem: Tomb Wader": 142064,
-    "Red Gem: Deep Trouble": 142065,
-    "Green Gem: Flaming Passion": 142066,
-    "Yellow Gem: Hang'em High": 142067,
-    "Purple Gem: High Time": 142068,
     "Sapphire Relic: Toad Village" : 142069,
     "Sapphire Relic: Under Pressure" : 142070,
     "Sapphire Relic: Orient Express" : 142071,
@@ -176,6 +176,11 @@ ITEM_NAME_TO_ID = {
     "Platinum Relic: Rings of Power" : 142156,
     "Platinum Relic: Hot Coco" : 142157,
     "Platinum Relic: Eggipus Rex" : 142158,
+    "Blue Gem: Tomb Wader": 142064,
+    "Red Gem: Deep Trouble": 142065,
+    "Green Gem: Flaming Passion": 142066,
+    "Yellow Gem: Hang'em High": 142067,
+    "Purple Gem: High Time": 142068,
     #"Aku Aku" : 142159,
     "Life Bundle" : 142160,
     "Wumpa Fruit Bundle" : 142161,
@@ -198,6 +203,9 @@ ITEM_NAME_TO_ID = {
     "Biplane Crash" : 142178,
     "Biplane Coco" : 142179,
     "Firefly": 142180,
+    "Crystal": 142181,
+    "Clear Gem": 142182,
+    "Relic": 142183,
     #"Clear Gem: 105%": 142181,
 }
 
@@ -373,7 +381,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "No Lives Trap" : ItemClassification.trap,
     #"Jetpack Controls Trap" : ItemClassification.trap,
     "Body Slam" : ItemClassification.useful,
-    "Double Jump" : ItemClassification.progression,
+    "Double Jump" : ItemClassification.useful,
     "Tornado Spin" : ItemClassification.useful,
     "Bazooka" : ItemClassification.useful,
     "Crash Dash" : ItemClassification.useful,
@@ -385,6 +393,9 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Biplane Crash" : ItemClassification.progression | ItemClassification.useful,
     "Biplane Coco" : ItemClassification.progression | ItemClassification.useful,
     "Firefly" : ItemClassification.progression | ItemClassification.useful,
+    "Crystal" : ItemClassification.progression,
+    "Clear Gem" : ItemClassification.useful,
+    "Relic" : ItemClassification.useful,
     #"Clear Gem: 105%" : ItemClassification.progression | ItemClassification.useful,
 }
 
@@ -416,7 +427,6 @@ def receive_live_bundle(state, player):
 # To do this, it must define a function called world.get_filler_item_name(), which we will define in world.py later.
 # For now, let's make a function that returns the name of a random filler item here in items.py.
 def get_random_filler_item_name(world: Crash3World) -> str:
-    # ENTFERNE HIER: world.create_filler()
 
     if world.random.randint(0, 99) < world.options.trap_chance:
         total_weight = (world.options.small_crash_weight +
@@ -479,70 +489,7 @@ def create_all_items(world: Crash3World) -> None:
         world.create_item("Purple Gem: High Time"),
     ]
 
-    itempool += [world.create_item("Crystal: Toad Village")]
-    itempool += [world.create_item("Crystal: Under Pressure")]
-    itempool += [world.create_item("Crystal: Orient Express")]
-    itempool += [world.create_item("Crystal: Bone Yard")]
-    itempool += [world.create_item("Crystal: Makin' Waves")]
-    itempool += [world.create_item("Crystal: Gee Wiz")]
-    itempool += [world.create_item("Crystal: Hang'em High")]
-    itempool += [world.create_item("Crystal: Hog Ride")]
-    itempool += [world.create_item("Crystal: Tomb Time")]
-    itempool += [world.create_item("Crystal: Midnight Run")]
-    itempool += [world.create_item("Crystal: Dino Might!")]
-    itempool += [world.create_item("Crystal: Deep Trouble")]
-    itempool += [world.create_item("Crystal: High Time")]
-    itempool += [world.create_item("Crystal: Road Crash")]
-    itempool += [world.create_item("Crystal: Double Header")]
-    itempool += [world.create_item("Crystal: Sphynxinator")]
-    itempool += [world.create_item("Crystal: Bye Bye Blimps")]
-    itempool += [world.create_item("Crystal: Tell No Tales")]
-    itempool += [world.create_item("Crystal: Future Frenzy")]
-    itempool += [world.create_item("Crystal: Tomb Wader")]
-    itempool += [world.create_item("Crystal: Gone Tomorrow")]
-    itempool += [world.create_item("Crystal: Orange Asphalt")]
-    itempool += [world.create_item("Crystal: Flaming Passion")]
-    itempool += [world.create_item("Crystal: Mad Bombers")]
-    itempool += [world.create_item("Crystal: Bug Lite")]
-    itempool += [world.create_item("Clear Gem (Box): Toad Village")]
-    itempool += [world.create_item("Clear Gem (Box): Under Pressure")]
-    itempool += [world.create_item("Clear Gem (Box): Orient Express")]
-    itempool += [world.create_item("Clear Gem (Box): Bone Yard")]
-    itempool += [world.create_item("Clear Gem: Bone Yard")]
-    itempool += [world.create_item("Clear Gem (Box): Makin' Waves")]
-    itempool += [world.create_item("Clear Gem (Box): Gee Wiz")]
-    itempool += [world.create_item("Clear Gem (Box): Hang'em High")]
-    itempool += [world.create_item("Clear Gem (Box): Hog Ride")]
-    itempool += [world.create_item("Clear Gem (Box): Tomb Time")]
-    itempool += [world.create_item("Clear Gem: Tomb Time")]
-    itempool += [world.create_item("Clear Gem (Box): Midnight Run")]
-    itempool += [world.create_item("Clear Gem (Box): Dino Might!")]
-    itempool += [world.create_item("Clear Gem: Dino Might!")]
-    itempool += [world.create_item("Clear Gem (Box): Deep Trouble")]
-    itempool += [world.create_item("Clear Gem (Box): High Time")]
-    itempool += [world.create_item("Clear Gem (Box): Road Crash")]
-    itempool += [world.create_item("Clear Gem (Box): Double Header")]
-    itempool += [world.create_item("Clear Gem (Box): Sphynxinator")]
-    itempool += [world.create_item("Clear Gem: Sphynxinator")]
-    itempool += [world.create_item("Clear Gem (Box): Bye Bye Blimps")]
-    itempool += [world.create_item("Clear Gem (Box): Tell No Tales")]
-    itempool += [world.create_item("Clear Gem (Box): Future Frenzy")]
-    itempool += [world.create_item("Clear Gem: Future Frenzy")]
-    itempool += [world.create_item("Clear Gem (Box): Tomb Wader")]
-    itempool += [world.create_item("Clear Gem (Box): Gone Tomorrow")]
-    itempool += [world.create_item("Clear Gem: Gone Tomorrow")]
-    itempool += [world.create_item("Clear Gem (Box): Orange Asphalt")]
-    itempool += [world.create_item("Clear Gem (Box): Flaming Passion")]
-    itempool += [world.create_item("Clear Gem (Box): Mad Bombers")]
-    itempool += [world.create_item("Clear Gem (Box): Bug Lite")]
-    itempool += [world.create_item("Clear Gem: Bug Lite")]
-    itempool += [world.create_item("Clear Gem (Box): Ski Crazed")]
-    itempool += [world.create_item("Clear Gem (Box): Area 51?")]
-    itempool += [world.create_item("Clear Gem: Area 51?")]
-    itempool += [world.create_item("Clear Gem (Box): Rings of Power")]
-    itempool += [world.create_item("Clear Gem: Rings of Power")]
-    itempool += [world.create_item("Clear Gem (Box): Hot Coco")]
-    itempool += [world.create_item("Clear Gem (Box): Eggipus Rex")]
+
     #itempool += [world.create_item("Clear Gem: 105%")]
 
     boss_levels = {
@@ -608,6 +555,21 @@ def create_all_items(world: Crash3World) -> None:
         if world.options.firefly_lock_logic != 0:
             itempool += [world.create_item("Firefly")]
 
+    if world.options.level_items_as_items:
+        for name in ITEM_NAME_TO_ID.keys():
+            if "Crystal" in name:
+                itempool += [world.create_item(name)]
+            if "Clear Gem" in name:
+                itempool += [world.create_item(name)]
+
+    if not world.options.level_items_as_items:
+        for i in range(25):
+            itempool += [world.create_item("Crystal")]
+        for i in range(42):
+            itempool += [world.create_item("Clear Gem")]
+
+
+
     # Some items may only exist if the player enables certain options.
     # In our case, If the hammer option is enabled, the sixth item is the Hammer.
     # Otherwise, we add a filler Confetti Cannon.
@@ -645,8 +607,8 @@ def create_all_items(world: Crash3World) -> None:
 
     # Now, we just subtract the number of items from the number of locations to get the number of empty item slots.
     needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
-    if needed_number_of_filler_items < 0:
-        raise OptionError(f"Crash 3: There are {-needed_number_of_filler_items} more base items than locations.", )
+    #if needed_number_of_filler_items < 0:
+    #   raise OptionError(f"Crash 3: There are {-needed_number_of_filler_items} more base items than locations.", )
     # Finally, we create that many filler items and add them to the itempool.
     # To create our filler, we could just use world.create_item("Confetti Cannon").
     # But there is an alternative that works even better for most worlds, including APQuest.
@@ -687,123 +649,3 @@ def create_all_items(world: Crash3World) -> None:
     #     # We're adding a filler item, but you can also add progression items to the player's precollected inventory.
     #     starting_confetti_cannon = world.create_item("Confetti Cannon")
     #     world.push_precollected(starting_confetti_cannon)
-
-    warp1_locations = [
-    "Toad Village: Crystal",
-    "Under Pressure: Crystal",
-    "Orient Express: Crystal",
-    "Bone Yard: Crystal",
-    "Makin' Waves: Crystal"
-    ]
-
-    warp1_items = [
-        "Crystal: Toad Village",
-        "Crystal: Under Pressure",
-        "Crystal: Orient Express",
-        "Crystal: Bone Yard",
-        "Crystal: Makin' Waves"
-    ]
-
-    shuffled_items = warp1_items.copy()
-    world.random.shuffle(shuffled_items)
-
-    for loc_name, item_name in zip(warp1_locations, shuffled_items):
-        item_to_lock = world.create_item(item_name)
-
-        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
-
-    warp2_locations = [
-        "Gee Wiz: Crystal",
-        "Hang'em High: Crystal",
-        "Hog Ride: Crystal",
-        "Tomb Time: Crystal",
-        "Midnight Run: Crystal"
-    ]
-
-    warp2_items = [
-        "Crystal: Gee Wiz",
-        "Crystal: Hang'em High",
-        "Crystal: Hog Ride",
-        "Crystal: Tomb Time",
-        "Crystal: Midnight Run"
-    ]
-
-    shuffled_items = warp2_items.copy()
-    world.random.shuffle(shuffled_items)
-
-    for loc_name, item_name in zip(warp2_locations, shuffled_items):
-        item_to_lock = world.create_item(item_name)
-
-        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
-
-    warp3_locations = [
-        "Dino Might!: Crystal",
-        "Deep Trouble: Crystal",
-        "High Time: Crystal",
-        "Road Crash: Crystal",
-        "Double Header: Crystal"
-    ]
-
-    warp3_items = [
-        "Crystal: Dino Might!",
-        "Crystal: Deep Trouble",
-        "Crystal: High Time",
-        "Crystal: Road Crash",
-        "Crystal: Double Header"
-    ]
-
-    shuffled_items = warp3_items.copy()
-    world.random.shuffle(shuffled_items)
-
-    for loc_name, item_name in zip(warp3_locations, shuffled_items):
-        item_to_lock = world.create_item(item_name)
-
-        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
-
-    warp4_locations = [
-        "Sphynxinator: Crystal",
-        "Bye Bye Blimps: Crystal",
-        "Tell No Tales: Crystal",
-        "Future Frenzy: Crystal",
-        "Tomb Wader: Crystal"
-    ]
-
-    warp4_items = [
-        "Crystal: Sphynxinator",
-        "Crystal: Bye Bye Blimps",
-        "Crystal: Tell No Tales",
-        "Crystal: Future Frenzy",
-        "Crystal: Tomb Wader"
-    ]
-
-    shuffled_items = warp4_items.copy()
-    world.random.shuffle(shuffled_items)
-
-    for loc_name, item_name in zip(warp4_locations, shuffled_items):
-        item_to_lock = world.create_item(item_name)
-
-        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)
-
-    warp5_locations = [
-        "Gone Tomorrow: Crystal",
-        "Orange Asphalt: Crystal",
-        "Flaming Passion: Crystal",
-        "Mad Bombers: Crystal",
-        "Bug Lite: Crystal"
-    ]
-
-    warp5_items = [
-        "Crystal: Gone Tomorrow",
-        "Crystal: Orange Asphalt",
-        "Crystal: Flaming Passion",
-        "Crystal: Mad Bombers",
-        "Crystal: Bug Lite"
-    ]
-
-    shuffled_items = warp5_items.copy()
-    world.random.shuffle(shuffled_items)
-
-    for loc_name, item_name in zip(warp5_locations, shuffled_items):
-        item_to_lock = world.create_item(item_name)
-
-        world.multiworld.get_location(loc_name, world.player).place_locked_item(item_to_lock)

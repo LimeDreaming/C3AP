@@ -130,8 +130,8 @@ class Crash3World(World):
     def fill_slot_data(self) -> Mapping[str, Any]:
         return {
             "options": self.options.as_dict(
-                "goal_option", "level_exit_locations",
-                "trap_chance", "death_link", "powerup_lock", "gimmick_lock"
+                "goal_option","infinite_lives", "level_exit_locations","open_gates",
+                "trap_chance", "death_link", "death_range", "powerup_lock", "gimmick_lock"
             ),
             "warp_room_destinations": self.warp_room,
             "secret_warp_room_entrances": self.secret_warp_room_entrance_ids,
