@@ -37,7 +37,11 @@ namespace C3AP_Client
         public static bool isAllUnlocked;
         public static bool isPowerUp;
         public static bool isDeathLink;
+        public static int deathRange;
+        public static int currentDeathCount;
         public static DeathLinkService deathLinkService;
+        public static bool infiniteLives;
+        public static bool isGimmickLock;
 
         //Game Watch
         public int gameLevelID;
@@ -63,11 +67,17 @@ namespace C3AP_Client
 
         private long currentGoalSetting;
 
+        private Timer checkTimer = new Timer();
+
         public Form1()
         {
             InitializeComponent();
             menuAni.Interval = 5;
             menuAni.Tick += new EventHandler(menuAnimation);
+
+            checkTimer.Interval = 100;
+            checkTimer.Tick += new EventHandler(checkTrigger);
+            checkTimer.Enabled = false;
         }
 
         private void menuAnimation(object sender, EventArgs e)
@@ -94,12 +104,25 @@ namespace C3AP_Client
             }
         }
 
+        private void checkTrigger(object sender, EventArgs e) 
+        {
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             duckPath.Text = "Duckstation Path: " + Properties.Settings.Default.duckPath;
             gamePath.Text = "Game Path: " + Properties.Settings.Default.gamePath;
 
             if (Properties.Settings.Default.duckPath != "") { duckFilePath.Text = Properties.Settings.Default.duckPath; }
+            else 
+            {
+                if(Properties.Settings.Default.gamePath == "" && searchDucktationFile())
+                {
+                    searchGameFile();
+                }
+            }
+
             if (Properties.Settings.Default.gamePath != "") { gameFilePath.Text = Properties.Settings.Default.gamePath; }
             duckAutoStart.Checked = Properties.Settings.Default.autoStart;
 
@@ -143,19 +166,38 @@ namespace C3AP_Client
             gameLevelID = getLevelID((int)LevelIDAddress);
             gameLateLevelID = getLevelID((int)LateLevelIDAddress);
             crashAniID = getAnimationID();
+            crashLives = getLives();
 
             string levelName = LevelIDs.FirstOrDefault(x => x.Value == levelNumber).Key;
             string levelNameLate = LevelIDs.FirstOrDefault(x => x.Value == levelNumberLate).Key;
 
             levelID.Text = "LevelID: " + levelNumber + " [" + levelName + "] is in State: " + getGameState((int)GameStateAddress);
             latelevelId.Text = "LevelID: " + levelNumberLate + " [" + levelNameLate + "] is in State: " + getGameState((int)GameStateAddress);
-            aniID.Text = "AnimationsID: " + getAnimationID();
-            lives.Text = "Lives: " + getLives();
-            updateLiveCounter(getLives(), levelNumber);
-            wumpa.Text = "Wumpa Fruits: " + getWumpa();
-            updateWumpaCounter(getWumpa(), levelNumber);
-            crates.Text = "Crates: " + getCrates();
-            updateBoxCounter(getCrates());
+            if (isInLevel())
+            {
+                aniID.Text = "AnimationsID: " + getAnimationID();
+                lives.Text = "Lives: " + getLives();
+                updateLiveCounter(getLives(), levelNumber);
+                wumpa.Text = "Wumpa Fruits: " + getWumpa();
+                updateWumpaCounter(getWumpa(), levelNumber);
+                crates.Text = "Crates: " + getCrates() + " / " + getLevelCrates(levelNumber);
+                updateBoxCounter(getCrates());
+                updateMaxBoxCounter(getLevelCrates(levelNumber));
+            }
+            else
+            {
+                aniID.Text = "AnimationsID: " + getAnimationID();
+                lives.Text = "Lives: 0";
+                updateLiveCounter(0, levelNumber);
+                wumpa.Text = "Wumpa Fruits: 0";
+                updateWumpaCounter(0, levelNumber);
+                crates.Text = "Crates: 0";
+                updateBoxCounter(0);
+                updateMaxBoxCounter(0);
+            }
+
+
+            if (infiniteLives == true) { }
 
             if (isProcess)
             {
@@ -245,9 +287,12 @@ namespace C3AP_Client
                                     long goalValue = jObject["goal_option"]?.Value<long>() ?? 0;
                                     int powerUp = jObject["powerup_lock"]?.Value<int>() ?? 0;
                                     int deathLink = jObject["death_link"]?.Value<int>() ?? 0;
+                                    int infinityLive = jObject["infinite_lives"]?.Value<int>() ?? 0;
+                                    deathRange = jObject["death_range"].ToObject<int>();
 
                                     isPowerUp = Convert.ToBoolean(powerUp);
                                     isDeathLink = Convert.ToBoolean(deathLink);
+                                    infiniteLives = Convert.ToBoolean(infinityLive);
 
                                     currentGoalSetting = goalValue;
 
@@ -257,10 +302,24 @@ namespace C3AP_Client
                             {
                             }
                         }
+
+                        if(successful.SlotData.TryGetValue("warp_room_destinations", out var warpObj) && warpObj != null) 
+                        {
+                            try
+                            {
+                                if (warpObj is Newtonsoft.Json.Linq.JObject jObject)
+                                {
+                                    MessageBox.Show(jObject.ToString());
+                                }
+                            }
+                            catch (Exception ex) { }
+                        }
                     }
 
-                    MessageBox.Show(isPowerUp.ToString());
-                    MessageBox.Show(isDeathLink.ToString());
+                    //MessageBox.Show(isPowerUp.ToString());
+                    //MessageBox.Show("DeathLink is: " + isDeathLink.ToString() + " with a range of " + deathRange);
+                    //MessageBox.Show(infiniteLives.ToString());
+
                     LoadItemsFromJson();
                     alreadyReceivedItems();
                     timer2.Enabled = true;
@@ -497,6 +556,7 @@ namespace C3AP_Client
                 if (match != null)
                 {
                     sendToPopup(receivedItemId, "Crystal", match.LevelName);
+                    receiveCrystalReserved(match.LevelName);
                 }
                 //setGameItems(receivedItemId, (int)CrystalSavedAddress, (int)CyrstalReceivedAddress);
             }
@@ -625,7 +685,7 @@ namespace C3AP_Client
         private void btnHints_Click(object sender, EventArgs e)
         {
             switchBTN(1);
-            MessageBox.Show(getAnimationID().ToString());
+            //MessageBox.Show(getAnimationID().ToString());
         }
         private void btnHintsHover_Click(object sender, EventArgs e)
         {
@@ -835,11 +895,6 @@ namespace C3AP_Client
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.hostName = hostName.Text;
@@ -878,10 +933,8 @@ namespace C3AP_Client
         {
             int count = 0;
 
-            // Gehe jedes Item in deiner Crystal-Liste durch
             foreach (var item in SharedAdresses.CrystalItems)
             {
-                // Prüfe mit deiner bereits existierenden Methode, ob das Crystal da ist
                 if (isCrystalSave(item.LevelAPItemId))
                 {
                     count++;
@@ -1117,9 +1170,14 @@ namespace C3AP_Client
         {
             int boxP1 = boxCountp1.Width;
             int boxP1Pos = boxCountp1.Location.X;
-            boxCountp2.Location = new Point(boxP1Pos + boxP1, boxCountp2.Location.Y);
 
-            if(boxCountp2.Image == null) 
+            int sboxP1 = sboxp1.Width;
+            int sboxP1Pos = sboxp1.Location.X;
+
+            boxCountp2.Location = new Point(boxP1Pos + boxP1, boxCountp2.Location.Y);
+            sboxp2.Location = new Point(sboxP1Pos + sboxP1, sboxp2.Location.Y);
+
+            if (boxCountp2.Image == null) 
             {
                 maxboxCount.Location = new Point(boxP1Pos + boxP1, maxboxCount.Location.Y);
             }
@@ -1128,7 +1186,12 @@ namespace C3AP_Client
         {
             int boxP2 = boxCountp2.Width;
             int boxP2Pos = boxCountp2.Location.X;
+
+            int sboxP2 = sboxp2.Width;
+            int sboxP2Pos = sboxp2.Location.X;
+
             boxCountp3.Location = new Point(boxP2Pos + boxP2, boxCountp3.Location.Y);
+            sboxp3.Location = new Point(sboxP2Pos + sboxP2, sboxp3.Location.Y);
 
             if (boxCountp3.Image == null)
             {
@@ -1141,11 +1204,18 @@ namespace C3AP_Client
             int boxP3 = boxCountp3.Width;
             int boxP3Pos = boxCountp3.Location.X;
 
+            int sboxP3 = sboxp3.Width;
+            int sboxP3Pos = sboxp3.Location.X;
+
             maxboxCount.Location = new Point(boxP3Pos + boxP3, maxboxCount.Location.Y);
         }
 
         private void updateLiveCounter(int lives, int levelId)
         {
+            int liveP1 = liveCountp1.Width;
+            int liveP1Pos = liveCountp1.Location.X;
+            liveCountp2.Location = new Point(liveP1Pos + liveP1, liveCountp2.Location.Y);
+
             if (LevelIDs.ContainsValue(levelId) || BossLevelIDs.ContainsValue(levelId))
             { 
                 if (lives < 10)
@@ -1167,6 +1237,10 @@ namespace C3AP_Client
 
         private void updateWumpaCounter(int wumpa, int levelId)
         {
+            int wumpaP1 = wumpaCountp1.Width;
+            int wumpaP1Pos = wumpaCountp1.Location.X;
+            wumpaCountp2.Location = new Point(wumpaP1Pos + wumpaP1, wumpaCountp2.Location.Y);
+
             if (LevelIDs.ContainsValue(levelId) || BossLevelIDs.ContainsValue(levelId))
             {
                 if (wumpa < 10)
@@ -1188,7 +1262,6 @@ namespace C3AP_Client
 
         private void updateBoxCounter(int box)
         {
-            
 
             if (box < 10)
             {
@@ -1216,9 +1289,34 @@ namespace C3AP_Client
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void updateMaxBoxCounter(int box)
         {
-            liveCountp1.Image = Properties.Resources.live2;
+
+
+            if (box < 10)
+            {
+                sboxp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + box);
+                sboxp2.Image = null;
+                sboxp3.Image = null;
+            }
+            else if (box >= 10 && box < 100)
+            {
+                int CountP1 = box / 10;
+                int CountP2 = box % 10;
+                sboxp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + CountP1);
+                sboxp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + CountP2);
+                sboxp3.Image = null;
+            }
+            else
+            {
+                int CountP1 = box / 100;
+                int CountP2 = (box / 10) % 10;
+                int CountP3 = box % 10;
+
+                sboxp1.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + CountP1);
+                sboxp2.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + CountP2);
+                sboxp3.Image = (System.Drawing.Image)Properties.Resources.ResourceManager.GetObject("sbox" + CountP3);
+            }
         }
 
         private void HandleDeathLink(DeathLink deathLink)

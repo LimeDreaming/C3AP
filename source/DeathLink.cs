@@ -1,6 +1,7 @@
 ﻿using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using static C3AP_Client.Helpers.NativeMethods;
 using static C3AP_Client.Form1;
+using static C3AP_Client.CrashData;
 using static C3AP_Client.GameConfig;
 using static C3AP_Client.SharedAdresses;
 
@@ -44,9 +45,26 @@ namespace C3AP_Client
             if (isRespawn == true && aniID == 1) { isRespawn = false; triggerOnce = false; }
 
             if (isLevel == true && isBonus == false && isRespawn == false) 
-            {
-                
-                if (DeathAnimationIDs.ContainsKey(aniID) && triggerOnce == false) { sendDeathLink(playerName); triggerOnce = true; }
+            { 
+                if (DeathAnimationIDs.ContainsKey(aniID) && triggerOnce == false) 
+                {
+                    if(deathRange == currentDeathCount) { sendDeathLink(playerName); triggerOnce = true; currentDeathCount = 0; if (infiniteLives == true)
+                        {
+                            addLives(1);
+                        }
+                    }
+                    else 
+                    {
+                        triggerOnce = true;
+                        currentDeathCount++;
+                        if (infiniteLives == true)
+                        {
+                            addLives(1);
+                        }
+                    }
+
+                    
+                }
             }
             if (isLevel == true && isBonus == true)
             {

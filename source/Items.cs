@@ -305,6 +305,28 @@ namespace C3AP_Client
             return false;
         }
 
+        public static bool receiveCrystalReserved(string levelName)
+        {
+            IntPtr bytesWritten;
+            IntPtr targetAddress = IntPtr.Add(ramBase, (int)CrystalMirrorAddress);
+
+            if (levelName != null && CrystalBits.crystalData.ContainsKey(levelName))
+            {
+                var data = CrystalBits.crystalData[levelName];
+                int byteIndex = data.Item1;
+                int bitPosition = data.Item2;
+
+                byte[] reservecrystals = getCrystalReserve((int)CrystalMirrorAddress);
+
+                reservecrystals[byteIndex] |= (byte)(1 << bitPosition);
+
+                bool success = WriteProcessMemory(targetProcess, targetAddress, reservecrystals, reservecrystals.Length, out bytesWritten);
+
+                return success;
+            }
+
+            return false;
+        }
 
         //Delete Area Start
         public static bool deleteCrystalReserved(string levelName, IntPtr offsetAddress)

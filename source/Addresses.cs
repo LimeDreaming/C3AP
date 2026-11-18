@@ -34,10 +34,13 @@ namespace C3AP_Client
         public const int BlueGemSavedBit = 16;
         public const int Gem105SavedBit = 32;
 
+        public static uint PortalAddress = 0x00000;
         public static uint PowerUpAddress = 0x69328;
 
         public static uint PauseStateAddress = 0x609e0;
         public static uint BonusStateAddress = 0x60c5c; // Still need to be proofed that is the Bonus Level State
+        public static uint GameLevelList = 0x6b838;
+        public static uint CheckPointGameLevelList = 0x65f80;
 
         public static uint GameStateAddress = 0x690ed;
         public static uint LevelIDAddress = 0x60c1c;
@@ -167,10 +170,14 @@ namespace C3AP_Client
 
         public static uint PauseStateAddress = 0x6087c;
         public static uint BonusStateAddress = 0x60afc; // Still need to be proofed that is the Bonus Level State
+        public static uint GameLevelList = 0x6b838; //
+        public static uint CheckPointGameLevelList = 0x65f80; //
 
         public static uint GameStateAddress = 0x68f3d;
         public static uint LevelIDAddress = 0x68ef9;
         public static uint LateLevelIDAddress = 0x68ef9;
+
+        
 
         public static Dictionary<int, uint> LevelDataAddress = new Dictionary<int, uint>
         {
@@ -267,6 +274,7 @@ namespace C3AP_Client
     {
         public static uint CyrstalReceivedAddress;
         public static uint CrystalSavedAddress;
+        public static uint CrystalMirrorAddress;
 
         public static uint GemReceivedAddress;
         public static uint GemSavedAddress;
@@ -281,10 +289,13 @@ namespace C3AP_Client
 
         public static uint ColoredGemSavedAddress;
 
+        public static uint PortalAddress;
         public static uint PowerUpAddress;
 
         public static uint PauseStateAddress;
         public static uint BonusStateAddress;
+        public static uint GameLevelList;
+        public static uint CheckPointGameLevelList;
 
         public static uint GameStateAddress;
         public static uint LevelIDAddress;
@@ -298,6 +309,7 @@ namespace C3AP_Client
         {
             CyrstalReceivedAddress = USAddresses.CyrstalReceivedAddress;
             CrystalSavedAddress = USAddresses.CrystalSavedAddress;
+            CrystalMirrorAddress = USAddresses.CrystalMirrorAddress;
 
             GemReceivedAddress = USAddresses.GemReceivedAddress;
             GemSavedAddress = USAddresses.GemSavedAddress;
@@ -316,6 +328,8 @@ namespace C3AP_Client
 
             PauseStateAddress = USAddresses.PauseStateAddress;
             BonusStateAddress = USAddresses.BonusStateAddress;
+            GameLevelList = USAddresses.GameLevelList;
+            CheckPointGameLevelList = USAddresses.CheckPointGameLevelList;
 
             GameStateAddress = USAddresses.GameStateAddress;
             LevelIDAddress = USAddresses.LevelIDAddress;
@@ -330,7 +344,8 @@ namespace C3AP_Client
             //Crystals
             CyrstalReceivedAddress = EUAddresses.CyrstalReceivedAddress;
             CrystalSavedAddress = EUAddresses.CrystalSavedAddress;
-            
+            CrystalMirrorAddress = EUAddresses.CrystalMirrorAddress;
+
             //Clear Gems
             GemReceivedAddress = EUAddresses.GemReceivedAddress;
             GemSavedAddress = EUAddresses.GemSavedAddress;
@@ -348,7 +363,9 @@ namespace C3AP_Client
             PowerUpAddress = EUAddresses.PowerUpAddress;
 
             PauseStateAddress = EUAddresses.PauseStateAddress;
-            BonusStateAddress = EUAddresses.BonusStateAddress; 
+            BonusStateAddress = EUAddresses.BonusStateAddress;
+            GameLevelList = EUAddresses.GameLevelList;
+            CheckPointGameLevelList = EUAddresses.CheckPointGameLevelList;
 
             GameStateAddress = EUAddresses.GameStateAddress;
             LevelIDAddress = EUAddresses.LevelIDAddress;

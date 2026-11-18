@@ -38,9 +38,9 @@ namespace C3AP_Client
                     {
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
 
-                        if (isLocationChecked == false)
+                        if (isLocationChecked == true)
                         {
-                            deleteCrystalReserved(levelName, (int)CyrstalReceivedAddress);
+                            deleteCrystalReserved(levelName,(int)CrystalMirrorAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -60,7 +60,7 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteClearGemBoxReserved(levelName, (int)GemReceivedAddress);
+                            //deleteClearGemBoxReserved(levelName, (int)GemReceivedAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -80,7 +80,7 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteClearGemReserved(levelName, (int)GemReceivedAddress);
+                            //deleteClearGemReserved(levelName, (int)GemReceivedAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -100,7 +100,7 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteColoredGemReserved(levelName, (int)ColoredGemReceivedAddress);
+                            //deleteColoredGemReserved(levelName, (int)ColoredGemReceivedAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -132,7 +132,7 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteRelicSGReserved(levelName, (int)RelicsSapphireReceivedAddress);
+                            //deleteRelicSGReserved(levelName, (int)RelicsSapphireReceivedAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }
@@ -152,7 +152,7 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteRelicSGReserved(levelName, (int)RelicsGoldReceivedAddress);
+                            //deleteRelicSGReserved(levelName, (int)RelicsGoldReceivedAddress);
                         }
                         sendForceRelicSapphireCheck(levelName);
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
@@ -173,8 +173,8 @@ namespace C3AP_Client
                         bool isLocationChecked = APManager.Session.Items.AllItemsReceived.Any(item => item.ItemId == foundCrystal.LevelAPItemId);
                         if (isLocationChecked == false)
                         {
-                            deleteRelicSGReserved(levelName, (int)RelicsSapphireReceivedAddress);
-                            deleteRelicSGReserved(levelName, (int)RelicsGoldReceivedAddress);
+                            //deleteRelicSGReserved(levelName, (int)RelicsSapphireReceivedAddress);
+                            //deleteRelicSGReserved(levelName, (int)RelicsGoldReceivedAddress);
                         }
                         APManager.Session.Locations.CompleteLocationChecks(new[] { foundCrystal.LevelAPCheckId });
                     }

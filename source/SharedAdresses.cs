@@ -140,6 +140,57 @@ namespace C3AP_Client
             //{"N. Cortex",1420 },
         };
 
+        public record LevelInfo(string LevelName, long LevelID,  int LevelNumber, int TotalCrates, bool IsLevel, bool IsBoss);
+
+        public static readonly List<LevelInfo> LevelDatas = new()
+        {
+            new LevelInfo("Warp Room", 0x02, 0, 0, false, false),
+
+            new LevelInfo("Toad Village", 0x0b, 1, 40, true, false),
+            new LevelInfo("Under Pressure", 0x0e, 2, 92, true, false),
+            new LevelInfo("Orient Express", 0x0a, 3, 51, true, false),
+            new LevelInfo("Bone Yard", 0x0c, 4, 66, true, false),
+            new LevelInfo("Makin' Waves", 0x19, 5, 37, true, false),
+
+            new LevelInfo("Gee Wiz", 0x0f, 6, 100, true, false),
+            new LevelInfo("Hang'em High", 0x16, 7, 96, true, false),
+            new LevelInfo("Hog Ride", 0x15, 8, 13, true, false),
+            new LevelInfo("Tomb Time", 0x12, 9, 95, true, false),
+            new LevelInfo("Midnight Run", 0x11, 10, 35, true, false),
+
+            new LevelInfo("Dino Might!", 0x10, 11, 112, true, false),
+            new LevelInfo("Deep Trouble", 0x1c, 12, 83, true, false),
+            new LevelInfo("High Time", 0x1a, 13, 85, true, false),
+            new LevelInfo("Road Crash", 0x14, 14, 25, true, false),
+            new LevelInfo("Double Header", 0x1d, 15, 91, true, false),
+
+            new LevelInfo("Sphynxinator", 0x1e, 16, 105, true, false),
+            new LevelInfo("Bye Bye Blimps", 0x13, 17, 11, true, false),
+            new LevelInfo("Tell No Tales", 0x0d, 18, 61, true, false),
+            new LevelInfo("Future Frenzy", 0x1b, 19, 133, true, false),
+            new LevelInfo("Tomb Wader", 0x18, 20, 88, true, false),
+
+            new LevelInfo("Gone Tomorrow", 0x23, 21, 87, true, false),
+            new LevelInfo("Orange Asphalt", 0x20, 22, 20, true, false),
+            new LevelInfo("Flaming Passion", 0x22, 23, 75, true, false),
+            new LevelInfo("Mad Bombers", 0x17, 24, 11, true, false),
+            new LevelInfo("Bug Lite", 0x24, 25, 120, true, false),
+
+            new LevelInfo("Ski Crazed", 0x21, 26, 100, true, false),
+            new LevelInfo("Area 51?", 0x25, 28, 24, true, false),
+            new LevelInfo("Rings Of Power", 0x1f, 30, 33, true, false),
+            new LevelInfo("Hot Coco", 0x27, 31, 70, true, false),
+            new LevelInfo("Eggipus Rex", 0x26, 32, 0, true, false),
+
+            //Bosses
+            new LevelInfo("Tiny Tiger", 0x06, 0, 0, false, true),
+            new LevelInfo("Dingodile", 0x03, 0, 0, false, true),
+            new LevelInfo("N. Tropy", 0x04, 0, 0, false, true),
+            new LevelInfo("N. Gin", 0x05, 0, 0, false, true),
+            new LevelInfo("N. Cortex", 0x07, 0, 0, false, true),
+
+        };
+
         public record APItemData(string LevelName, long LevelAPCheckId, long LevelAPItemId, int Level);
 
         public static readonly List<APItemData> CrystalItems = new()

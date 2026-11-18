@@ -2,6 +2,7 @@
 using static C3AP_Client.Helpers.NativeMethods;
 using static C3AP_Client.GameConfig;
 using static C3AP_Client.SharedAdresses;
+using System.Linq;
 using static C3AP_Client.Form1;
 
 namespace C3AP_Client
@@ -61,6 +62,14 @@ namespace C3AP_Client
             return 0;
         }
 
+        public static void addLives(int lives) 
+        {
+            if(getLives() < 99) 
+            {
+                setLives(getLives() + lives);
+            }
+        }
+
         public static int getLives()
         {
             int currentLevelID = LevelData.getLevelID((int)LevelIDAddress);
@@ -80,6 +89,24 @@ namespace C3AP_Client
             return 0;
         }
 
+        public static void setLives(int lives)
+        {
+            int currentLevelID = LevelData.getLevelID((int)LevelIDAddress);
+            IntPtr bytesWritten;
+            if (LevelDataAddress.ContainsKey(currentLevelID))
+            {
+                if (LevelDataAddress.TryGetValue(currentLevelID, out uint address))
+                {
+                    uint liveAddress = address + LivesIDOffset;
+                    IntPtr targetAddress = IntPtr.Add(ramBase, (int)liveAddress);
+
+                    byte[] intBytes = BitConverter.GetBytes(lives);
+
+                    bool success = WriteProcessMemory(targetProcess, targetAddress, intBytes, intBytes.Length, out bytesWritten);
+                }
+            }
+        }
+
         public static int getWumpa()
         {
             int currentLevelID = LevelData.getLevelID((int)LevelIDAddress);
@@ -96,6 +123,17 @@ namespace C3AP_Client
                     return currentLevelID;
                 }
             }
+            return 0;
+        }
+        public static int getLevelCrates(int levelId)
+        {
+            LevelInfo levelInfo = LevelDatas.FirstOrDefault(l => l.LevelID == levelId);
+
+            if (levelInfo != null)
+            {
+                return (int)levelInfo.TotalCrates;
+            }
+
             return 0;
         }
 
