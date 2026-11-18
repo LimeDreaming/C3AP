@@ -40,7 +40,7 @@ class InfiniteLives(Toggle):
     """
     You can die but your live counter is frozen
     """
-    display_name = "Infinite Lives"
+    display_name = "Infinite Lives [W.I.P You can test it!]"
 
 class LevelExitLocations(Toggle):
     """
@@ -54,14 +54,14 @@ class LevelItemsAsItems(Toggle):
     Crystal and Gem will be seprated to their levels
     Example [Toad Village: Crystal] and not just Crystal
     """
-    display_name = "Level Item as Items"
+    display_name = "Level Item as Items [Disabled]"
 
 class AllOpen(Toggle):
     """
         All Electricfences are open?!
         Recommend for Singleplay!
         """
-    display_name = "Gates open"
+    display_name = "Gates open [Disabled]"
 
 class DeathLinkRange(Range):
     """
@@ -173,7 +173,7 @@ class RelicAsCheck(Toggle):
     """
         This enables the Relics as Items and Checks.
     """
-    display_name = "Relic As Checks"
+    display_name = "Relic As Checks [Disabled]"
 
     option_disabled = 0
     option_enabled = 1
@@ -187,7 +187,7 @@ class RelicType(Choice):
     Sapphire: Only Sapphire Relics are Items and Checks.
     Gold: Only Gold Relics are Items and Checks.
     """
-    display_name = "Relic Type"
+    display_name = "Relic Type [Disabled]"
 
     option_normal = 0
     option_sapphire = 1
@@ -212,7 +212,7 @@ class PowerupType(Choice):
     Normal: Getting your Powerups in the normal game way
     Check: Getting Powerup by checks, you can get them earlier.
     """
-    display_name = "Relic Type"
+    display_name = "[Disabled]"
 
     option_normal = 0
     option_check = 1
@@ -230,7 +230,7 @@ class GimmickLock(Toggle):
     (trivial means it is either expected of you from the vanilla game or doesn't require any complex movement)
     Lunatic: Anything that is possible to obtain without X gimmick will be in logic
     """
-    display_name = "Gimmick Lock"
+    display_name = "Gimmick Lock [Disabled]"
 
 class TigerLockLogic(Choice):
     """

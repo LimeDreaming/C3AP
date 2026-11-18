@@ -69,7 +69,7 @@ def connect_regions(world: Crash3World) -> None:
     warp3_level = ["Dino Might!","Deep Trouble","High Time","Road Crash","Double Header"]
     warp4_level = ["Sphynxinator","Bye Bye Blimps","Tell No Tales","Future Frenzy","Tomb Wader"]
     warp5_level = ["Gone Tomorrow","Orange Asphalt","Flaming Passion","Mad Bombers","Bug Lite"]
-    warp6_level = ["Ski Crazed","Area 51?","Rings of Power"]
+    warp6_level = ["Ski Crazed","Hang'em High","Area 51?","Future Frenzy","Rings of Power"]
 
     for levelname in warp1_level:
         warp_room = world.get_region("Warp Room 1")
@@ -100,11 +100,14 @@ def connect_regions(world: Crash3World) -> None:
     warp_room3 = world.get_region("Warp Room 3")
     warp_room4 = world.get_region("Warp Room 4")
     warp_room5 = world.get_region("Warp Room 5")
+    warp_room6 = world.get_region("Warp Room 6")
 
+    warp_room5.connect(warp_room6, "Warp Room 5 to Warp Room 6")
     warp_room1.connect(warp_room2, "Warp Room 1 to Warp Room 2")
     warp_room2.connect(warp_room3, "Warp Room 2 to Warp Room 3")
     warp_room3.connect(warp_room4, "Warp Room 3 to Warp Room 4")
     warp_room4.connect(warp_room5, "Warp Room 4 to Warp Room 5")
+
 
     level14 = world.get_region("Road Crash")
     secret_level1 = world.get_region("Hot Coco")
@@ -130,22 +133,11 @@ def connect_regions(world: Crash3World) -> None:
             #warp_room.connect(boss_region, boss_name)
             warp_room.connect(boss_region, "Unlock " + boss_name)
 
-        ski_crazed = world.get_region("Ski Crazed Hidden")
-        warp_room.connect(ski_crazed, "Warp Room to Ski Crazed")
-        hang_high = world.get_region("Hang'em High Hidden")
-        warp_room.connect(hang_high, "Warp Room to Hang'em High")
-        area51 = world.get_region("Area 51? Hidden")
-        warp_room.connect(area51, "Warp Room to Area 51?")
-        future_frenzy = world.get_region("Future Frenzy Hidden")
-        warp_room.connect(future_frenzy, "Warp Room to Future Frenzy")
-        rings_power = world.get_region("Rings of Power Hidden")
-        warp_room.connect(rings_power, "Warp Room to Rings of Power")
-
 
     # 4. Endbedingungen mit Dr. Neo Cortex verbinden
     cortex = world.get_region("Dr. Neo Cortex")
-    #cortex.connect(world.get_region("100% Complete"), "Beat Cortex 100%")
-    #cortex.connect(world.get_region("105% Complete"), "Beat Cortex 105%")
+    cortex.connect(world.get_region("100% Complete"), "Beat Cortex 100%")
+    cortex.connect(world.get_region("105% Complete"), "Beat Cortex 105%")
     # Connect crystal count regions in a chain
 
     # You can then connect the Entrance to the target region.

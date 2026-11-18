@@ -83,43 +83,56 @@ def set_all_location_rules(world: Crash3World) -> None:
     set_rule(world.get_location("Bug Lite: Clear Gem"),
              lambda state: state.has_all(("Red Gem: Deep Trouble","Blue Gem: Tomb Wader","Purple Gem: High Time","Yellow Gem: Hang'em High","Green Gem: Flaming Passion"), world.player))
     set_rule(world.get_location("Hang'em High: Yellow Gem"),
-             lambda state: state.has("Relic", world.player,10))
+             lambda state: state.has_group("Relics", world.player,10))
     set_rule(world.get_location("Future Frenzy: Clear Gem"),
-             lambda state: state.has("Relic", world.player, 20))
+             lambda state: state.has_group("Relics", world.player, 20))
 
 def set_all_entrance_rules(world: Crash3World) -> None:
 
-    all_crystals = [
-        "Crystal: Toad Village", "Crystal: Under Pressure", "Crystal: Orient Express", "Crystal: Bone Yard",
-        "Crystal: Makin' Waves",
-        "Crystal: Gee Wiz", "Crystal: Hang'em High", "Crystal: Hog Ride", "Crystal: Tomb Time", "Crystal: Midnight Run",
-        "Crystal: Dino Might!", "Crystal: Deep Trouble", "Crystal: High Time", "Crystal: Road Crash",
-        "Crystal: Double Header",
-        "Crystal: Sphynxinator", "Crystal: Bye Bye Blimps", "Crystal: Tell No Tales", "Crystal: Future Frenzy",
-        "Crystal: Tomb Wader",
-        "Crystal: Gone Tomorrow", "Crystal: Orange Asphalt", "Crystal: Flaming Passion", "Crystal: Mad Bombers",
-        "Crystal: Bug Lite"
-    ]
+    #if world.options.level_items_as_items:
+    set_rule(world.get_entrance("Unlock Tiny Tiger"), lambda state: state.has_group("Crystal", world.player, 5))
+    set_rule(world.get_entrance("Unlock Dingodile"), lambda state: state.has_group("Crystal", world.player, 10))
+    set_rule(world.get_entrance("Unlock N. Tropy"), lambda state: state.has_group("Crystal", world.player, 15))
+    set_rule(world.get_entrance("Unlock N. Gin"), lambda state: state.has_group("Crystal", world.player, 20))
+    set_rule(world.get_entrance("Unlock Dr. Neo Cortex"), lambda state: state.has_group("Crystal", world.player, 25))
 
-    set_rule(world.get_entrance("Unlock Tiny Tiger"), lambda state: state.has("Crystal",world.player, 5))
-    set_rule(world.get_entrance("Unlock Dingodile"), lambda state: state.has("Crystal",world.player, 10))
-    set_rule(world.get_entrance("Unlock N. Tropy"), lambda state: state.has("Crystal", world.player, 15))
-    set_rule(world.get_entrance("Unlock N. Gin"), lambda state: state.has("Crystal", world.player, 20))
-    set_rule(world.get_entrance("Unlock N. Gin"), lambda state: state.has("Crystal", world.player, 25))
+        # set_rule(world.get_entrance("Menu to Warp Room 1"), lambda state: state.has("Crystal", world.player, 0))
 
-    #set_rule(world.get_entrance("Menu to Warp Room 1"), lambda state: state.has("Crystal", world.player, 0))
+    set_rule(world.get_entrance("Warp Room 1 to Warp Room 2"),
+                 lambda state: state.has_group("Crystal", world.player, 5) and state.has("Tiny Tiger Defeated", world.player))
 
-    set_rule(world.get_entrance("Warp Room 1 to Warp Room 2"), lambda state: state.has("Crystal", world.player, 5) and state.has("Tiny Tiger Defeated", world.player))
+    set_rule(world.get_entrance("Warp Room 2 to Warp Room 3"),
+                 lambda state: state.has_group("Crystal", world.player, 10) and state.has("Dingodile Defeated", world.player))
 
-    set_rule(world.get_entrance("Warp Room 2 to Warp Room 3"), lambda state: state.has("Crystal", world.player, 10) and state.has("Dingodile Defeated", world.player))
+    set_rule(world.get_entrance("Warp Room 3 to Warp Room 4"),
+                 lambda state: state.has_group("Crystal", world.player, 15) and state.has("N. Tropy Defeated", world.player))
 
-    set_rule(world.get_entrance("Warp Room 3 to Warp Room 4"), lambda state: state.has("Crystal", world.player, 15) and state.has("N. Tropy Defeated", world.player))
+    set_rule(world.get_entrance("Warp Room 4 to Warp Room 5"),
+                 lambda state: state.has_group("Crystal", world.player, 20) and state.has("N. Gin Defeated", world.player))
 
-    set_rule(world.get_entrance("Warp Room 4 to Warp Room 5"), lambda state: state.has("Crystal", world.player, 20) and state.has("N. Gin Defeated", world.player))
+    set_rule(world.get_entrance("Road Crash to Hot Coco"), lambda state: state.has_group("Crystal", world.player, 10))
+    set_rule(world.get_entrance("Dino Might! to Eggipus Rex"),lambda state: state.has_group("Crystal", world.player, 10) and state.has("Yellow Gem: Hang'em High",world.player))
+
+    #if not world.options.level_items_as_items:
+    #    set_rule(world.get_entrance("Unlock Tiny Tiger"), lambda state: state.has_group("Crystal",world.player, 5))
+    #    set_rule(world.get_entrance("Unlock Dingodile"), lambda state: state.has_group("Crystal",world.player, 10))
+    #    set_rule(world.get_entrance("Unlock N. Tropy"), lambda state: state.has_group("Crystal", world.player, 15))
+    #    set_rule(world.get_entrance("Unlock N. Gin"), lambda state: state.has_group("Crystal", world.player, 20))
+    #    set_rule(world.get_entrance("Unlock Dr. Neo Cortex"), lambda state: state.has_group("Crystal", world.player, 25))
+
+        #set_rule(world.get_entrance("Menu to Warp Room 1"), lambda state: state.has("Crystal", world.player, 0))
+
+    #    set_rule(world.get_entrance("Warp Room 1 to Warp Room 2"), lambda state: state.has("Crystal", world.player, 5) and state.has("Tiny Tiger Defeated", world.player))
+
+    #    set_rule(world.get_entrance("Warp Room 2 to Warp Room 3"), lambda state: state.has("Crystal", world.player, 10) and state.has("Dingodile Defeated", world.player))
+
+    #    set_rule(world.get_entrance("Warp Room 3 to Warp Room 4"), lambda state: state.has("Crystal", world.player, 15) and state.has("N. Tropy Defeated", world.player))
+
+    #    set_rule(world.get_entrance("Warp Room 4 to Warp Room 5"), lambda state: state.has("Crystal", world.player, 20) and state.has("N. Gin Defeated", world.player))
 
 
-    set_rule(world.get_entrance("Road Crash to Hot Coco"), lambda state: state.has("Crystal", world.player, 10))
-    set_rule(world.get_entrance("Dino Might! to Eggipus Rex"), lambda state: state.has("Crystal", world.player, 10) and state.has("Yellow Gem: Hang'em High", world.player))
+    #    set_rule(world.get_entrance("Road Crash to Hot Coco"), lambda state: state.has("Crystal", world.player, 10))
+    #    set_rule(world.get_entrance("Dino Might! to Eggipus Rex"), lambda state: state.has("Crystal", world.player, 10) and state.has("Yellow Gem: Hang'em High", world.player))
 
     #set_rule(world.get_location("Dr. Neo Cortex Defeated"), lambda state: state.has("Crystal", world.player, 25))
     #set_rule(world.get_location("Game Completed"), lambda state: state.has("Crystal", world.player, 25) and state.has("Clear Gem", world.player, 42) and state.has("Relic", world.player, 28))
@@ -134,11 +147,11 @@ def set_all_entrance_rules(world: Crash3World) -> None:
         return sum(1 for relic in all_relic_names if state.has(relic, world.player)) >= count
 
     # Korrigierte Regeln für die Relic-Tore:
-    set_rule(world.get_entrance("Warp Room to Ski Crazed"), lambda state: has_relics(state, 5))
-    set_rule(world.get_entrance("Warp Room to Hang'em High"), lambda state: has_relics(state, 10))
-    set_rule(world.get_entrance("Warp Room to Area 51?"), lambda state: has_relics(state, 15))
-    set_rule(world.get_entrance("Warp Room to Future Frenzy"), lambda state: has_relics(state, 20))
-    set_rule(world.get_entrance("Warp Room to Rings of Power"), lambda state: has_relics(state, 25))
+    set_rule(world.get_entrance("Warp Room 6 to Ski Crazed"), lambda state: state.has_group("Relics", world.player, 5))
+    set_rule(world.get_entrance("Warp Room 6 to Hang'em High"), lambda state: state.has_group("Relics", world.player, 10))
+    set_rule(world.get_entrance("Warp Room 6 to Area 51?"), lambda state: state.has_group("Relics", world.player, 15))
+    set_rule(world.get_entrance("Warp Room 6 to Future Frenzy"), lambda state: state.has_group("Relics", world.player, 20))
+    set_rule(world.get_entrance("Warp Room 6 to Rings of Power"), lambda state: state.has_group("Relics", world.player, 25))
 
     # Conditions can depend on event items.
     # set_rule(right_room_to_final_boss_room, lambda state: state.has("Top Left Room Button Pressed", world.player))
@@ -163,8 +176,8 @@ def set_completion_condition(world: Crash3World) -> None:
     # # So lets undo what we just did, and instead set the completion condition to:
     # world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
     if world.options.goal_option == 0:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory", world.player)
+        world.multiworld.completion_condition[world.player] = lambda state: (state.has("Victory", world.player) and state.has_group("Bosses",world.player, 5) and state.has_group("Crystal",world.player, 25))
     if world.options.goal_option == 1:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory100", world.player)
+        world.multiworld.completion_condition[world.player] = lambda state: (state.has("Victory100", world.player) and state.has_group("Bosses",world.player, 5) and state.has_group("Crystal",world.player, 25) and state.has_group("Clear Gems",world.player, 37) and state.has_group("Colored Gems",world.player, 5) and state.has_group("Relics",world.player, 28))
     if world.options.goal_option == 2:
-        world.multiworld.completion_condition[world.player] = lambda state: state.has("Victory105", world.player)
+        world.multiworld.completion_condition[world.player] = lambda state: (state.has("Victory105", world.player) and state.has_group("Bosses",world.player, 5) and state.has_group("Crystal",world.player, 25) and state.has_group("Clear Gems",world.player, 40) and state.has_group("Colored Gems",world.player, 5) and state.has_group("Relics",world.player, 30))

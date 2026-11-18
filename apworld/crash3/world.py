@@ -27,7 +27,31 @@ class Crash3WebWorld(WebWorld):
 
 def setup_groups():
     item_name_groups = {
-        "Colored Gems": {"Blue Gem", "Yellow Gem", "Red Gem", "Purple Gem", "Green Gem"},
+        "Bosses" : {"Tiny Tiger Defeated","Dingodile Defeated","N. Tropy Defeated","N. Gin Defeated","Victory"},
+        "Crystal" : {"Crystal: Toad Village","Crystal: Under Pressure","Crystal: Orient Express","Crystal: Bone Yard","Crystal: Makin' Waves","Crystal: Gee Wiz",
+                      "Crystal: Hang'em High","Crystal: Hog Ride","Crystal: Tomb Time","Crystal: Midnight Run","Crystal: Dino Might!","Crystal: Deep Trouble",
+                      "Crystal: High Time","Crystal: Road Crash","Crystal: Double Header","Crystal: Sphynxinator","Crystal: Bye Bye Blimps","Crystal: Tell No Tales",
+                      "Crystal: Future Frenzy","Crystal: Tomb Wader","Crystal: Gone Tomorrow","Crystal: Orange Asphalt","Crystal: Flaming Passion","Crystal: Mad Bombers",
+                      "Crystal: Bug Lite"},
+
+        "Clear Gems": {"Clear Gem (Box): Toad Village","Clear Gem (Box): Under Pressure","Clear Gem (Box): Orient Express","Clear Gem (Box): Bone Yard","Clear Gem: Bone Yard",
+                       "Clear Gem (Box): Makin' Waves","Clear Gem (Box): Gee Wiz","Clear Gem (Box): Hang'em High","Clear Gem (Box): Hog Ride","Clear Gem (Box): Tomb Time","Clear Gem: Tomb Time",
+                       "Clear Gem (Box): Midnight Run","Clear Gem (Box): Dino Might!","Clear Gem: Dino Might!","Clear Gem (Box): Deep Trouble","Clear Gem (Box): High Time","Clear Gem (Box): Road Crash",
+                       "Clear Gem (Box): Double Header","Clear Gem (Box): Sphynxinator","Clear Gem: Sphynxinator","Clear Gem (Box): Bye Bye Blimps","Clear Gem (Box): Tell No Tales","Clear Gem (Box): Future Frenzy",
+                       "Clear Gem: Future Frenzy","Clear Gem (Box): Tomb Wader","Clear Gem (Box): Gone Tomorrow","Clear Gem: Gone Tomorrow","Clear Gem (Box): Orange Asphalt","Clear Gem (Box): Flaming Passion",
+                       "Clear Gem (Box): Mad Bombers","Clear Gem (Box): Bug Lite","Clear Gem: Bug Lite","Clear Gem (Box): Ski Crazed","Clear Gem (Box): Area 51?","Clear Gem: Area 51?","Clear Gem (Box): Rings of Power",
+                       "Clear Gem: Rings of Power","Clear Gem (Box): Hot Coco","Clear Gem (Box): Eggipus Rex"},
+
+        "Colored Gems": {"Blue Gem: Tomb Wader", "Green Gem: Flaming Passion", "Red Gem: Deep Trouble", "Yellow Gem: Hang'em High", "Purple Gem: High Time"},
+
+        "Relics": {"Relic: Toad Village","Relic: Under Pressure","Relic: Orient Express","Relic: Bone Yard","Relic: Makin' Waves",
+                   "Relic: Gee Wiz","Relic: Hang'em High","Relic: Hog Ride","Relic: Tomb Time","Relic: Midnight Run",
+                   "Relic: Dino Might!","Relic: Deep Trouble","Relic: High Time","Relic: Road Crash","Relic: Double Header",
+                   "Relic: Sphynxinator","Relic: Bye Bye Blimps","Relic: Tell No Tales","Relic: Future Frenzy","Relic: Tomb Wader",
+                   "Relic: Gone Tomorrow","Relic: Orange Asphalt","Relic: Flaming Passion","Relic: Mad Bombers","Relic: Bug Lite",
+                   "Relic: Ski Crazed","Relic: Area 51?","Relic: Rings of Power","Relic: Hot Coco","Relic: Eggipus Rex"
+                   },
+
         "Filler": {"Aku Aku", "Life Bundle", "Wumpa Fruit Bundle"},
         "Traps": {"Big Crash Trap", "Small Crash Trap", "No Lives Trap", "Jetpack Controls Trap", "Loose Live Trap", "Loose Wumpa Trap"},
         "Powerups": {"Body Slam", "Double Jump", "Tornado Spin", "Bazooka", "Crash Dash"},
@@ -67,7 +91,7 @@ def setup_groups():
         "Eggipus Rex Relics": {"Eggipus Rex: Sapphire Relic", "Eggipus Rex: Gold Relic", "Eggipus Rex: Platinum Relic"}
     }
 
-    # Stelle sicher, dass defaultdict genutzt wird, damit dynamische Gruppen per .add() ergänzt werden können
+
     loc_groups_dict = defaultdict(set, location_name_groups)
 
     for loc in locations.LOCATION_NAME_TO_ID.keys():
@@ -99,7 +123,7 @@ class Crash3World(World):
     options_dataclass = crash3_options.Crash3Options
     options: crash3_options.Crash3Options
 
-    # Locations und Items initialisieren
+
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
     item_name_groups, location_name_groups = setup_groups()
@@ -118,8 +142,6 @@ class Crash3World(World):
 
     def create_items(self) -> None:
         items.create_all_items(self)
-        self.item_name_groups["Crystal"] = {name for name in self.item_name_to_id if name.startswith("Crystal:")}
-        self.item_name_groups["Clear Gem"] = {name for name in self.item_name_to_id if name.startswith("Clear Gem")}
 
     def create_item(self, name: str) -> items.Crash3Item:
         return items.create_item_with_correct_classification(self, name)
